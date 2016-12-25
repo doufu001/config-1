@@ -78,6 +78,6 @@ if (
   dnsDomainIs(host, "steinmart.com") ||
 // test
   dnsDomainIs(host, "ip.cn")
-) return "SOCKS5 127.0.0.1:6666";
+) return "PROXY 127.0.0.1:6666";
 return "DIRECT";
 }
