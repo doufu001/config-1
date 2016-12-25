@@ -76,6 +76,8 @@ if (
   dnsDomainIs(host, "toranoana.jp") ||
   dnsDomainIs(host, "suruga-ya.jp") ||
   dnsDomainIs(host, "steinmart.com") ||
+// twitter
+  dnsDomainIs(host, "platform.twitter.com") ||
 // test
   dnsDomainIs(host, "ip.cn")
 ) return "PROXY 127.0.0.1:6666";
