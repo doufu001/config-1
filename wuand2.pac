@@ -14,16 +14,7 @@ if (
   shExpMatch(url, "https://www.facebook.com/ajax/updatestatus.php*") ||
   shExpMatch(url, "https://www.facebook.com/ufi/add/comment*") 
 ) return "DIRECT";
-// goproxy php
-if (
-  dnsDomainIs(host, "www.dmm.com") ||
-  dnsDomainIs(host, "osapi.dmm.com") ||
-  dnsDomainIs(host, "dmmgames.com") ||
-  dnsDomainIs(host, "w010.touken-ranbu.jp") ||
-  dnsDomainIs(host, "itchibanketsu.jp") ||
-  dnsDomainIs(host, "wikiwiki.jp")
-) return "PROXY 127.0.0.1:8088";
-// goproxy
+// proxy
 if (
 // google
   dnsDomainIs(host, "google.com") ||
@@ -86,6 +77,7 @@ if (
   dnsDomainIs(host, "touken-ranbu.jp") ||
   shExpMatch(url, "http://203.104.209.*/*") ||
   dnsDomainIs(host, "dmmgames.com") ||
+  dnsDomainIs(host, "itchibanketsu.jp") ||
 // niconico
   dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||
@@ -97,6 +89,7 @@ if (
 // acg
   dnsDomainIs(host, "dmhy.org") ||
   dnsDomainIs(host, "pixiv.net") ||
+  dnsDomainIs(host, "wikiwiki.jp") ||
   dnsDomainIs(host, "bahamut.com.tw") ||
   dnsDomainIs(host, "soundcloud.com") ||
   dnsDomainIs(host, "gamer.com.tw") ||
