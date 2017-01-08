@@ -76,15 +76,8 @@ if (
   dnsDomainIs(host, "toranoana.jp") ||
   dnsDomainIs(host, "suruga-ya.jp") ||
   dnsDomainIs(host, "steinmart.com") ||
-// twitter
-  dnsDomainIs(host, "platform.twitter.com") ||
-  dnsDomainIs(host, "syndication.twitter.com") ||
-// aws
-  dnsDomainIs(host, "cd-ladsp-com.s3.amazonaws.com") ||
-// facebook
-  shExpMatch(url, "https://www.facebook.com/tr?id=*") ||
 // test
   dnsDomainIs(host, "ip.cn")
-) return "PROXY 127.0.0.1:6666";
+) return "SOCKS5 127.0.0.1:2333";
 return "DIRECT";
 }
