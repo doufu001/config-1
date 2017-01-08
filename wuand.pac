@@ -17,6 +17,7 @@ if (
 // proxy
 if (
 // google
+  shExpMatch(url, "*://*.google.*/*") ||
   dnsDomainIs(host, "google.com") ||
   dnsDomainIs(host, "google.com.hk") ||
   dnsDomainIs(host, "google.co.jp") ||
