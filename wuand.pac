@@ -163,6 +163,6 @@ if (
   dnsDomainIs(host, "r.r10s.jp") ||
 // test
   dnsDomainIs(host, "ip.cn")
-) return "PROXY 127.0.0.1:6666";
+) return "PROXY 127.0.0.1:2333";
 return "DIRECT";
 }
