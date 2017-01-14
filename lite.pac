@@ -7,6 +7,7 @@ if (
 ) return "DIRECT";
 // squid
 if (
+  dnsDomainIs(host, "dmhy.org") ||
   shExpMatch(url, "http://203.104.209.*/*") ||
   dnsDomainIs(host, "wikiwiki.jp") 
 ) return "PROXY 45.32.49.26:25";
@@ -37,6 +38,8 @@ if (
   dnsDomainIs(host, "touken-ranbu.jp") ||
   dnsDomainIs(host, "dmmgames.com") ||
   dnsDomainIs(host, "itchibanketsu.jp") ||
+  dnsDomainIs(host, "kamihimeproject.net") ||
+  dnsDomainIs(host, "swordlogic.com") ||
 // github
   dnsDomainIs(host, "github.com") ||
   dnsDomainIs(host, "githubusercontent.com") ||
