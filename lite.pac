@@ -41,6 +41,16 @@ if (
   dnsDomainIs(host, "github.com") ||
   dnsDomainIs(host, "githubusercontent.com") ||
   dnsDomainIs(host, "githubapp.com") ||
+// niconico
+  dnsDomainIs(host, "nicovideo.jp") ||
+  dnsDomainIs(host, "smilevideo.jp") ||
+  dnsDomainIs(host, "nimg.jp") ||
+// acg
+  dnsDomainIs(host, "pixiv.net") ||
+  dnsDomainIs(host, "gamer.com.tw") ||
+  dnsDomainIs(host, "bahamut.com.tw") ||
+  dnsDomainIs(host, "deviantart.com") ||
+  dnsDomainIs(host, "deviantart.net") ||
 // test
   dnsDomainIs(host, "ip.cn") 
 ) return "PROXY 127.0.0.1:2333";
