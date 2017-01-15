@@ -8,6 +8,7 @@ if (
 // squid
 if (
   shExpMatch(url, "http://w010.touken-ranbu.jp/*") ||
+  shExpMatch(url, "http://game.bungo.dmmgames.com/*") ||
   shExpMatch(url, "http://www.itchibanketsu.jp/*") ||
   shExpMatch(url, "http://asset.itchibanketsu.jp/*") ||
   shExpMatch(url, "http://203.104.209.*/*") ||
