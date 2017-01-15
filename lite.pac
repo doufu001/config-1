@@ -7,10 +7,11 @@ if (
 ) return "DIRECT";
 // squid
 if (
-  dnsDomainIs(host, "dmhy.org") ||
   shExpMatch(url, "http://w010.touken-ranbu.jp/*") ||
+  shExpMatch(url, "http://www.itchibanketsu.jp/*") ||
   shExpMatch(url, "http://asset.itchibanketsu.jp/*") ||
   shExpMatch(url, "http://203.104.209.*/*") ||
+  dnsDomainIs(host, "dmhy.org") ||
   dnsDomainIs(host, "wikiwiki.jp") 
 ) return "PROXY 45.32.49.26:25";
 // wallproxy
