@@ -38,6 +38,7 @@ if (
 // dmm
   dnsDomainIs(host, "dmm.com") ||
   dnsDomainIs(host, "cxpublic.com") ||
+  dnsDomainIs(host, "a-i-ad.com") ||
   shExpMatch(url, "http://pics.dmm.co.jp/digital/*48/*") ||
   dnsDomainIs(host, "touken-ranbu.jp") ||
   dnsDomainIs(host, "dmmgames.com") ||
