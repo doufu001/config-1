@@ -7,7 +7,6 @@ if (
 ) return "DIRECT";
 // squid
 if (
-  shExpMatch(url, "http://*.google.com/*") ||
   shExpMatch(url, "http://w010.touken-ranbu.jp/*") ||
   shExpMatch(url, "http://game.bungo.dmmgames.com/*") ||
   shExpMatch(url, "http://www.itchibanketsu.jp/*") ||
