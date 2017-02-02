@@ -104,6 +104,7 @@ if (
   dnsDomainIs(host, "tineye.com") ||
   dnsDomainIs(host, "shutterstock.com") ||
   dnsDomainIs(host, "sta.sh") ||
+  dnsDomainIs(host, "imslp.org") ||
 // game
   dnsDomainIs(host, "ujj.co.jp") ||
   dnsDomainIs(host, "garena.tw") ||
@@ -160,6 +161,10 @@ if (
   dnsDomainIs(host, "xxchoroxx.blog.fc2.com") ||
   dnsDomainIs(host, "hqmeded-ecg.blogspot.com") ||
   dnsDomainIs(host, "afewguyscoding.com") ||
+// tumblr
+  dnsDomainIs(host, "assets.tumblr.com") ||
+  dnsDomainIs(host, "media.tumblr.com") ||
+  dnsDomainIs(host, "dspfanworks.tumblr.com") ||
 // sources fix
   dnsDomainIs(host, "r.r10s.jp") ||
 // test

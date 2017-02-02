@@ -14,7 +14,7 @@ if (
   shExpMatch(url, "http://203.104.209.*/*") ||
   dnsDomainIs(host, "dmhy.org") ||
   dnsDomainIs(host, "wikiwiki.jp") 
-) return "PROXY 52.193.69.71:25";
+) return "PROXY 45.32.49.26:25";
 // wallproxy
 if (
 // google
@@ -57,8 +57,10 @@ if (
   dnsDomainIs(host, "pixiv.net") ||
   dnsDomainIs(host, "gamer.com.tw") ||
   dnsDomainIs(host, "bahamut.com.tw") ||
+// art
   dnsDomainIs(host, "deviantart.com") ||
   dnsDomainIs(host, "deviantart.net") ||
+  dnsDomainIs(host, "imslp.org") ||
 // test
   dnsDomainIs(host, "ip.cn") 
 ) return "PROXY 127.0.0.1:2333";
