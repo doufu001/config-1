@@ -12,6 +12,7 @@ if (
   shExpMatch(url, "http://www.itchibanketsu.jp/*") ||
   shExpMatch(url, "http://asset.itchibanketsu.jp/*") ||
   shExpMatch(url, "http://203.104.209.*/*") ||
+  shExpMatch(url, "http://d3vhzwqidpn2dk.cloudfront.net/*") ||
   dnsDomainIs(host, "dmhy.org") ||
   dnsDomainIs(host, "wikiwiki.jp") 
 ) return "PROXY 45.32.49.26:25";
