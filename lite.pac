@@ -15,7 +15,7 @@ if (
   shExpMatch(url, "http://d3vhzwqidpn2dk.cloudfront.net/*") ||
   dnsDomainIs(host, "dmhy.org") ||
   dnsDomainIs(host, "wikiwiki.jp") 
-) return "PROXY 139.162.125.123:25";
+) return "PROXY 45.32.49.26:25";
 // wallproxy
 if (
 // google
