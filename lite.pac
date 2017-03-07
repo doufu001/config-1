@@ -46,6 +46,7 @@ if (
   dnsDomainIs(host, "itchibanketsu.jp") ||
   dnsDomainIs(host, "kamihimeproject.net") ||
   dnsDomainIs(host, "swordlogic.com") ||
+  dnsDomainIs(host, "millennium-war.net") ||
 // github
   dnsDomainIs(host, "github.com") ||
   dnsDomainIs(host, "githubusercontent.com") ||
