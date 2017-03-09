@@ -141,6 +141,8 @@ if (
   dnsDomainIs(host, "coursera.org") ||
   dnsDomainIs(host, "gitbook.com") ||
   dnsDomainIs(host, "slideshare.net") ||
+  dnsDomainIs(host, "pinterest.com") ||
+  dnsDomainIs(host, "pinimg.com") ||
 // shopping
   dnsDomainIs(host, "nordstrom.com") ||
   dnsDomainIs(host, "nordstromimage.com") ||
@@ -152,6 +154,7 @@ if (
   dnsDomainIs(host, "mediafire.com") ||
   dnsDomainIs(host, "getuploader.com") ||
   dnsDomainIs(host, "onedrive.live.com") ||
+  dnsDomainIs(host, "dropbox.com") ||
 // blogs
   shExpMatch(url, "*://lineblog.me/ri_ri_ri_10/*") ||
   shExpMatch(url, "*://line.blogimg.jp/ri_ri_ri_10/*") ||
@@ -165,6 +168,9 @@ if (
   dnsDomainIs(host, "assets.tumblr.com") ||
   dnsDomainIs(host, "media.tumblr.com") ||
   dnsDomainIs(host, "dspfanworks.tumblr.com") ||
+// fc2
+  shExpMatch(url, "http://coflo.blog.fc2.com/*") ||
+  shExpMatch(url, "http://blog-imgs-*-origin.fc2.com*") ||
 // sources fix
   dnsDomainIs(host, "r.r10s.jp") ||
 // test
