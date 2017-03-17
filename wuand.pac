@@ -173,6 +173,8 @@ if (
   shExpMatch(url, "http://blog-imgs-*-origin.fc2.com*") ||
 // sources fix
   dnsDomainIs(host, "r.r10s.jp") ||
+// research
+  dnsDomainIs(host, "sefalabs.com") ||
 // test
   dnsDomainIs(host, "ip.cn")
 ) return "PROXY 127.0.0.1:2333";
