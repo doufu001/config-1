@@ -41,6 +41,7 @@ if (
   dnsDomainIs(host, "ytimg.com") ||
   dnsDomainIs(host, "googlevideo.com") ||
   dnsDomainIs(host, "youtu.be") ||
+  dnsDomainIs(host, "ssyoutube.com") ||
 // twitter
   dnsDomainIs(host, "twitter.com") ||
   dnsDomainIs(host, "twimg.com") ||
