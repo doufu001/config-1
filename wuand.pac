@@ -1,11 +1,6 @@
 // 鉴于刑法修正案（九）关于第二百八十七条的描述，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
-// video
-if (
-  regExpMatch(url, "http:\/\/v\.youku\.com\/crossdomain\.xml") ||
-  regExpMatch(url, "^.*?://.*?(tudou|qiyi|iqiyi|le|letv|letvcdn|sohu|ku6|ku6cdn|pps).(com|tv)/crossdomain.xml$")
- ) return "PROXY yk.pp.navi.youku.com:80";
 // blacklist
 if (
   shExpMatch(url, "https://plus.google.com/*") ||
