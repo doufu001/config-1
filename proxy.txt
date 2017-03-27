@@ -1,5 +1,4 @@
 [AutoProxy 0.2.9]
-! Title: Wuand Proxy List
 ! Expires: 6h
 ! Last Modified: 2017.3.15
 
