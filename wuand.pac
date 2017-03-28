@@ -6,10 +6,9 @@ if (
   shExpMatch(url, "https://plus.google.com/*") ||
   shExpMatch(url, "https://www.youtube.com/upload") ||
   shExpMatch(url, "https://twitter.com/i/tweet/create") ||
-  shExpMatch(url, "https://zh.wikipedia.org/w/*") ||
   shExpMatch(url, "https://www.facebook.com/ajax/updatestatus.php*") ||
   shExpMatch(url, "https://www.facebook.com/ufi/add/comment*") 
-) return "DIRECT";
+) return "127.0.0.1";
 // proxy
 if (
 // google
