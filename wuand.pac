@@ -144,6 +144,7 @@ if (
   dnsDomainIs(host, "slideshare.net") ||
   dnsDomainIs(host, "pinterest.com") ||
   dnsDomainIs(host, "pinimg.com") ||
+  dnsDomainIs(host, "greasyfork.org") ||
 // shopping
   dnsDomainIs(host, "nordstrom.com") ||
   dnsDomainIs(host, "nordstromimage.com") ||
