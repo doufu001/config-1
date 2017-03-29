@@ -8,7 +8,11 @@ if (
   shExpMatch(url, "https://twitter.com/i/tweet/create") ||
   shExpMatch(url, "https://www.facebook.com/ajax/updatestatus.php*") ||
   shExpMatch(url, "https://www.facebook.com/ufi/add/comment*") 
-) return "127.0.0.1";
+) return "DIRECT";
+// video
+if (
+  shExpMatch(url, "http://*/crossdomain.xml") 
+) return "PROXY vps.onens.com:80";
 // proxy
 if (
 // google
@@ -75,6 +79,7 @@ if (
   shExpMatch(url, "http://203.104.209.*/*") ||
   dnsDomainIs(host, "dmmgames.com") ||
   dnsDomainIs(host, "itchibanketsu.jp") ||
+  dnsDomainIs(host, "shiropro-re.net") ||
 // niconico
   dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||
