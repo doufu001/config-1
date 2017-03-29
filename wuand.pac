@@ -12,7 +12,7 @@ if (
 // video
 if (
   shExpMatch(url, "http://*/crossdomain.xml") 
-) return "PROXY vps.onens.com:80";
+) return "PROXY yk.pp.navi.youku.com:80";
 // proxy
 if (
 // google
