@@ -43,33 +43,6 @@ var OCPlayer = {
 	}, { // ku6_out
 		find: /https?:\/\/player\.ku6cdn\.com\/default\/out\/\d{12}\/player\.swf/i,
 		replace: 'ku6_out.swf'
-	}, { // IQIYI_COM
-		find: /https?:\/\/www\.iqiyi\.com\/(player\/(\d+\/Player|[a-z0-9]*)|common\/flashplayer\/\d+\/((Main|Share|Enjon)?Player.*_(.|\w{1,3}\d+)|\w{12}))\.swf/i,
-		replace: function(el, find) {
-			var url = 'iqiyi.swf';
-			if (!/(^((?!baidu|61|178).)*\.iqiyi\.com|pps\.tv)/i.test(window.location.host))
-				url = 'iqiyi_out.swf';
-			else if (document.querySelector('span[data-flashplayerparam-flashurl]'))
-				url = 'iqiyi5.swf';
-
-			this.Reload.bind(this, el, find, url)();
-		}
-	}, { // IQIYI_BILIBILI
-		find: /http:\/\/www\.bilibili\.tv\/iqiyi\.swf/i,
-		replace: 'iqiyi.swf'
-	}, { // IQIYI_PPS
-		find: /http:\/\/www\.iqiyi\.com\/common\/.*\/pps[\w]+.swf/i,
-		replace: 'iqiyi_out.swf'
-	}, { // IQIYI_OUT
-		find: /http:\/\/(player|dispatcher)\.video\.i?qiyi\.com\/(.*[\?&]vid=)?([^\/&]+).*/i,
-		replace: function(el, find) {
-			var url = 'iqiyi_out.swf?vid=$3',
-				match = (el.data || el.src).match(/(autoplay)=\d+/ig);
-			if (match)
-				url += '&' + match.join('&');
-
-			this.Reload.bind(this, el, find, url)();
-		}
 	}, { // tudou
 		find: /https?:\/\/js\.tudouui\.com\/.*portalplayer[^\.]*\.swf/i,
 		replace: 'tudou.swf'
