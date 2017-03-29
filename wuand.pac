@@ -11,9 +11,8 @@ if (
 ) return "DIRECT";
 // video
 if (
-  regExpMatch(url, "http:\/\/v\.youku\.com\/crossdomain\.xml") ||
-  regExpMatch(url, "^.*?://.*?(tudou|qiyi|iqiyi|le|letv|letvcdn|sohu|ku6|ku6cdn|pps).(com|tv)/crossdomain.xml$")
- ) return "PROXY yk.pp.navi.youku.com:80";
+  shExpMatch(url, "http://*/crossdomain.xml") 
+ ) return "PROXY vps.onens.com:80";
 // proxy
 if (
 // google

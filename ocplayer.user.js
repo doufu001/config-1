@@ -2,7 +2,7 @@
 // @name        Onens.Clean.Player
 // @namespace   http://onens.com/
 // @description Thanks to OpenGG, Harv.c, KaFan15536900
-// @version     2.3.5.1
+// @version     2.3.5.2
 // @include     http://*/*
 // @include     https://*/*
 // @grant       GM_xmlhttpRequest
@@ -30,19 +30,19 @@ String.prototype.sprintf = function() {
 
 var OCPlayer = {
 	done: [],
-	host: 'https://coding.net/u/wuand/p/wuandswf/git/raw/master/swf/',
-	rule: [{ // YOUKU_COM
-		find: /http:\/\/static\.youku\.com(\/v[\d\.]*)?\/v\/swf\/q?(player|loader)([^\.]+)?\.swf/i,
+	host: 'https://coding.net/u/HalfLife/p/swf/git/raw/gh-pages/',
+	rule: [{ // youku_loader
+		find: /https?:\/\/static\.youku\.com(\/v[\d\.]*)?\/v\/.*\/loaders?\.swf/i,
 		replace: 'loader.swf'
-	}, { // YOUKU_OUT
-		find: /http:\/\/player\.youku\.com\/player\.php\/.*sid\/([\w=]+).*(\/v)?\.swf.*/i,
-		replace: 'loader.swf?showAd=0&VideoIDS=$1'
-	}, { // KU6_COM
-		find: /http:\/\/player\.ku6cdn\.com\/default\/.*\/\d+\/(v|player)\.swf/i,
+	}, { // youku_player
+		find: /https?:\/\/static\.youku\.com(\/v[\d\.]*)?\/v\/.*\/q?player.*\.swf/i,
+		replace: 'player.swf'
+	}, { // ku6
+		find: /https?:\/\/player\.ku6cdn\.com\/default\/.*\/(v|player)\.swf/i,
 		replace: 'ku6.swf'
-	}, { // KU6_OUT
-		find: /http:\/\/player\.ku6\.com\/(inside|refer)\/([^\/]+)\/v\.swf.*/i,
-		replace: 'ku6_out.swf?vid=$2'
+	}, { // ku6_out
+		find: /https?:\/\/player\.ku6cdn\.com\/default\/out\/\d{12}\/player\.swf/i,
+		replace: 'ku6_out.swf'
 	}, { // IQIYI_COM
 		find: /https?:\/\/www\.iqiyi\.com\/(player\/(\d+\/Player|[a-z0-9]*)|common\/flashplayer\/\d+\/((Main|Share|Enjon)?Player.*_(.|\w{1,3}\d+)|\w{12}))\.swf/i,
 		replace: function(el, find) {
@@ -70,38 +70,33 @@ var OCPlayer = {
 
 			this.Reload.bind(this, el, find, url)();
 		}
-	}, { // TUDOU_COM
-		find: /http:\/\/js\.tudouui\.com\/.*PortalPlayer[^\.]*\.swf/i,
+	}, { // tudou
+		find: /https?:\/\/js\.tudouui\.com\/.*portalplayer[^\.]*\.swf/i,
 		replace: 'tudou.swf'
-	}, { // TUDOU_OLC
-		find: /http:\/\/js\.tudouui\.com\/.*olc[^\.]*\.swf/i,
+	}, { // tudou_olc
+		find:  /https?:\/\/js\.tudouui\.com\/.*olc[^\.]*\.swf/i,
 		replace: 'olc_8.swf'
-	}, { // TUDOU_SP
-		find: /http:\/\/js\.tudouui\.com\/.*SocialPlayer_[^\.]*\.swf$/i,
+	}, { // tudou_sp
+		find: /https?:\/\/js\.tudouui\.com\/.*\/socialplayer[^\.]*\.swf/i,
 		replace: 'sp.swf'
-	}, { // LETV_COM
-		find: /http:\/\/.*letv[\w]*\.com\/(hz|.*\/((?!(Live|seed|Disk))(S[\w]{2,3})?(?!Live)[\w]{4}|swf))Player*\.swf\/?\??/i,
-		replace: function(el, find) {
-			/^v\.baidu\.com/i.test(window.location.host) || this.Reload.bind(this, el, find, 'https://coding.net/u/wuand/p/wuandswf/git/raw/master/swf/letv.swf?')();
-		}
-	}, { // LETV_COM
-		find: /http:\/\/.*letv[\w]*\.com\/.*\/(letv-wrapper|letvbili|lbplayer)\.swf/i,
+	}, { // letv
+		find: /https?:\/\/.*\.letv(cdn)?\.com\/.*(new)?player\/((SDK)?Letv|swf)Player\.swf/i,
 		replace: 'letv.swf'
-	// }, { // LETV_SKIN
-	// 	find: /http:\/\/.*letv[\w]*\.com\/p\/\d+\/\d+\/(?!15)\d*\/newplayer\/\d+\/S?SLetvPlayer\.swf/i,
-	// 	replace: 'http://player.letvcdn.com/p/201407/24/15/newplayer/1/SSLetvPlayer.swf'
-	}, { // LETV_CLOUD
-		find: /http:\/\/assets\.dwstatic\.com\/.*\/vpp\.swf/i,
-		replace: 'http://yuntv.letv.com/bcloud.swf'
-	}, { // LETV_OUT
-		find: /http:\/\/.*letv\.com\/player\/swfplayer\.swf(\?.*)/i,
-		replace: 'letv.swf$1'
-	}, { // PPLIVE
-		find: /http:\/\/player\.pplive\.cn\/ikan\/.*\/player4player2\.swf/i,
-		replace: 'player4player2.swf'
-	}, { // SOHU_COM
-		find: /http:\/\/(tv\.sohu\.com\/upload\/swf\/(p2p\/)?\d+|(\d+\.){3}\d+\/webplayer)\/(Main|PlayerShell)\.swf/i,
-		replace: 'sohu/sohu_live.swf'
+	}, { // letvpccs
+		find: /https?:\/\/www\.le(tv)?\.com\/.*\/playerapi\/pccs_(?!(.*live|sdk)).*_?(\d+)\.xml/i,
+		replace: 'http://www.le.com/cmsdata/playerapi/pccs_sdk_20141113.xml'
+	}, { // letv_live
+		find: /https?:\/\/.*letv.*\.com\/.*\/VLetvPlayer\.swf/i,
+		replace: 'letv.in.Live.swf'
+	}, { // pptv
+		find:  /https?:\/\/player\.pplive\.cn\/ikan\/.*\/player4player2\.swf/i,
+		replace: 'pptv.swf'
+	}, { // pptv_live
+		find:  /https?:\/\/player\.pplive\.cn\/live\/.*\/player4live2\.swf/i,
+		replace: 'pptv.in.Live.swf'
+	}, { // sohu_live
+		find: /https?:\/\/(tv\.sohu\.com\/upload\/swf\/(p2p\/)?\d+|(\d+\.){3}\d+\/wp8player)\/Main\.swf/i,
+		replace: 'sohu_live.swf'
 	}],
 
 	extra: [{ // TUDOU_OUT
