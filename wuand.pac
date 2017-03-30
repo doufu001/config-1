@@ -17,11 +17,14 @@ if (
 if (
   dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||
-  dnsDomainIs(host, "nimg.jp") 
+  dnsDomainIs(host, "nimg.jp") ||
+  dnsDomainIs(host, "ip.cn")
  ) return "PROXY 127.0.0.1:6666";
 // goproxy php
 if (
-  dnsDomainIs(host, "dmm.com") 
+  dnsDomainIs(host, "dmm.com") ||
+  shExpMatch(url, "http://w010.touken-ranbu.jp/*") ||
+  dnsDomainIs(host, "wikiwiki.jp") 
  ) return "PROXY 127.0.0.1:6667";
 // wallproxy
 if (
@@ -181,9 +184,7 @@ if (
 // sources fix
   dnsDomainIs(host, "r.r10s.jp") ||
 // research
-  dnsDomainIs(host, "sefalabs.com") ||
-// test
-  dnsDomainIs(host, "ip.cn")
+  dnsDomainIs(host, "sefalabs.com") 
 ) return "PROXY 127.0.0.1:2333";
 return "DIRECT";
 }
