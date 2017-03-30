@@ -13,6 +13,10 @@ if (
 if (
   shExpMatch(url, "http://*/crossdomain.xml") 
  ) return "PROXY vps.onens.com:80";
+// goproxy php
+if (
+  shExpMatch(url, "https://*.dmm.com/*") 
+ ) return "PROXY 127.0.0.1:6667";
 // proxy
 if (
 // google
