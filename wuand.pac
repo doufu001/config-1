@@ -15,6 +15,7 @@ if (
  ) return "PROXY vps.onens.com:80";
 // goproxy
 if (
+  shExpMatch(url, "http://203.104.209.*/*") ||
   dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||
   dnsDomainIs(host, "nimg.jp") ||
@@ -88,10 +89,11 @@ if (
   shExpMatch(url, "http://pics.dmm.co.jp/digital/*48/*") ||
   dnsDomainIs(host, "swordlogic.com") ||
   dnsDomainIs(host, "touken-ranbu.jp") ||
-  shExpMatch(url, "http://203.104.209.*/*") ||
   dnsDomainIs(host, "dmmgames.com") ||
   dnsDomainIs(host, "itchibanketsu.jp") ||
   dnsDomainIs(host, "shiropro-re.net") ||
+  dnsDomainIs(host, "millennium-war.net") ||
+  dnsDomainIs(host, "kamihimeproject.net") ||
 // twitch
   dnsDomainIs(host, "twitch.tv") ||
   dnsDomainIs(host, "jtvnw.net") ||

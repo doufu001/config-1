@@ -39,24 +39,24 @@ if (
   dnsDomainIs(host, "gmail.com") ||
   shExpMatch(url, "*://accounts.youtube.com/*") ||
 // dmm
-  dnsDomainIs(host, "dmm.com") ||
+  dnsDomainIs(host, "fout.jp") ||
+  dnsDomainIs(host, "adclr.jp") ||
+  dnsDomainIs(host, "cxense.com") ||
+  dnsDomainIs(host, "ladsp.com") ||
   dnsDomainIs(host, "cxpublic.com") ||
   dnsDomainIs(host, "a-i-ad.com") ||
   shExpMatch(url, "http://pics.dmm.co.jp/digital/*48/*") ||
+  dnsDomainIs(host, "swordlogic.com") ||
   dnsDomainIs(host, "touken-ranbu.jp") ||
   dnsDomainIs(host, "dmmgames.com") ||
   dnsDomainIs(host, "itchibanketsu.jp") ||
-  dnsDomainIs(host, "kamihimeproject.net") ||
-  dnsDomainIs(host, "swordlogic.com") ||
+  dnsDomainIs(host, "shiropro-re.net") ||
   dnsDomainIs(host, "millennium-war.net") ||
+  dnsDomainIs(host, "kamihimeproject.net") ||
 // github
   dnsDomainIs(host, "github.com") ||
   dnsDomainIs(host, "githubusercontent.com") ||
   dnsDomainIs(host, "githubapp.com") ||
-// niconico
-  dnsDomainIs(host, "nicovideo.jp") ||
-  dnsDomainIs(host, "smilevideo.jp") ||
-  dnsDomainIs(host, "nimg.jp") ||
 // acg
   dnsDomainIs(host, "pixiv.net") ||
   dnsDomainIs(host, "gamer.com.tw") ||
