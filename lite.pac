@@ -10,6 +10,8 @@ if (
   dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||
   dnsDomainIs(host, "nimg.jp") ||
+  dnsDomainIs(host, "amazonaws.com") ||
+  dnsDomainIs(host, "cloudfront.net") ||
   dnsDomainIs(host, "ip.cn")
  ) return "PROXY 127.0.0.1:6666";
 // goproxy php
@@ -65,9 +67,6 @@ if (
   dnsDomainIs(host, "deviantart.com") ||
   dnsDomainIs(host, "deviantart.net") ||
   dnsDomainIs(host, "imslp.org") ||
-// amazon
-  dnsDomainIs(host, "amazonaws.com") ||
-  dnsDomainIs(host, "cloudfront.net") ||
 // music
   dnsDomainIs(host, "soundcloud.com") ||
 // test

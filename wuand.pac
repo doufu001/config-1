@@ -19,6 +19,8 @@ if (
   dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||
   dnsDomainIs(host, "nimg.jp") ||
+  dnsDomainIs(host, "amazonaws.com") ||
+  dnsDomainIs(host, "cloudfront.net") ||
   dnsDomainIs(host, "ip.cn")
  ) return "PROXY 127.0.0.1:6666";
 // goproxy php
@@ -64,7 +66,6 @@ if (
   dnsDomainIs(host, "facebook.net") ||
   dnsDomainIs(host, "instagram.com") ||
 // cdn
-  dnsDomainIs(host, "amazonaws.com") ||
   dnsDomainIs(host, "akamaihd.net") ||
 // github
   dnsDomainIs(host, "github.com") ||
@@ -145,7 +146,6 @@ if (
   dnsDomainIs(host, "bloomberg.com") ||
   dnsDomainIs(host, "bandwagonhost.com") ||  
   dnsDomainIs(host, "archive.org") ||
-  dnsDomainIs(host, "cloudfront.net") ||
   dnsDomainIs(host, "kastatic.org") ||
   dnsDomainIs(host, "ratebeer.com") ||
   dnsDomainIs(host, "chromium.org") ||
