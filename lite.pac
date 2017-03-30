@@ -5,17 +5,19 @@ function FindProxyForURL(url, host) {
 if (
   shExpMatch(url, "https://plus.google.com/*") 
 ) return "DIRECT";
-// squid
+// goproxy
 if (
+  dnsDomainIs(host, "nicovideo.jp") ||
+  dnsDomainIs(host, "smilevideo.jp") ||
+  dnsDomainIs(host, "nimg.jp") ||
+  dnsDomainIs(host, "ip.cn")
+ ) return "PROXY 127.0.0.1:6666";
+// goproxy php
+if (
+  dnsDomainIs(host, "dmm.com") ||
   shExpMatch(url, "http://w010.touken-ranbu.jp/*") ||
-  shExpMatch(url, "http://game.bungo.dmmgames.com/*") ||
-  shExpMatch(url, "http://www.itchibanketsu.jp/*") ||
-  shExpMatch(url, "http://asset.itchibanketsu.jp/*") ||
-  shExpMatch(url, "http://203.104.209.*/*") ||
-  shExpMatch(url, "http://d3vhzwqidpn2dk.cloudfront.net/*") ||
-  dnsDomainIs(host, "dmhy.org") ||
   dnsDomainIs(host, "wikiwiki.jp") 
-) return "PROXY 45.32.49.26:25";
+ ) return "PROXY 127.0.0.1:6667";
 // wallproxy
 if (
 // google
