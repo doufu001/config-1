@@ -13,11 +13,17 @@ if (
 if (
   shExpMatch(url, "http://*/crossdomain.xml") 
  ) return "PROXY vps.onens.com:80";
+// goproxy
+if (
+  dnsDomainIs(host, "nicovideo.jp") ||
+  dnsDomainIs(host, "smilevideo.jp") ||
+  dnsDomainIs(host, "nimg.jp") 
+ ) return "PROXY 127.0.0.1:6666";
 // goproxy php
 if (
-  shExpMatch(url, "https://*.dmm.com/*") 
+  dnsDomainIs(host, "dmm.com") 
  ) return "PROXY 127.0.0.1:6667";
-// proxy
+// wallproxy
 if (
 // google
   shExpMatch(url, "*://*.google.*/*") ||
@@ -70,7 +76,6 @@ if (
   shExpMatch(url, "*://*.yimg.com/*") ||
   dnsDomainIs(host, "staticflickr.com") ||
 // dmm
-  dnsDomainIs(host, "dmm.com") ||
   dnsDomainIs(host, "fout.jp") ||
   dnsDomainIs(host, "adclr.jp") ||
   dnsDomainIs(host, "cxense.com") ||
@@ -84,10 +89,6 @@ if (
   dnsDomainIs(host, "dmmgames.com") ||
   dnsDomainIs(host, "itchibanketsu.jp") ||
   dnsDomainIs(host, "shiropro-re.net") ||
-// niconico
-  dnsDomainIs(host, "nicovideo.jp") ||
-  dnsDomainIs(host, "smilevideo.jp") ||
-  dnsDomainIs(host, "nimg.jp") ||
 // twitch
   dnsDomainIs(host, "twitch.tv") ||
   dnsDomainIs(host, "jtvnw.net") ||
