@@ -63,7 +63,10 @@
 ||sis001.com
 ||dmm.co.jp
 ||playno1.com
+||av9.cc
+||aventertainments.com
 
 !--cdn
 ||akamaihd.net
 ||cloudfront.net
+||amazonaws.com
