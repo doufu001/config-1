@@ -21,12 +21,16 @@ if (
   dnsDomainIs(host, "nimg.jp") ||
   dnsDomainIs(host, "amazonaws.com") ||
   dnsDomainIs(host, "cloudfront.net") ||
+  shExpMatch(url, "http://*.twitter.com/*") ||
+  shExpMatch(url, "http://*.google.com/*") ||
+  shExpMatch(url, "http://*.gmail.com/*") ||
   dnsDomainIs(host, "ip.cn")
  ) return "PROXY 127.0.0.1:6666";
 // goproxy php
 if (
   dnsDomainIs(host, "dmm.com") ||
-  shExpMatch(url, "http://w010.touken-ranbu.jp/*") ||
+  dnsDomainIs(host, "touken-ranbu.jp") ||
+  dnsDomainIs(host, "cdn.bungo.dmmgames.com") ||
   dnsDomainIs(host, "wikiwiki.jp") 
  ) return "PROXY 127.0.0.1:6667";
 // wallproxy
@@ -89,7 +93,6 @@ if (
   dnsDomainIs(host, "a-i-ad.com") ||
   shExpMatch(url, "http://pics.dmm.co.jp/digital/*48/*") ||
   dnsDomainIs(host, "swordlogic.com") ||
-  dnsDomainIs(host, "touken-ranbu.jp") ||
   dnsDomainIs(host, "dmmgames.com") ||
   dnsDomainIs(host, "itchibanketsu.jp") ||
   dnsDomainIs(host, "shiropro-re.net") ||

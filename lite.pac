@@ -5,24 +5,28 @@ function FindProxyForURL(url, host) {
 if (
   shExpMatch(url, "https://plus.google.com/*") 
 ) return "DIRECT";
-// goproxy
 if (
+  shExpMatch(url, "http://203.104.209.*/*") ||
   dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||
   dnsDomainIs(host, "nimg.jp") ||
   dnsDomainIs(host, "amazonaws.com") ||
   dnsDomainIs(host, "cloudfront.net") ||
+  shExpMatch(url, "http://*.google.com/*") ||
+  shExpMatch(url, "http://*.gmail.com/*") ||
   dnsDomainIs(host, "ip.cn")
  ) return "PROXY 127.0.0.1:6666";
 // goproxy php
 if (
   dnsDomainIs(host, "dmm.com") ||
-  shExpMatch(url, "http://w010.touken-ranbu.jp/*") ||
+  dnsDomainIs(host, "touken-ranbu.jp") ||
+  dnsDomainIs(host, "cdn.bungo.dmmgames.com") ||
   dnsDomainIs(host, "wikiwiki.jp") 
  ) return "PROXY 127.0.0.1:6667";
 // wallproxy
 if (
 // google
+  shExpMatch(url, "*://*.google.*/*") ||
   dnsDomainIs(host, "google.com") ||
   dnsDomainIs(host, "google.com.hk") ||
   dnsDomainIs(host, "google.co.jp") ||
