@@ -48,7 +48,8 @@
 !--dmm
 ||dmm.com
 ||cxpublic.com
-203.104.209.
+||203.104.209.7
+||203.104.209.102
 ||touken-ranbu.jp
 ||dmmgames.com
 ||itchibanketsu.jp
