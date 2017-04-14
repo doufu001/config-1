@@ -1,6 +1,6 @@
 [AutoProxy 0.2.9]
 ! Expires: 6h
-! Last Modified: 2017.3.15
+! Last Modified: 2017.4.14
 
 !--google
 ||google.com
@@ -45,6 +45,16 @@
 ||yimg.com
 ||tumblr.com
 
+!--dmm
+||dmm.com
+||203.104.209.*
+||touken-ranbu.jp
+||dmmgames.com
+||itchibanketsu.jp
+
+!--acg
+||wikiwiki.jp
+
 !--news
 ||nytimes.com
 ||nyt.com
@@ -55,6 +65,7 @@
 ||sourceforge.net
 ||dropbox.com
 ||vultr.com
+||rosonbbs.com
 
 !--adult
 ||javbus.com
