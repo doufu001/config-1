@@ -29,8 +29,6 @@ if (
 // goproxy php
 if (
   dnsDomainIs(host, "dmm.com") ||
-  dnsDomainIs(host, "touken-ranbu.jp") ||
-  dnsDomainIs(host, "cdn.bungo.dmmgames.com") ||
   dnsDomainIs(host, "wikiwiki.jp") 
  ) return "PROXY 127.0.0.1:6667";
 // wallproxy
