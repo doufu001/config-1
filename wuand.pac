@@ -93,6 +93,7 @@ if (
   dnsDomainIs(host, "a-i-ad.com") ||
   shExpMatch(url, "http://pics.dmm.co.jp/digital/*48/*") ||
   dnsDomainIs(host, "swordlogic.com") ||
+  dnsDomainIs(host, "touken-ranbu.jp") ||
   dnsDomainIs(host, "dmmgames.com") ||
   dnsDomainIs(host, "itchibanketsu.jp") ||
   dnsDomainIs(host, "shiropro-re.net") ||
