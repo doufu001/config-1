@@ -15,6 +15,8 @@ if (
  ) return "PROXY vps.onens.com:80";
 // goproxy
 if (
+  dnsDomainIs(host, "googleapis.com") ||
+  dnsDomainIs(host, "www.youtube.com") ||
   shExpMatch(url, "http://203.104.209.*/*") ||
   dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||

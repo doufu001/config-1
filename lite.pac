@@ -5,7 +5,9 @@ function FindProxyForURL(url, host) {
 if (
   shExpMatch(url, "https://plus.google.com/*") 
 ) return "DIRECT";
+// goproxy
 if (
+  dnsDomainIs(host, "googleapis.com") ||
   shExpMatch(url, "http://203.104.209.*/*") ||
   dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||
@@ -31,7 +33,6 @@ if (
   dnsDomainIs(host, "gstatic.com") ||
   dnsDomainIs(host, "googleusercontent.com") ||
   dnsDomainIs(host, "ggpht.com") ||
-  dnsDomainIs(host, "googleapis.com") ||
   dnsDomainIs(host, "android.com") ||
   dnsDomainIs(host, "golang.org") ||
   dnsDomainIs(host, "googletagmanager.com") ||
