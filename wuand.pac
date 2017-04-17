@@ -16,7 +16,6 @@ if (
 // goproxy
 if (
   dnsDomainIs(host, "googleapis.com") ||
-  dnsDomainIs(host, "www.youtube.com") ||
   shExpMatch(url, "http://203.104.209.*/*") ||
   dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||
@@ -30,6 +29,7 @@ if (
  ) return "PROXY 127.0.0.1:6666";
 // goproxy php
 if (
+  dnsDomainIs(host, "www.youtube.com") ||
   dnsDomainIs(host, "dmm.com") ||
   dnsDomainIs(host, "wikiwiki.jp") 
  ) return "PROXY 127.0.0.1:6667";
