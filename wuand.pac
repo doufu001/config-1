@@ -20,6 +20,8 @@ if (
   dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||
   dnsDomainIs(host, "nimg.jp") ||
+  dnsDomainIs(host, "line.me") ||
+  dnsDomainIs(host, "line-apps.com") ||
   dnsDomainIs(host, "amazonaws.com") ||
   dnsDomainIs(host, "cloudfront.net") ||
   shExpMatch(url, "http://*.twitter.com/*") ||
