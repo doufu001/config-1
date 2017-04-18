@@ -7,7 +7,6 @@ if (
 ) return "DIRECT";
 // goproxy
 if (
-  dnsDomainIs(host, "googleapis.com") ||
   shExpMatch(url, "http://203.104.209.*/*") ||
   dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||
@@ -33,6 +32,7 @@ if (
   dnsDomainIs(host, "google.com.hk") ||
   dnsDomainIs(host, "google.co.jp") ||
   dnsDomainIs(host, "gstatic.com") ||
+  dnsDomainIs(host, "googleapis.com") ||
   dnsDomainIs(host, "googleusercontent.com") ||
   dnsDomainIs(host, "ggpht.com") ||
   dnsDomainIs(host, "android.com") ||

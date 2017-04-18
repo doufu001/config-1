@@ -15,7 +15,6 @@ if (
  ) return "PROXY vps.onens.com:80";
 // goproxy
 if (
-  dnsDomainIs(host, "googleapis.com") ||
   shExpMatch(url, "http://203.104.209.*/*") ||
   dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||
@@ -27,11 +26,11 @@ if (
   shExpMatch(url, "http://*.twitter.com/*") ||
   shExpMatch(url, "http://*.google.com/*") ||
   shExpMatch(url, "http://*.gmail.com/*") ||
+  shExpMatch(url, "http://*.youtube.com/*") ||
   dnsDomainIs(host, "ip.cn")
  ) return "PROXY 127.0.0.1:6666";
 // goproxy php
 if (
-  dnsDomainIs(host, "www.youtube.com") ||
   dnsDomainIs(host, "dmm.com") ||
   dnsDomainIs(host, "wikiwiki.jp") 
  ) return "PROXY 127.0.0.1:6667";
@@ -43,6 +42,7 @@ if (
   dnsDomainIs(host, "google.com.hk") ||
   dnsDomainIs(host, "google.co.jp") ||
   dnsDomainIs(host, "gstatic.com") ||
+  dnsDomainIs(host, "googleapis.com") ||
   dnsDomainIs(host, "googleusercontent.com") ||
   dnsDomainIs(host, "ggpht.com") ||
   dnsDomainIs(host, "googleapis.com") ||
