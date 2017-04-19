@@ -134,6 +134,10 @@ if (
   dnsDomainIs(host, "cdn-connet.mobage.jp") ||
   dnsDomainIs(host, "connet.mobage.jp") ||
   dnsDomainIs(host, "granbluefantasy.jp") ||
+// music
+  dnsDomainIs(host, "e-classical.com.tw") ||
+  dnsDomainIs(host, "hinet.net") ||
+  dnsDomainIs(host, "easybook.tw") ||
 // others
   dnsDomainIs(host, "adblockplus.org") ||
   dnsDomainIs(host, "recaptcha.net") ||
