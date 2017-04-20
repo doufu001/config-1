@@ -68,6 +68,7 @@ if (
   dnsDomainIs(host, "pixiv.net") ||
   dnsDomainIs(host, "gamer.com.tw") ||
   dnsDomainIs(host, "bahamut.com.tw") ||
+  dnsDomainIs(host, "saucenao.com") ||
 // art
   dnsDomainIs(host, "deviantart.com") ||
   dnsDomainIs(host, "deviantart.net") ||

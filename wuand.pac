@@ -165,6 +165,7 @@ if (
   dnsDomainIs(host, "pinterest.com") ||
   dnsDomainIs(host, "pinimg.com") ||
   dnsDomainIs(host, "greasyfork.org") ||
+  dnsDomainIs(host, "nationalrail.co.uk") ||
 // shopping
   dnsDomainIs(host, "nordstrom.com") ||
   dnsDomainIs(host, "nordstromimage.com") ||

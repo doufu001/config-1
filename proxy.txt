@@ -1,6 +1,6 @@
 [AutoProxy 0.2.9]
 ! Expires: 6h
-! Last Modified: 2017.4.15
+! Last Modified: 2017.4.20
 
 !--google
 ||google.com
@@ -57,6 +57,7 @@
 
 !--acg
 ||wikiwiki.jp
+||saucenao.com
 
 !--news
 ||nytimes.com
