@@ -123,6 +123,7 @@ if (
   dnsDomainIs(host, "shutterstock.com") ||
   dnsDomainIs(host, "sta.sh") ||
   dnsDomainIs(host, "imslp.org") ||
+  dnsDomainIs(host, "issuu.com") ||
 // game
   dnsDomainIs(host, "ujj.co.jp") ||
   dnsDomainIs(host, "garena.tw") ||

@@ -73,6 +73,7 @@ if (
   dnsDomainIs(host, "deviantart.com") ||
   dnsDomainIs(host, "deviantart.net") ||
   dnsDomainIs(host, "imslp.org") ||
+  dnsDomainIs(host, "issuu.com") ||
 // music
   dnsDomainIs(host, "soundcloud.com") ||
 // test
