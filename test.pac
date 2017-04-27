@@ -23,12 +23,12 @@ if (
  ) return "PROXY 127.0.0.1:1024";
 // v2ray
 if (
-  dnsDomainIs(host, "www.youtube.com") ||
   dnsDomainIs(host, "www.dmm.com") ||
   dnsDomainIs(host, "osapi.dmm.com") ||
+  dnsDomainIs(host, "w010.touken-ranbu.jp") ||
   dnsDomainIs(host, "game.bungo.dmmgames.com") ||
   dnsDomainIs(host, "wikiwiki.jp") 
- ) return "SOCKS5 127.0.0.1:2333";
+ ) return "PROXY 127.0.0.1:2333";
  // goagent
 if (
 // google
@@ -48,6 +48,7 @@ if (
   dnsDomainIs(host, "gmail.com") ||
   dnsDomainIs(host, "googlesource.com") ||
 // youtube
+  dnsDomainIs(host, "youtube.com") ||
   dnsDomainIs(host, "ytimg.com") ||
   dnsDomainIs(host, "googlevideo.com") ||
   dnsDomainIs(host, "youtu.be") ||
