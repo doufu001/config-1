@@ -23,8 +23,7 @@ if (
  ) return "PROXY 127.0.0.1:1024";
 // v2ray
 if (
-  dnsDomainIs(host, "www.dmm.com") ||
-  dnsDomainIs(host, "osapi.dmm.com") ||
+  dnsDomainIs(host, "dmm.com") ||
   dnsDomainIs(host, "w010.touken-ranbu.jp") ||
   dnsDomainIs(host, "game.bungo.dmmgames.com") ||
   dnsDomainIs(host, "wikiwiki.jp") 
