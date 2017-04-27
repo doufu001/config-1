@@ -19,7 +19,7 @@ if (
   dnsDomainIs(host, "google.com") ||
   dnsDomainIs(host, "google.com.hk") ||
   dnsDomainIs(host, "google.co.jp") ||
-  dnsDomainIs(host, "ip138.com") 
+  dnsDomainIs(host, "youtube.com") 
  ) return "PROXY 127.0.0.1:1024";
 // v2ray
 if (
@@ -48,7 +48,6 @@ if (
   dnsDomainIs(host, "gmail.com") ||
   dnsDomainIs(host, "googlesource.com") ||
 // youtube
-  dnsDomainIs(host, "youtube.com") ||
   dnsDomainIs(host, "ytimg.com") ||
   dnsDomainIs(host, "googlevideo.com") ||
   dnsDomainIs(host, "youtu.be") ||
