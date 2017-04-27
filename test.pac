@@ -19,10 +19,11 @@ if (
   dnsDomainIs(host, "google.com") ||
   dnsDomainIs(host, "google.com.hk") ||
   dnsDomainIs(host, "google.co.jp") ||
-  dnsDomainIs(host, "wuan.in") 
+  dnsDomainIs(host, "ip138.com") 
  ) return "PROXY 127.0.0.1:1024";
 // v2ray
 if (
+  dnsDomainIs(host, "www.youtube.com") ||
   dnsDomainIs(host, "www.dmm.com") ||
   dnsDomainIs(host, "osapi.dmm.com") ||
   dnsDomainIs(host, "game.bungo.dmmgames.com") ||
