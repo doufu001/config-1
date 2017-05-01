@@ -18,12 +18,12 @@ if (
   shExpMatch(url, "*://*.google.*/*") ||
   dnsDomainIs(host, "google.com") ||
   dnsDomainIs(host, "google.com.hk") ||
-  dnsDomainIs(host, "google.co.jp") ||
-  dnsDomainIs(host, "youtube.com") 
- ) return "PROXY 127.0.0.1:1024";
+  dnsDomainIs(host, "google.co.jp")
+ ) return "PROXY 47.88.221.115:25";
 // v2ray
 if (
-  dnsDomainIs(host, "dmm.com") ||
+  dnsDomainIs(host, "www.dmm.com") ||
+  dnsDomainIs(host, "osapi.dmm.com") ||
   dnsDomainIs(host, "w010.touken-ranbu.jp") ||
   dnsDomainIs(host, "game.bungo.dmmgames.com") ||
   dnsDomainIs(host, "wikiwiki.jp") 
