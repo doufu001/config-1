@@ -117,71 +117,75 @@ if (
 // miniclip
   dnsDomainIs(host, "miniclip.com") ||
   dnsDomainIs(host, "miniclipcdn.com") ||
+// dropbox
+  dnsDomainIs(host, "dropbox.com") ||
+  dnsDomainIs(host, "dropboxstatic.com") ||
+// nordstrom
+  dnsDomainIs(host, "nordstrom.com") ||
+  dnsDomainIs(host, "nordstromimage.com") ||
+  dnsDomainIs(host, "nordstrommedia.com") ||
 // acg
   dnsDomainIs(host, "dmhy.org") ||
   dnsDomainIs(host, "pixiv.net") ||
   dnsDomainIs(host, "wikiwiki.jp") ||
   dnsDomainIs(host, "getchu.com") ||
   dnsDomainIs(host, "saucenao.com") ||
+  dnsDomainIs(host, "otakomu.jp") ||
+  dnsDomainIs(host, "pathofexile.com") ||
 // design
   dnsDomainIs(host, "pixelovely.com") ||
   dnsDomainIs(host, "posemaniacs.com") ||
   dnsDomainIs(host, "shutterstock.com") ||
   dnsDomainIs(host, "sta.sh") ||
   dnsDomainIs(host, "issuu.com") ||
+  dnsDomainIs(host, "artstation.com") ||
 // music
   dnsDomainIs(host, "soundcloud.com") ||
   dnsDomainIs(host, "imslp.org") ||
   dnsDomainIs(host, "e-classical.com.tw") ||
   dnsDomainIs(host, "hinet.net") ||
   dnsDomainIs(host, "easybook.tw") ||
+  dnsDomainIs(host, "ultras-tifo.net") ||
+// code
+  dnsDomainIs(host, "tensorflow.org") ||
+  dnsDomainIs(host, "sourceforge.net") ||
+  dnsDomainIs(host, "topcoder.com") ||
+  dnsDomainIs(host, "gitbook.com") ||
+  dnsDomainIs(host, "angelboy.tw") ||
+// news
+  dnsDomainIs(host, "economist.com") ||
+  dnsDomainIs(host, "bloomberg.com") ||
+  dnsDomainIs(host, "eslnotes.com") ||
+// education
+  dnsDomainIs(host, "edu.tw") ||
+  dnsDomainIs(host, "coursera.org") ||
+  dnsDomainIs(host, "nlm.nih.gov") ||
+// shopping
+  dnsDomainIs(host, "suruga-ya.jp") ||
+  dnsDomainIs(host, "steinmart.com") ||
+  dnsDomainIs(host, "vittz.co.kr") ||
+  dnsDomainIs(host, "hmv.co.jp") ||
+  dnsDomainIs(host, "rakuten.co.jp") ||
+// netdisk
+  dnsDomainIs(host, "mediafire.com") ||
+  dnsDomainIs(host, "getuploader.com") ||
+  dnsDomainIs(host, "onedrive.live.com") ||
 // others
   dnsDomainIs(host, "adblockplus.org") ||
   dnsDomainIs(host, "tineye.com") ||
   dnsDomainIs(host, "recaptcha.net") ||
   dnsDomainIs(host, "weblio.jp") ||
   dnsDomainIs(host, "dictionary.goo.ne.jp") ||
-  dnsDomainIs(host, "archive.fo") ||
+  dnsDomainIs(host, "archive.is") ||
   dnsDomainIs(host, "jiumodiary.com") ||
-  dnsDomainIs(host, "tensorflow.org") ||
-  dnsDomainIs(host, "economist.com") ||
-  dnsDomainIs(host, "edu.tw") ||
-  dnsDomainIs(host, "topcoder.com") ||
-  dnsDomainIs(host, "bloomberg.com") ||
   dnsDomainIs(host, "bandwagonhost.com") ||  
   dnsDomainIs(host, "archive.org") ||
-  dnsDomainIs(host, "kastatic.org") ||
   dnsDomainIs(host, "ratebeer.com") ||
-  
-  dnsDomainIs(host, "coursera.org") ||
-  dnsDomainIs(host, "gitbook.com") ||
   dnsDomainIs(host, "slideshare.net") ||
-
   dnsDomainIs(host, "greasyfork.org") ||
   dnsDomainIs(host, "nationalrail.co.uk") ||
-// shopping
-  dnsDomainIs(host, "nordstrom.com") ||
-  dnsDomainIs(host, "nordstromimage.com") ||
-  dnsDomainIs(host, "nordstrommedia.com") ||
-  dnsDomainIs(host, "toranoana.jp") ||
-  dnsDomainIs(host, "suruga-ya.jp") ||
-  dnsDomainIs(host, "steinmart.com") ||
-// netdisk
-  dnsDomainIs(host, "mediafire.com") ||
-  dnsDomainIs(host, "getuploader.com") ||
-  dnsDomainIs(host, "onedrive.live.com") ||
-// dropbox
-  dnsDomainIs(host, "dropbox.com") ||
-  dnsDomainIs(host, "dropboxstatic.com") ||
-// blogs
-  shExpMatch(url, "*://lineblog.me/ri_ri_ri_10/*") ||
-  shExpMatch(url, "*://line.blogimg.jp/ri_ri_ri_10/*") ||
-  dnsDomainIs(host, "parts.blog.livedoor.jp") ||
-  dnsDomainIs(host, "dicomiseasy.blogspot.com") ||
-  dnsDomainIs(host, "dicomiseasy.blogspot.co.il") ||
-  dnsDomainIs(host, "xxchoroxx.blog.fc2.com") ||
-  dnsDomainIs(host, "hqmeded-ecg.blogspot.com") ||
-  dnsDomainIs(host, "afewguyscoding.com") ||
+  dnsDomainIs(host, "hltv.org") ||
+  dnsDomainIs(host, "popo.tw") ||
 // cdn
   dnsDomainIs(host, "akamaihd.net") ||
   dnsDomainIs(host, "amazonaws.com") ||
