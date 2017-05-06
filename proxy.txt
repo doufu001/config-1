@@ -1,39 +1,6 @@
 [AutoProxy 0.2.9]
 ! Expires: 6h
-! Last Modified: 2017.4.20
-
-!--google
-||google.com
-||google.com.hk
-||google.co.jp
-||gstatic.com
-||googleapis.com
-||googleusercontent.com
-||ggpht.com
-||blogspot.com
-||gmail.com
-||goo.gl
-
-!--youtube
-||youtube.com
-||ytimg.com
-||googlevideo.com
-||youtu.be
-
-!--facebook
-||facebook.com
-||fbcdn.net
-||facebook.net
-||instagram.com
-
-!--twitter
-||twitter.com
-||t.co
-||twimg.com
-
-!--wikipedia
-||wikipedia.org
-||wikimedia.org
+! Last Modified: 2017.5.6
 
 !--github
 ||github.com
@@ -55,32 +22,33 @@
 ||dmmgames.com
 ||itchibanketsu.jp
 
-!--acg
-||wikiwiki.jp
-||saucenao.com
+!--twitch
+||twitch.tv
+||jtvnw.net
+||ttvnw.net
 
-!--news
-||nytimes.com
-||nyt.com
-||boxun.com
-||bowenpress.com
+!--niconico
+||nicovideo.jp
+||smilevideo.jp
+||nimg.jp
+
+!--picture
+||saucenao.com
 
 !--others
 ||sourceforge.net
-||dropbox.com
+||dropboxstatic.com
 ||vultr.com
 ||rosonbbs.com
-||greasyfork.org
 
 !--adult
 ||javbus.com
-||piring.com
-||sexinsex.net
 ||sis001.com
 ||dmm.co.jp
-||playno1.com
 ||av9.cc
+||av9.tv
 ||aventertainments.com
+||myav.tv
 
 !--cdn
 ||akamaihd.net

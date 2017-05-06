@@ -46,12 +46,14 @@ if (
   dnsDomainIs(host, "gvt1.com") ||
   dnsDomainIs(host, "gmail.com") ||
   dnsDomainIs(host, "googlesource.com") ||
+  dnsDomainIs(host, "chromium.org") ||
 // youtube
   dnsDomainIs(host, "youtube.com") ||
   dnsDomainIs(host, "ytimg.com") ||
   dnsDomainIs(host, "googlevideo.com") ||
   dnsDomainIs(host, "youtu.be") ||
   dnsDomainIs(host, "ssyoutube.com") ||
+  dnsDomainIs(host, "clipconverter.cc") ||
 // twitter
   dnsDomainIs(host, "twitter.com") ||
   dnsDomainIs(host, "twimg.com") ||
@@ -61,10 +63,9 @@ if (
   dnsDomainIs(host, "fbcdn.net") ||
   dnsDomainIs(host, "facebook.net") ||
   dnsDomainIs(host, "instagram.com") ||
-// cdn
-  dnsDomainIs(host, "akamaihd.net") ||
-  dnsDomainIs(host, "amazonaws.com") ||
-  dnsDomainIs(host, "cloudfront.net") ||
+// pinterest
+  dnsDomainIs(host, "pinterest.com") ||
+  dnsDomainIs(host, "pinimg.com") ||
 // github
   dnsDomainIs(host, "github.com") ||
   dnsDomainIs(host, "githubusercontent.com") ||
@@ -78,12 +79,9 @@ if (
   dnsDomainIs(host, "yahoo.com") ||
   shExpMatch(url, "*://*.yimg.com/*") ||
   dnsDomainIs(host, "staticflickr.com") ||
+  dnsDomainIs(host, "tumblr.com") ||
 // dmm
   dnsDomainIs(host, "dmm.com") ||
-  dnsDomainIs(host, "fout.jp") ||
-  dnsDomainIs(host, "adclr.jp") ||
-  dnsDomainIs(host, "cxense.com") ||
-  dnsDomainIs(host, "ladsp.com") ||
   dnsDomainIs(host, "cxpublic.com") ||
   dnsDomainIs(host, "a-i-ad.com") ||
   shExpMatch(url, "http://pics.dmm.co.jp/digital/*48/*") ||
@@ -99,52 +97,48 @@ if (
   dnsDomainIs(host, "twitch.tv") ||
   dnsDomainIs(host, "jtvnw.net") ||
   dnsDomainIs(host, "ttvnw.net") ||
+// niconico
+  dnsDomainIs(host, "nicovideo.jp") ||
+  dnsDomainIs(host, "smilevideo.jp") ||
+  dnsDomainIs(host, "nimg.jp") ||
+// line
+  dnsDomainIs(host, "line.me") ||
+  dnsDomainIs(host, "line-apps.com") ||
+  dnsDomainIs(host, "lineblog.me") ||
+// bahamut
+  dnsDomainIs(host, "bahamut.com.tw") ||
+  dnsDomainIs(host, "gamer.com.tw") ||
+// deviantart
+  dnsDomainIs(host, "deviantart.com") ||
+  dnsDomainIs(host, "deviantart.net") ||
+// vimeo
+  dnsDomainIs(host, "vimeo.com") ||
+  dnsDomainIs(host, "vimeocdn.com") ||
+// miniclip
+  dnsDomainIs(host, "miniclip.com") ||
+  dnsDomainIs(host, "miniclipcdn.com") ||
 // acg
   dnsDomainIs(host, "dmhy.org") ||
   dnsDomainIs(host, "pixiv.net") ||
   dnsDomainIs(host, "wikiwiki.jp") ||
-  dnsDomainIs(host, "bahamut.com.tw") ||
-  dnsDomainIs(host, "soundcloud.com") ||
-  dnsDomainIs(host, "gamer.com.tw") ||
-  dnsDomainIs(host, "deviantart.com") ||
-  dnsDomainIs(host, "deviantart.net") ||
   dnsDomainIs(host, "getchu.com") ||
   dnsDomainIs(host, "saucenao.com") ||
-  dnsDomainIs(host, "nicovideo.jp") ||
-  dnsDomainIs(host, "smilevideo.jp") ||
-  dnsDomainIs(host, "nimg.jp") ||
-  dnsDomainIs(host, "line.me") ||
-  dnsDomainIs(host, "line-apps.com") ||
-// art
+// design
   dnsDomainIs(host, "pixelovely.com") ||
   dnsDomainIs(host, "posemaniacs.com") ||
-  dnsDomainIs(host, "tineye.com") ||
   dnsDomainIs(host, "shutterstock.com") ||
   dnsDomainIs(host, "sta.sh") ||
-  dnsDomainIs(host, "imslp.org") ||
   dnsDomainIs(host, "issuu.com") ||
-// game
-  dnsDomainIs(host, "ujj.co.jp") ||
-  dnsDomainIs(host, "garena.tw") ||
-  dnsDomainIs(host, "gbf.game.mbga.jp") ||
-  dnsDomainIs(host, "gbf.game-a.mbga.jp") ||
-  dnsDomainIs(host, "gbf.game-a1.mbga.jp") ||
-  dnsDomainIs(host, "gbf.game-a2.mbga.jp") ||
-  dnsDomainIs(host, "gbf.game-a3.mbga.jp") ||
-  dnsDomainIs(host, "cdn-connet.mobage.jp") ||
-  dnsDomainIs(host, "connet.mobage.jp") ||
-  dnsDomainIs(host, "granbluefantasy.jp") ||
 // music
+  dnsDomainIs(host, "soundcloud.com") ||
+  dnsDomainIs(host, "imslp.org") ||
   dnsDomainIs(host, "e-classical.com.tw") ||
   dnsDomainIs(host, "hinet.net") ||
   dnsDomainIs(host, "easybook.tw") ||
 // others
   dnsDomainIs(host, "adblockplus.org") ||
+  dnsDomainIs(host, "tineye.com") ||
   dnsDomainIs(host, "recaptcha.net") ||
-  dnsDomainIs(host, "vimeo.com") ||
-  dnsDomainIs(host, "vimeocdn.com") ||
-  dnsDomainIs(host, "miniclip.com") ||
-  dnsDomainIs(host, "miniclipcdn.com") ||
   dnsDomainIs(host, "weblio.jp") ||
   dnsDomainIs(host, "dictionary.goo.ne.jp") ||
   dnsDomainIs(host, "archive.fo") ||
@@ -158,12 +152,11 @@ if (
   dnsDomainIs(host, "archive.org") ||
   dnsDomainIs(host, "kastatic.org") ||
   dnsDomainIs(host, "ratebeer.com") ||
-  dnsDomainIs(host, "chromium.org") ||
+  
   dnsDomainIs(host, "coursera.org") ||
   dnsDomainIs(host, "gitbook.com") ||
   dnsDomainIs(host, "slideshare.net") ||
-  dnsDomainIs(host, "pinterest.com") ||
-  dnsDomainIs(host, "pinimg.com") ||
+
   dnsDomainIs(host, "greasyfork.org") ||
   dnsDomainIs(host, "nationalrail.co.uk") ||
 // shopping
@@ -177,7 +170,9 @@ if (
   dnsDomainIs(host, "mediafire.com") ||
   dnsDomainIs(host, "getuploader.com") ||
   dnsDomainIs(host, "onedrive.live.com") ||
+// dropbox
   dnsDomainIs(host, "dropbox.com") ||
+  dnsDomainIs(host, "dropboxstatic.com") ||
 // blogs
   shExpMatch(url, "*://lineblog.me/ri_ri_ri_10/*") ||
   shExpMatch(url, "*://line.blogimg.jp/ri_ri_ri_10/*") ||
@@ -187,16 +182,11 @@ if (
   dnsDomainIs(host, "xxchoroxx.blog.fc2.com") ||
   dnsDomainIs(host, "hqmeded-ecg.blogspot.com") ||
   dnsDomainIs(host, "afewguyscoding.com") ||
-// tumblr
-  dnsDomainIs(host, "assets.tumblr.com") ||
-  dnsDomainIs(host, "media.tumblr.com") ||
-  dnsDomainIs(host, "dspfanworks.tumblr.com") ||
-// fc2
-  shExpMatch(url, "http://coflo.blog.fc2.com/*") ||
-  shExpMatch(url, "http://blog-imgs-*-origin.fc2.com*") ||
-// sources fix
-  dnsDomainIs(host, "r.r10s.jp") ||
-// research
+// cdn
+  dnsDomainIs(host, "akamaihd.net") ||
+  dnsDomainIs(host, "amazonaws.com") ||
+  dnsDomainIs(host, "cloudfront.net") ||
+// debug
   dnsDomainIs(host, "ip.cn") 
 ) return "PROXY 127.0.0.1:6666";
 return "DIRECT";
