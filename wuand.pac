@@ -13,13 +13,6 @@ if (
 if (
   shExpMatch(url, "http://*/crossdomain.xml") 
  ) return "PROXY vps.onens.com:80"; 
-// wallproxy
-if (
-  shExpMatch(url, "*://*.google.*/*") ||
-  dnsDomainIs(host, "google.com") ||
-  dnsDomainIs(host, "google.com.hk") ||
-  dnsDomainIs(host, "google.co.jp")
- ) return "PROXY 47.88.221.115:25";
 // v2ray
 if (
   dnsDomainIs(host, "www.dmm.com") ||
@@ -31,6 +24,9 @@ if (
  // goagent
 if (
 // google
+  shExpMatch(url, "*://*.google.*/*") ||
+  dnsDomainIs(host, "google.com") ||
+  dnsDomainIs(host, "google.com.hk") ||
   dnsDomainIs(host, "gstatic.com") ||
   dnsDomainIs(host, "googleapis.com") ||
   dnsDomainIs(host, "googleusercontent.com") ||
