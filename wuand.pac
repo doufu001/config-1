@@ -17,7 +17,8 @@ if (
 if (
   shExpMatch(url, "*://*.google.*/*") ||
   dnsDomainIs(host, "google.com") ||
-  dnsDomainIs(host, "google.com.hk") 
+  dnsDomainIs(host, "google.com.hk") ||
+  dnsDomainIs(host, "www.tumblr.com") 
  ) return "PROXY 127.0.0.1:6666";
 // goproxy
 if (
