@@ -7,18 +7,21 @@ if (
 ) return "DIRECT";
 // v2ray
 if (
+  shExpMatch(url, "*://*.google.*/*") ||
+  dnsDomainIs(host, "google.com") ||
+  dnsDomainIs(host, "google.com.hk") 
+ ) return "PROXY 127.0.0.1:6666";
+// goproxy
+if (
   dnsDomainIs(host, "www.dmm.com") ||
   dnsDomainIs(host, "osapi.dmm.com") ||
   dnsDomainIs(host, "w010.touken-ranbu.jp") ||
   dnsDomainIs(host, "game.bungo.dmmgames.com") ||
   dnsDomainIs(host, "wikiwiki.jp") 
- ) return "PROXY 127.0.0.1:6666";
- // goagent
+ ) return "PROXY 127.0.0.1:1024";
+ // xx-mini
 if (
 // google
-  shExpMatch(url, "*://*.google.*/*") ||
-  dnsDomainIs(host, "google.com") ||
-  dnsDomainIs(host, "google.com.hk") ||
   dnsDomainIs(host, "gstatic.com") ||
   dnsDomainIs(host, "googleapis.com") ||
   dnsDomainIs(host, "googleusercontent.com") ||
