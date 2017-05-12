@@ -112,6 +112,7 @@ if (
   dnsDomainIs(host, "topcoder.com") ||
   dnsDomainIs(host, "gitbook.com") ||
   dnsDomainIs(host, "angelboy.tw") ||
+  dnsDomainIs(host, "w3schools.com") ||
 // education
   dnsDomainIs(host, "edu.tw") ||
   dnsDomainIs(host, "coursera.org") ||

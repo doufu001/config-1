@@ -152,6 +152,7 @@ if (
   dnsDomainIs(host, "topcoder.com") ||
   dnsDomainIs(host, "gitbook.com") ||
   dnsDomainIs(host, "angelboy.tw") ||
+  dnsDomainIs(host, "w3schools.com") ||
 // news
   dnsDomainIs(host, "economist.com") ||
   dnsDomainIs(host, "bloomberg.com") ||

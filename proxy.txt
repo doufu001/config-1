@@ -50,6 +50,9 @@
 ||aventertainments.com
 ||myav.tv
 
+！--picture
+||winudf.com
+
 !--cdn
 ||akamaihd.net
 ||cloudfront.net
