@@ -1,16 +1,15 @@
 [AutoProxy 0.2.9]
 ! Expires: 6h
-! Last Modified: 2017.5.6
+! Last Modified: 2017.5.12
 
 !--github
-||github.com
+||github.io
 ||githubusercontent.com
 ||githubapp.com
 
 !--yahoo
 ||yahoo.com
 ||yimg.com
-||tumblr.com
 
 !--dmm
 ||dmm.com
@@ -43,11 +42,10 @@
 ||dropboxstatic.com
 ||vultr.com
 ||rosonbbs.com
+||momoho45.com
 
 !--adult
 ||javbus.com
-||sis001.com
-||dmm.co.jp
 ||av9.cc
 ||av9.tv
 ||aventertainments.com
