@@ -35,6 +35,9 @@
 !--picture
 ||saucenao.com
 
+!--code
+||w3schools.com
+
 !--others
 ||sourceforge.net
 ||dropboxstatic.com
