@@ -187,6 +187,7 @@ if (
   dnsDomainIs(host, "nationalrail.co.uk") ||
   dnsDomainIs(host, "hltv.org") ||
   dnsDomainIs(host, "popo.tw") ||
+  dnsDomainIs(host, "pili.com.tw") ||
 // cdn
   dnsDomainIs(host, "akamaihd.net") ||
   dnsDomainIs(host, "amazonaws.com") ||

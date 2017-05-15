@@ -123,6 +123,23 @@ if (
   dnsDomainIs(host, "vittz.co.kr") ||
   dnsDomainIs(host, "hmv.co.jp") ||
   dnsDomainIs(host, "rakuten.co.jp") ||
+// others
+  dnsDomainIs(host, "adblockplus.org") ||
+  dnsDomainIs(host, "tineye.com") ||
+  dnsDomainIs(host, "recaptcha.net") ||
+  dnsDomainIs(host, "weblio.jp") ||
+  dnsDomainIs(host, "dictionary.goo.ne.jp") ||
+  dnsDomainIs(host, "archive.is") ||
+  dnsDomainIs(host, "jiumodiary.com") ||
+  dnsDomainIs(host, "bandwagonhost.com") ||  
+  dnsDomainIs(host, "archive.org") ||
+  dnsDomainIs(host, "ratebeer.com") ||
+  dnsDomainIs(host, "slideshare.net") ||
+  dnsDomainIs(host, "greasyfork.org") ||
+  dnsDomainIs(host, "nationalrail.co.uk") ||
+  dnsDomainIs(host, "hltv.org") ||
+  dnsDomainIs(host, "popo.tw") ||
+  dnsDomainIs(host, "pili.com.tw") ||
 // cdn
   dnsDomainIs(host, "akamaihd.net") ||
   dnsDomainIs(host, "amazonaws.com") ||
