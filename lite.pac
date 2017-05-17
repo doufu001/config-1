@@ -1,3 +1,4 @@
+// update: 2017.5.17
 // 鉴于刑法修正案（九）关于第二百八十七条的描述，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
@@ -113,6 +114,7 @@ if (
   dnsDomainIs(host, "gitbook.com") ||
   dnsDomainIs(host, "angelboy.tw") ||
   dnsDomainIs(host, "w3schools.com") ||
+  dnsDomainIs(host, "python.org") ||
 // education
   dnsDomainIs(host, "edu.tw") ||
   dnsDomainIs(host, "coursera.org") ||
