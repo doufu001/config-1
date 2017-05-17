@@ -17,7 +17,6 @@ if (
 // goproxy
 if (
   shExpMatch(url, "https://*.google.*/*") ||
-  shExpMatch(url, "https://*.gstatic.com/*") ||
   shExpMatch(url, "https://*.youtube.com/*") ||
   shExpMatch(url, "https://*.googlevideo.com/*") ||
   shExpMatch(url, "https://*twitter.com/*") ||
