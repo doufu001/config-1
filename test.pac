@@ -14,18 +14,12 @@ if (
 if (
   shExpMatch(url, "http://*/crossdomain.xml") 
  ) return "PROXY vps.onens.com:80"; 
-// goproxy
+// goagent
 if (
   shExpMatch(url, "https://*.google.*/*") ||
-  shExpMatch(url, "https://*.youtube.com/*") ||
-  shExpMatch(url, "https://*.googlevideo.com/*") ||
-  shExpMatch(url, "https://*twitter.com/*") ||
-  shExpMatch(url, "https://*.twimg.com/*") ||
-  shExpMatch(url, "https://*.facebook.com/*") ||
-  shExpMatch(url, "https://*.fbcdn.net/*") ||
-  shExpMatch(url, "https://*.tumblr.com/*") 
+  shExpMatch(url, "https://www.tumblr.com/*")
  ) return "PROXY 127.0.0.1:6666";
-// goproxy php
+// goagent php
 if (
   dnsDomainIs(host, "www.dmm.com") ||
   dnsDomainIs(host, "osapi.dmm.com") ||
@@ -36,7 +30,6 @@ if (
  // xx-mini
 if (
 // google
-  shExpMatch(url, "*://*.google.*/*") ||
   dnsDomainIs(host, "gstatic.com") ||
   dnsDomainIs(host, "googleapis.com") ||
   dnsDomainIs(host, "googleusercontent.com") ||
