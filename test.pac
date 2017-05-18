@@ -16,9 +16,10 @@ if (
  ) return "PROXY vps.onens.com:80"; 
 // goagent
 if (
-  shExpMatch(url, "https://*.google.*/*") ||
+  shExpMatch(url, "https://*.google.com/*") ||
+  shExpMatch(url, "https://*.google.com.hk/*") ||
   shExpMatch(url, "https://www.tumblr.com/*")
-return "DIRECT";
+ ) return "DIRECT";
 // goagent php
 if (
   dnsDomainIs(host, "www.dmm.com") ||
@@ -30,6 +31,7 @@ if (
  // xx-mini
 if (
 // google
+  shExpMatch(url, "*://*.google.*/*") ||
   dnsDomainIs(host, "gstatic.com") ||
   dnsDomainIs(host, "googleapis.com") ||
   dnsDomainIs(host, "googleusercontent.com") ||
