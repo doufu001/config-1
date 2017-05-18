@@ -18,7 +18,7 @@ if (
 if (
   shExpMatch(url, "https://*.google.*/*") ||
   shExpMatch(url, "https://www.tumblr.com/*")
- ) return "PROXY 127.0.0.1:6666";
+return "DIRECT";
 // goagent php
 if (
   dnsDomainIs(host, "www.dmm.com") ||
