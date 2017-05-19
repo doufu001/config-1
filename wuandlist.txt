@@ -8,3 +8,7 @@
 !--WhiteList
 @@||dmm.com^
 @@||dmm.co.jp^
+
+!--AD
+vip.ifkdy.com##.alert.alert-warning
+vip.ifkdy.com##.nav.navbar-nav.navbar-nav.navbar-right
