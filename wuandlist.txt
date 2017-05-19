@@ -10,6 +10,6 @@
 @@||dmm.co.jp^
 
 !--ifkdy
-vip.ifkdy.com##.alert.alert-warning
+vip.ifkdy.com##.col-md-12
 vip.ifkdy.com##.nav.navbar-nav.navbar-nav.navbar-right
 ||wx3.sinaimg.cn/large/6c9509b5ly1ffm0n799bgj20vo050my5.jpg
