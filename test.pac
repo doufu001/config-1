@@ -12,6 +12,7 @@ if (
 ) return "DIRECT";
 // hosts
 if (
+  shExpMatch(url, "https://accounts.youtube.com/*") ||
   dnsDomainIs(host, "www.dmm.com") ||
   dnsDomainIs(host, "osapi.dmm.com") ||
   dnsDomainIs(host, "pc-play.games.dmm.com") ||
@@ -21,9 +22,9 @@ if (
 if (
 // google
   shExpMatch(url, "http://*.google.*/*") ||
-  dnsDomainIs(host, "gstatic.com") ||
+  shExpMatch(url, "http://*gstatic.com/*") ||
   dnsDomainIs(host, "googleapis.com") ||
-  dnsDomainIs(host, "googleusercontent.com") ||
+  shExpMatch(url, "http://*googleusercontent.com/*") ||
   dnsDomainIs(host, "ggpht.com") ||
   dnsDomainIs(host, "googleapis.com") ||
   dnsDomainIs(host, "googletagmanager.com") ||
@@ -40,6 +41,8 @@ if (
   dnsDomainIs(host, "a-i-ad.com") ||
   shExpMatch(url, "http://pics.dmm.co.jp/digital/*48/*") ||
   shExpMatch(url, "http://203.104.209.*/*") ||
+  dnsDomainIs(host, "static.touken-ranbu.jp") ||
+  dnsDomainIs(host, "cdn.bungo.dmmgames.com") ||
 // famous
   dnsDomainIs(host, "youtube.com") ||
   dnsDomainIs(host, "ytimg.com") ||
@@ -68,7 +71,6 @@ if (
   dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||
   dnsDomainIs(host, "nimg.jp") ||
-  dnsDomainIs(host, "wikiwiki.jp") ||
   dnsDomainIs(host, "dmhy.org") ||
   dnsDomainIs(host, "pixiv.net") ||
   dnsDomainIs(host, "getchu.com") ||
