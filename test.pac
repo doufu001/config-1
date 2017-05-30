@@ -9,7 +9,7 @@ if (
   shExpMatch(url, "https://twitter.com/i/tweet/create") ||
   shExpMatch(url, "https://www.facebook.com/ajax/updatestatus.php*") ||
   shExpMatch(url, "https://www.facebook.com/ufi/add/comment*") 
-) return "DIRECT";
+) return "PROXY 127.0.0.1";
 // hosts
 if (
   shExpMatch(url, "https://accounts.youtube.com/*") ||
