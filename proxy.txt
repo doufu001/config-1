@@ -1,6 +1,6 @@
 [AutoProxy 0.2.9]
 ! Expires: 6h
-! Last Modified: 2017.5.17
+! Last Modified: 2017.5.28
 
 !--github
 ||github.io
@@ -38,6 +38,9 @@
 ||w3schools.com
 ||python.org
 
+!--education
+||coursera.org
+
 !--others
 ||sourceforge.net
 ||dropboxstatic.com
@@ -61,3 +64,6 @@
 ||akamaihd.net
 ||cloudfront.net
 ||amazonaws.com
+
+!--test
+||ip.cn
