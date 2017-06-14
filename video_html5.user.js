@@ -5,7 +5,6 @@
 // @include          *://*.qq.com/*
 // @include          *://v.youku.com/v_show/id_*
 // @include          *://*.le.com/*
-// @include          *://*tv.sohu.com/*.shtml*
 // @include          https://www.panda.tv/*
 // @exclude          https://www.panda.tv/
 // @grant            none
@@ -106,11 +105,6 @@ else if (u === 'v.youku.com') {
 }
 else if (u.endsWith('.le.com')) {
 	fakeUA('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A');
-	init();
-}
-else if (u.endsWith('tv.sohu.com')) {
-	if (window.chrome && !u.startsWith('m.')) //火狐请用UA工具
-		fakeUA('Mozilla/5.0 (Linux; U; Android 4.0.4; en-gb; GT-I9300 Build/IMM76D) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30');
 	init();
 }
 else if (u === 'www.panda.tv')
