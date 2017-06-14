@@ -1,6 +1,6 @@
 [AutoProxy 0.2.9]
 ! Expires: 6h
-! Last Modified: 2017.5.28
+! Last Modified: 2017.6.14
 
 !--github
 ||github.io
@@ -20,6 +20,9 @@
 ||touken-ranbu.jp
 ||dmmgames.com
 ||itchibanketsu.jp
+
+!--github
+||github.com
 
 !--twitch
 ||twitch.tv

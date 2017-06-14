@@ -1,30 +1,24 @@
-// update: 2017.5.30
+// update: 2017.6.7
 // 鉴于刑法修正案（九）关于第二百八十七条的描述，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
 // blacklist
 if (
-  shExpMatch(url, "https://plus.google.com/*") ||
-  shExpMatch(url, "https://www.youtube.com/upload") ||
-  shExpMatch(url, "https://twitter.com/i/tweet/create") ||
-  shExpMatch(url, "https://www.facebook.com/ajax/updatestatus.php*") ||
-  shExpMatch(url, "https://www.facebook.com/ufi/add/comment*") 
+  shExpMatch(url, "https://plus.google.com/*") 
 ) return "PROXY 127.0.0.1";
 // hosts
 if (
-  shExpMatch(url, "https://accounts.youtube.com/*") ||
   dnsDomainIs(host, "www.dmm.com") ||
   dnsDomainIs(host, "osapi.dmm.com") ||
-  dnsDomainIs(host, "pc-play.games.dmm.com") ||
-  shExpMatch(url, "https://www.tumblr.com/*")
+  dnsDomainIs(host, "pc-play.games.dmm.com"))
  ) return "DIRECT";
  // xx-mini
 if (
 // google
   shExpMatch(url, "http://*.google.*/*") ||
-  shExpMatch(url, "http://*gstatic.com/*") ||
+  shExpMatch(url, "http://*.gstatic.com/*") ||
   dnsDomainIs(host, "googleapis.com") ||
-  shExpMatch(url, "http://*googleusercontent.com/*") ||
+  shExpMatch(url, "http://*.googleusercontent.com/*") ||
   dnsDomainIs(host, "ggpht.com") ||
   dnsDomainIs(host, "googleapis.com") ||
   dnsDomainIs(host, "googletagmanager.com") ||
