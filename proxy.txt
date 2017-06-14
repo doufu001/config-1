@@ -51,6 +51,7 @@
 ||inoreader.com
 ||theoldreader.com
 ||greasyfork.org
+||adblockplus.org
 
 !--adult
 ||javbus.com
