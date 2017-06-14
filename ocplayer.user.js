@@ -2,7 +2,7 @@
 // @name        Onens.Clean.Player
 // @namespace   http://onens.com/
 // @description Thanks to OpenGG, Harv.c, KaFan15536900
-// @version     2.3.5.2
+// @version     2.3.6
 // @include          *://*tv.sohu.com/*.shtml*
 // @grant       GM_xmlhttpRequest
 // @run-at      document-end
@@ -29,7 +29,7 @@ String.prototype.sprintf = function() {
 
 var OCPlayer = {
 	done: [],
-	host: 'https://coding.net/u/HalfLife/p/swf/git/raw/gh-pages/',
+	host: 'https://coding.net/u/wuand/p/wuandswf/git/raw/master/swf/',
 	rule: [{ // youku_loader
 		find: /https?:\/\/static\.youku\.com(\/v[\d\.]*)?\/v\/.*\/loaders?\.swf/i,
 		replace: 'loader.swf'
@@ -95,7 +95,7 @@ var OCPlayer = {
 		replace: 'pptv.in.Live.swf'
 	}, { // sohu_live
 		find: /https?:\/\/(tv\.sohu\.com\/upload\/swf\/(p2p\/)?\d+|(\d+\.){3}\d+\/wp8player)\/Main\.swf/i,
-		replace: 'sohu_live.swf'
+		replace: 'sohu/sohu_live.swf'
 	}],
 
 	extra: [{ // TUDOU_OUT
