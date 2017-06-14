@@ -1,8 +1,7 @@
 // ==UserScript==
-// @name         VIPÊÓÆµÔÚÏß½âÎö
+// @name         VIPè§†é¢‘åœ¨çº¿è§£æ
 // @namespace    http://ilxdh.com/
 // @version      1.3.3.1
-// @description  ÔÚÊÓÆµ±êÌâÅÔÉÏÏÔÊ¾¡°vip½âÎö¡±°´Å¥ºÍ¡°ËÑË÷µçÓ°¡±°´Å¥£¬ÔÚÏß²¥·ÅvipÊÓÆµ£»Ö§³ÖÓÅ¿ávip£¬ÌÚÑ¶vip£¬°®ÆæÒÕvip£¬Ã¢¹ûvip£¬ÀÖÊÓvipµÈ³£ÓÃÊÓÆµ...
 // @author       ifkdy
 // @match        *://v.youku.com/v_show/*
 // @match        *://*.iqiyi.com/v_*
@@ -46,8 +45,8 @@
     var rePP = /pptv/i;
     var reYYT = /yinyuetai/i;
     var reIFKDY = /ifkdy/i;
-    var vipBtn = '<a id="ifkdyVipBtn" style="cursor:pointer;text-decoration:none;color:red;padding:0 5px;border:1px solid red;">vip½âÎö</a>';
-    // ÓÅ¿á
+    var vipBtn = '<a id="ifkdyVipBtn" style="cursor:pointer;text-decoration:none;color:red;padding:0 5px;border:1px solid red;">vipè§£æ</a>';
+    // ä¼˜é…·
     if(reYk.test(videoSite)){
         var youkuTitle = $('#subtitle');
         youkuTitle.parent('.title').after(vipBtn);
@@ -56,7 +55,7 @@
        	curWords = $('.tvinfo').find('h3').eq(0).text();
         $('#ifkdySearchBtn').attr('href','http://ifkdy.com/?q=' + curWords + '&p=1');
     }
-    // °®ÆæÒÕ
+    // çˆ±å¥‡è‰º
     if(reAqy.test(videoSite)){
         var iqiyiTitle = $('#widget-videotitle');
         iqiyiTitle.parent('.mod-play-tit').append(vipBtn);
@@ -69,7 +68,7 @@
         }
         $('#ifkdySearchBtn').attr('href','http://ifkdy.com/?q=' + curWords + '&p=1');
     }
-    // ÀÖÊÓ
+    // ä¹è§†
     if(reLS.test(videoSite)){
         var lsTitle = $('.j-video-name');
         lsTitle.after(vipBtn);
@@ -83,7 +82,7 @@
         }
         $('#ifkdySearchBtn').attr('href','http://ifkdy.com/?q=' + curWords + '&p=1');
     }
-    // ÌÚÑ¶
+    // è…¾è®¯
     if(reTX.test(videoSite)){
         var qqTitle = $('.video_title');
         qqTitle.eq(0).after(vipBtn);
@@ -96,13 +95,13 @@
         }
         $('#ifkdySearchBtn').attr('href','http://ifkdy.com/?q=' + curWords + '&p=1');
     }
-    // ÍÁ¶¹
+    // åœŸè±†
     if(reTD.test(videoSite)){
         var tdTitle = $('#videoKw');
         tdTitle.parent('.fix').append(vipBtn);
         $('#ifkdyVipBtn').css({'font-size':'18px','display':'inline-block','height':'22px','line-height':'22px','margin':'14px 5px 0'});
     }
-    // Ã¢¹û
+    // èŠ’æœ
     if(reMG.test(videoSite)){
         var mgTitle = $('.v-panel-title');
         mgTitle.after(vipBtn);
@@ -112,7 +111,7 @@
     	curWords = mgTitle.text();
         $('#ifkdySearchBtn').attr('href','http://ifkdy.com/?q=' + curWords + '&p=1');
     }
-    // ËÑºü
+    // æœç‹
     if(reSH.test(videoSite)){
         var shTitle = $('.player-top-info-name');
         shTitle.append(vipBtn);
@@ -144,7 +143,7 @@
         curWords = pptvTitle.text();
         $('#ifkdySearchBtn').attr('href','http://ifkdy.com/?q=' + curWords + '&p=1');
     }
-    // ÒôÔÃÌ¨
+    // éŸ³æ‚¦å°
     if(reYYT.test(videoSite)){
         var yytTitle = $('.videoName');
         yytTitle.append(vipBtn);
