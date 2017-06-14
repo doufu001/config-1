@@ -2,6 +2,7 @@
 // @name         VIP视频在线解析
 // @namespace    http://ilxdh.com/
 // @version      1.3.3.1
+// @description  在视频标题旁上显示“vip解析”按钮和“搜索电影”按钮，在线播放vip视频；支持优酷vip，腾讯vip，爱奇艺vip，芒果vip，乐视vip等常用视频...
 // @author       ifkdy
 // @match        *://v.youku.com/v_show/*
 // @match        *://*.iqiyi.com/v_*
