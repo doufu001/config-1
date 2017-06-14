@@ -3,6 +3,7 @@
 ! Last Modified: 2017.6.14
 
 !--github
+||github.com
 ||github.io
 ||githubusercontent.com
 ||githubapp.com
@@ -20,9 +21,6 @@
 ||touken-ranbu.jp
 ||dmmgames.com
 ||itchibanketsu.jp
-
-!--github
-||github.com
 
 !--twitch
 ||twitch.tv
@@ -52,6 +50,7 @@
 ||momoho45.com
 ||inoreader.com
 ||theoldreader.com
+||greasyfork.org
 
 !--adult
 ||javbus.com
