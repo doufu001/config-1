@@ -1,6 +1,6 @@
 [AutoProxy 0.2.9]
 ! Expires: 6h
-! Last Modified: 2017.6.14
+! Last Modified: 2017.6.16
 
 !--github
 ||github.com
@@ -52,6 +52,7 @@
 ||theoldreader.com
 ||greasyfork.org
 ||adblockplus.org
+||apkpure.com
 
 !--adult
 ||javbus.com
