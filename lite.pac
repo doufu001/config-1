@@ -8,14 +8,19 @@ if (
 ) return "PROXY 127.0.0.1";
 // hosts
 if (
+  shExpMatch(url, "https://*.google.com/*") ||
+  shExpMatch(url, "https://*.google.com.hk/*") ||
   dnsDomainIs(host, "www.dmm.com") ||
   dnsDomainIs(host, "osapi.dmm.com") ||
-  dnsDomainIs(host, "pc-play.games.dmm.com"))
+  dnsDomainIs(host, "pc-play.games.dmm.com")
  ) return "DIRECT";
  // xx-mini
 if (
 // google
+  shExpMatch(url, "*://*.google.*/*") ||
+  shExpMatch(url, "http://*.gstatic.com/*") ||
   dnsDomainIs(host, "googleapis.com") ||
+  shExpMatch(url, "http://*.googleusercontent.com/*") ||
   dnsDomainIs(host, "ggpht.com") ||
   dnsDomainIs(host, "googleapis.com") ||
   dnsDomainIs(host, "googletagmanager.com") ||

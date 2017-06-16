@@ -12,8 +12,8 @@ if (
 ) return "PROXY 127.0.0.1";
 // hosts
 if (
-  dnsDomainIs(host, "google.com") ||
-  dnsDomainIs(host, "google.com.hk") ||
+  shExpMatch(url, "https://*.google.com/*") ||
+  shExpMatch(url, "https://*.google.com.hk/*") ||
   shExpMatch(url, "https://accounts.youtube.com/*") ||
   dnsDomainIs(host, "www.dmm.com") ||
   dnsDomainIs(host, "osapi.dmm.com") ||
@@ -24,7 +24,9 @@ if (
 if (
 // google
   shExpMatch(url, "*://*.google.*/*") ||
+  shExpMatch(url, "http://*.gstatic.com/*") ||
   dnsDomainIs(host, "googleapis.com") ||
+  shExpMatch(url, "http://*.googleusercontent.com/*") ||
   dnsDomainIs(host, "ggpht.com") ||
   dnsDomainIs(host, "googleapis.com") ||
   dnsDomainIs(host, "googletagmanager.com") ||
