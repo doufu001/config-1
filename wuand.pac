@@ -1,4 +1,4 @@
-// update: 2017.6.14
+// update: 2017.6.16
 // 鉴于刑法修正案（九）关于第二百八十七条的描述，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
@@ -12,6 +12,8 @@ if (
 ) return "PROXY 127.0.0.1";
 // hosts
 if (
+  dnsDomainIs(host, "google.com") ||
+  dnsDomainIs(host, "google.com.hk") ||
   shExpMatch(url, "https://accounts.youtube.com/*") ||
   dnsDomainIs(host, "www.dmm.com") ||
   dnsDomainIs(host, "osapi.dmm.com") ||
@@ -21,10 +23,8 @@ if (
  // xx-mini
 if (
 // google
-  shExpMatch(url, "http://*.google.*/*") ||
-  shExpMatch(url, "http://*gstatic.com/*") ||
+  shExpMatch(url, "*://*.google.*/*") ||
   dnsDomainIs(host, "googleapis.com") ||
-  shExpMatch(url, "http://*googleusercontent.com/*") ||
   dnsDomainIs(host, "ggpht.com") ||
   dnsDomainIs(host, "googleapis.com") ||
   dnsDomainIs(host, "googletagmanager.com") ||
