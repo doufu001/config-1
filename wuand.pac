@@ -1,5 +1,5 @@
-// update: 2017.6.16
-// 鉴于刑法修正案（九）关于第二百八十七条的描述，规则中加入了黑名单，请谅解
+// update: 2017.6.17
+// 鉴于《刑法》、《网络安全法》等法律的有关条款，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
 // blacklist
