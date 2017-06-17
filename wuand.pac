@@ -14,7 +14,6 @@ if (
 if (
   shExpMatch(url, "https://*.google.com/*") ||
   shExpMatch(url, "https://*.google.com.hk/*") ||
-  shExpMatch(url, "https://accounts.youtube.com/*") ||
   dnsDomainIs(host, "www.dmm.com") ||
   dnsDomainIs(host, "osapi.dmm.com") ||
   dnsDomainIs(host, "pc-play.games.dmm.com") ||
@@ -25,10 +24,9 @@ if (
 // google
   shExpMatch(url, "*://*.google.*/*") ||
   shExpMatch(url, "http://*.gstatic.com/*") ||
-  dnsDomainIs(host, "googleapis.com") ||
+  shExpMatch(url, "http://*.googleapis.com/*") ||
   shExpMatch(url, "http://*.googleusercontent.com/*") ||
-  dnsDomainIs(host, "ggpht.com") ||
-  dnsDomainIs(host, "googleapis.com") ||
+  shExpMatch(url, "http://*.ggpht.com/*") ||
   dnsDomainIs(host, "googletagmanager.com") ||
   dnsDomainIs(host, "googlesyndication.com") ||
   dnsDomainIs(host, "googleadservices.com") ||
@@ -46,8 +44,8 @@ if (
   dnsDomainIs(host, "static.touken-ranbu.jp") ||
   dnsDomainIs(host, "cdn.bungo.dmmgames.com") ||
 // famous
-  dnsDomainIs(host, "youtube.com") ||
-  dnsDomainIs(host, "ytimg.com") ||
+  shExpMatch(url, "http://*.youtube.com/*") ||
+  shExpMatch(url, "http://*.ytimg.com/*") ||
   dnsDomainIs(host, "googlevideo.com") ||
   dnsDomainIs(host, "youtu.be") ||
   dnsDomainIs(host, "twitter.com") ||
