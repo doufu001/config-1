@@ -8,6 +8,3 @@
 !--WhiteList
 @@||dmm.com^
 @@||dmm.co.jp^
-
-!--video_vip
-##a[href="http://vip.72du.com"]
