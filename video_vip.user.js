@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VIP视频在线解析
 // @namespace    http://ilxdh.com/
-// @version      1.3.3.1
+// @version      1.3.4
 // @description  在视频标题旁上显示“vip解析”按钮和“搜索电影”按钮，在线播放vip视频；支持优酷vip，腾讯vip，爱奇艺vip，芒果vip，乐视vip等常用视频...
 // @author       ifkdy
 // @match        *://v.youku.com/v_show/*
@@ -54,7 +54,7 @@
         $('#ifkdyVipBtn').css({'font-size':'17px','display':'inline-block','height':'22px','line-height':'22px','margin':'0 5px','vertical-align':'bottom'});
         $('#ifkdySearchBtn').css({'font-size':'17px','display':'inline-block','height':'22px','line-height':'22px','margin':'0 5px','vertical-align':'bottom'});
        	curWords = $('.tvinfo').find('h3').eq(0).text();
-        $('#ifkdySearchBtn').attr('href','http://ifkdy.com/?q=' + curWords + '&p=1');
+        $('#ifkdySearchBtn').attr('href','http://a.z.vip.totv.72du.com/?url=' + curWords + '&p=1');
     }
     // 爱奇艺
     if(reAqy.test(videoSite)){
