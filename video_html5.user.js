@@ -7,7 +7,9 @@
 // @exclude          *://user.qzone.qq.com/*
 // @exclude          *://lpl.qq.com/es/lpl/*
 // @exclude          *://qt.qq.com/zhibo/index.html*
-// @include          *://v.youku.com/v_show/id_*
+// @include          http://v.youku.com/v_show/id_*
+// @include          https://v.youku.com/v_show/id_*
+// @include          *://*.bilibili.com/*
 // @include          http://*.cctv.com/*
 // @exclude          http://tv.cctv.com/live/*
 // @include          http://*.cntv.cn/*
@@ -18,8 +20,6 @@
 // @include          *://my.tv.sohu.com/*.shtml*
 // @include          https://www.panda.tv/*
 // @exclude          https://www.panda.tv/
-// @include          *://*.bilibili.com/*
-// @exclude          http://ifkjx.com/*
 // @grant            unsafeWindow
 // @run-at           document-start
 // @namespace  https://greasyfork.org/users/7036
