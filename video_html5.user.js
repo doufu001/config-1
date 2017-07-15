@@ -19,7 +19,7 @@
 // @include          https://www.panda.tv/*
 // @exclude          https://www.panda.tv/
 // @include          *://*.bilibili.com/*
-// @exclude          http://ifkjx.com/
+// @exclude          http://ifkjx.com/*
 // @grant            unsafeWindow
 // @run-at           document-start
 // @namespace  https://greasyfork.org/users/7036
