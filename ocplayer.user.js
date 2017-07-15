@@ -3,7 +3,8 @@
 // @namespace   http://onens.com/
 // @description Thanks to OpenGG, Harv.c, KaFan15536900
 // @version     2.4
-// @include     http://tv.sohu.com/*
+// @include     http://*/*
+// @include     https://*/*
 // @grant       GM_xmlhttpRequest
 // @run-at      document-end
 // ==/UserScript==
@@ -29,10 +30,63 @@ String.prototype.sprintf = function() {
 
 var OCPlayer = {
 	done: [],
-	host: 'https://coding.net/u/wuand/p/wuandswf/git/raw/master/swf/',
-	rule: [{ // sohu_live
+	host: 'https://coding.net/u/HalfLife/p/swf/git/raw/gh-pages/',
+	rule: [{ // youku_loader
+		find: /https?:\/\/static\.youku\.com(\/v[\d\.]*)?\/v\/swf\/(.*\/)?loaders?\.swf/i,
+		replace: 'loader.swf'
+	}, { // youku_player
+		find: /https?:\/\/static\.youku\.com(\/v[\d\.]*)?\/v\/swf\/(.*\/)?q?player.*\.swf/i,
+		replace: 'player.swf'
+	}, { // ku6
+		find: /https?:\/\/player\.ku6cdn\.com\/default\/.*\/(v|player)\.swf/i,
+		replace: 'ku6.swf'
+	}, { // ku6_out
+		find: /https?:\/\/player\.ku6cdn\.com\/default\/out\/\d{12}\/player\.swf/i,
+		replace: 'ku6_out.swf'
+	}, { // iqiyi
+		find: /https?:\/\/www\.iqiyi\.com\/(player\/\d+\/Player|common\/flashplayer\/\d+\/((Main)?Player_.*|[\d]{4}[a-z]+((?!aa).){6,7}))\.swf/i,
+		replace: 'iqiyi5.swf'
+	}, { // iqiy_out
+		find: /https?:\/\/www\.iqiyi\.com\/common\/flashplayer\/\d+\/SharePlayer_.*\.swf/i,
+		replace: 'iqiyi_out.swf'
+	}, { // tudou
+		find: /https?:\/\/static\.youku\.com(\/v[\d\.]*)?\/v\/custom\/.*\/q?player.*\.swf/i,
+		replace: 'tudou.swf'
+	}, { // letvsdk
+		find: /https?:\/\/player\.letvcdn\.com\/.*\/newplayer\/LetvPlayerSDK\.swf/i,
+		replace: 'letvsdk.swf'
+	}, { // pptv
+		find: /https?:\/\/player\.pplive\.cn\/ikan\/.*\/player4player2\.swf/i,
+		replace: 'pptv.swf'
+	}, { // pptv_live
+		find: /https?:\/\/player\.pplive\.cn\/live\/.*\/player4live2\.swf/i,
+		replace: 'pptv.in.Live.swf'
+	}, { // sohu_live
 		find: /https?:\/\/(tv\.sohu\.com\/upload\/swf\/(p2p\/)?\d+|(\d+\.){3}\d+\/wp8player)\/Main\.swf/i,
-		replace: 'sohu/sohu_live.swf'
+		replace: 'sohu_live.swf'
+	}, { // pps
+		find: /https?:\/\/www\.iqiyi\.com\/common\/.*\/pps[\w]+.swf/i,
+		replace: 'iqiyi.swf'
+	}],
+
+	extra: [{ // TUDOU_OUT
+		find: /http:\/\/www\.tudou\.com\/.*(\/v\.swf)?/i,
+		replace: function(el, find) {
+			if (/firefox/i.test(navigator.userAgent)) {
+				GM_xmlhttpRequest({
+					url: el.data || el.src,
+					method: 'HEAD',
+					onload: function(response) {
+						var url = response.finalUrl;
+						if (url) {
+							url = url.replace(/http:\/\/js\.tudouui\.com\/.*?\/olc_[^.]*?\.swf/i, this.host + 'olc_8.swf');
+							url = url.replace(/http:\/\/js\.tudouui\.com\/.*?\/SocialPlayer_[^.]*?\.swf/i, this.host + 'sp.swf');
+							this.Reload.bind(this, el, find, url)();
+						}
+					}.bind(this)
+				});
+			}
+		}
 	}],
 
 	init_css: 'object,embed{-webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;-ms-animation-duration:.001s;-ms-animation-name:playerInserted;-o-animation-duration:.001s;-o-animation-name:playerInserted;animation-duration:.001s;animation-name:playerInserted;}@-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}',
