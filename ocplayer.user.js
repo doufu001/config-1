@@ -69,26 +69,7 @@ var OCPlayer = {
 		replace: 'iqiyi.swf'
 	}],
 
-	extra: [{ // TUDOU_OUT
-		find: /http:\/\/www\.tudou\.com\/.*(\/v\.swf)?/i,
-		replace: function(el, find) {
-			if (/firefox/i.test(navigator.userAgent)) {
-				GM_xmlhttpRequest({
-					url: el.data || el.src,
-					method: 'HEAD',
-					onload: function(response) {
-						var url = response.finalUrl;
-						if (url) {
-							url = url.replace(/http:\/\/js\.tudouui\.com\/.*?\/olc_[^.]*?\.swf/i, this.host + 'olc_8.swf');
-							url = url.replace(/http:\/\/js\.tudouui\.com\/.*?\/SocialPlayer_[^.]*?\.swf/i, this.host + 'sp.swf');
-							this.Reload.bind(this, el, find, url)();
-						}
-					}.bind(this)
-				});
-			}
-		}
-	}],
-
+	
 	init_css: 'object,embed{-webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;-ms-animation-duration:.001s;-ms-animation-name:playerInserted;-o-animation-duration:.001s;-o-animation-name:playerInserted;animation-duration:.001s;animation-name:playerInserted;}@-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}',
 
 	tips_css: '.ocplayer_tips{font:12px Arial, Verdana;padding:0 8px;cursor:default;border:1px solid #d5d5d5;line-height:25px;opacity:.2;background:#f5f5f5;position:fixed;right:0;bottom:-1px;z-index:999999}.ocplayer_tips:hover{opacity:.8}',
