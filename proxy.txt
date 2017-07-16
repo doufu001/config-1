@@ -1,6 +1,6 @@
 [AutoProxy 0.2.9]
 ! Expires: 6h
-! Last Modified: 2017.6.19
+! Last Modified: 2017.7.16
 
 !--github
 ||github.com
@@ -62,6 +62,7 @@
 ||myav.tv
 ||p9a.space
 ||playio1.com
+||dio889.net
 
 ！--picture
 ||winudf.com
