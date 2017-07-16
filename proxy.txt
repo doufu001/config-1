@@ -53,6 +53,7 @@
 ||greasyfork.org
 ||adblockplus.org
 ||apkpure.com
+||gigsgigscloud.com
 
 !--adult
 ||javbus.com
