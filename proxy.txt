@@ -1,6 +1,6 @@
 [AutoProxy 0.2.9]
 ! Expires: 6h
-! Last Modified: 2017.7.16
+! Last Modified: 2017.7.17
 
 !--github
 ||github.com
@@ -54,6 +54,12 @@
 ||adblockplus.org
 ||apkpure.com
 ||gigsgigscloud.com
+
+!--domain
+.jp^
+.tw^
+.hk^
+.uk^
 
 !--adult
 ||javbus.com
