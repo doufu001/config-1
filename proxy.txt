@@ -1,6 +1,6 @@
 [AutoProxy 0.2.9]
 ! Expires: 6h
-! Last Modified: 2017.8.3
+! Last Modified: 2017.8.5
 
 !--github
 ||github.com
@@ -46,7 +46,6 @@
 ||sourceforge.net
 ||dropboxstatic.com
 ||vultr.com
-||rosonbbs.com
 ||momoho45.com
 ||inoreader.com
 ||theoldreader.com
