@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: Wuand Adblock List
-! Last Modified: 2017.7.15
+! Last Modified: 2017.8.26
 ! Expires: 6 hours
 ! Homepage: http://www.wuan.in/
 
@@ -14,3 +14,4 @@
 ifkjx.com##a[href="http://lolbaicai.com"]
 ifkjx.com##a[href="./script.html"]
 ||ifkjx.com/img/apppc.jpg$image
+##a[href="http://ifkdy.com"]
