@@ -3,7 +3,7 @@
 // @description      拥抱html5，告别Flash。支持站点：优.土、QQ、新浪、微博、搜狐、乐视、央视、风行等。并添加播放快捷键：快进、快退、暂停/播放、音量调节
 // @version          0.5.1
 // @homepage         http://bbs.kafan.cn/thread-2093014-1-1.html
-// @include          *://*.qq.com/*
+// @include          https://*.qq.com/*
 // @exclude          *://live.qq.com/*
 // @exclude          *://user.qzone.qq.com/*
 // @exclude          *://lpl.qq.com/es/lpl/*
