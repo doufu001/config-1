@@ -2,7 +2,7 @@
 // @name        Onens.Clean.Player
 // @namespace   http://onens.com/
 // @description Thanks to OpenGG, Harv.c, KaFan15536900
-// @version     2.4
+// @version     2.4.1
 // @include     http://*/*
 // @include     https://*/*
 // @grant       GM_xmlhttpRequest
@@ -49,9 +49,6 @@ var OCPlayer = {
 	}, { // iqiy_out
 		find: /https?:\/\/www\.iqiyi\.com\/common\/flashplayer\/\d+\/SharePlayer_.*\.swf/i,
 		replace: 'iqiyi_out.swf'
-	}, { // tudou
-		find: /https?:\/\/static\.youku\.com(\/v[\d\.]*)?\/v\/custom\/.*\/q?player.*\.swf/i,
-		replace: 'tudou.swf'
 	}, { // letvsdk
 		find: /https?:\/\/player\.letvcdn\.com\/.*\/newplayer\/LetvPlayerSDK\.swf/i,
 		replace: 'letvsdk.swf'
