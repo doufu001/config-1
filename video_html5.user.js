@@ -18,9 +18,6 @@
 // @include          *://weibo.com/*
 // @include          http://*.le.com/*.html*
 // @include          *://*.lesports.com/*.html*
-// @include          *://tv.sohu.com/*.shtml*
-// @include          *://m.tv.sohu.com/*.shtml*
-// @include          *://my.tv.sohu.com/*.shtml*
 // @include          *://www.fun.tv/vplay/v-*
 // @include          *://www.fun.tv/vplay/g-*
 // @include          *://m.fun.tv/*
