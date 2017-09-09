@@ -20,9 +20,6 @@
 // @include          *://www.weibo.com/*
 // @include          http://*.le.com/*.html*
 // @include          *://*.lesports.com/*.html*
-// @include          *://tv.sohu.com/*.shtml*
-// @include          *://*.tv.sohu.com/*.shtml*
-// @include          *://film.sohu.com/album/*
 // @include          *://www.fun.tv/vplay/*
 // @include          *://m.fun.tv/*
 // @include          https://www.panda.tv/*
