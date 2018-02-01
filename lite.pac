@@ -1,4 +1,4 @@
-// update: 2018.1.14
+// update: 2018.2.1
 // 鉴于《刑法》、《网络安全法》等法律的有关条款，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
@@ -14,7 +14,7 @@ if (
   dnsDomainIs(host, "accounts.dmm.com") ||
   dnsDomainIs(host, "w010.touken-ranbu.jp") ||
   dnsDomainIs(host, "wikiwiki.jp") 
- ) return "PROXY 127.0.0.1:6666";
+ ) return "PROXY 127.0.0.1:20201";
 // goproxy-ru
 if (
 // google
@@ -100,6 +100,6 @@ if (
   dnsDomainIs(host, "cloudfront.net") ||
 // debug
   dnsDomainIs(host, "ip.cn") 
-) return "PROXY 127.0.0.1:2333";
+) return "PROXY 127.0.0.1:10201";
 return "DIRECT";
 }
