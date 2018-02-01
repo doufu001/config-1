@@ -1,4 +1,4 @@
-// update: 2017.6.17
+// update: 2018.1.14
 // 鉴于《刑法》、《网络安全法》等法律的有关条款，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
@@ -6,30 +6,34 @@ function FindProxyForURL(url, host) {
 if (
   shExpMatch(url, "https://plus.google.com/*") 
 ) return "PROXY 127.0.0.1";
-// hosts
+// goproxy-jp
 if (
-  shExpMatch(url, "https://*.google.com/*") ||
-  shExpMatch(url, "https://*.google.com.hk/*") ||
   dnsDomainIs(host, "www.dmm.com") ||
   dnsDomainIs(host, "osapi.dmm.com") ||
-  dnsDomainIs(host, "pc-play.games.dmm.com")
- ) return "DIRECT";
- // xx-mini
+  dnsDomainIs(host, "games.dmm.com") ||
+  dnsDomainIs(host, "accounts.dmm.com") ||
+  dnsDomainIs(host, "w010.touken-ranbu.jp") ||
+  dnsDomainIs(host, "wikiwiki.jp") 
+ ) return "PROXY 127.0.0.1:6666";
+// goproxy-ru
 if (
 // google
   shExpMatch(url, "*://*.google.*/*") ||
-  shExpMatch(url, "http://*.gstatic.com/*") ||
-  shExpMatch(url, "http://*.googleapis.com/*") ||
-  shExpMatch(url, "http://*.googleusercontent.com/*") ||
-  shExpMatch(url, "http://*.ggpht.com/*") ||
+  dnsDomainIs(host, "gstatic.com") ||
+  dnsDomainIs(host, "googleapis.com") ||
+  dnsDomainIs(host, "googleusercontent.com") ||
+  dnsDomainIs(host, "ggpht.com") ||
+  dnsDomainIs(host, "gmail.com") ||
   dnsDomainIs(host, "googletagmanager.com") ||
   dnsDomainIs(host, "googlesyndication.com") ||
   dnsDomainIs(host, "googleadservices.com") ||
   dnsDomainIs(host, "doubleclick.net") ||
   dnsDomainIs(host, "google-analytics.com") ||
   dnsDomainIs(host, "gvt1.com") ||
-  dnsDomainIs(host, "gmail.com") ||
   dnsDomainIs(host, "googlesource.com") ||
+  dnsDomainIs(host, "goo.gl") ||
+  dnsDomainIs(host, "accounts.youtube.com") ||
+  dnsDomainIs(host, "consent.youtube.com") ||
 // dmm
   dnsDomainIs(host, "dmm.com") ||
   dnsDomainIs(host, "cxpublic.com") ||
@@ -38,6 +42,14 @@ if (
   shExpMatch(url, "http://203.104.209.*/*") ||
   dnsDomainIs(host, "static.touken-ranbu.jp") ||
   dnsDomainIs(host, "cdn.bungo.dmmgames.com") ||
+// famous
+  dnsDomainIs(host, "pinterest.com") ||
+  dnsDomainIs(host, "pinimg.com") ||
+  dnsDomainIs(host, "instagram.com") ||
+  dnsDomainIs(host, "cdninstagram.com") ||
+  shExpMatch(url, "https://connect.facebook.net/*") ||
+  shExpMatch(url, "https://staticxx.facebook.com/connect/*") ||
+  shExpMatch(url, "https://www.facebook.com/connect/*") ||
 // acg
   dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||

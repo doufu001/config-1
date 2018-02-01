@@ -2,9 +2,9 @@
 // @name        Onens.Clean.Player
 // @namespace   http://onens.com/
 // @description Thanks to OpenGG, Harv.c, KaFan15536900
-// @version     2.4.1
-// @include     http://*/*
-// @include     https://*/*
+// @version     2.4.2
+// @include     http://*.sohu.com/*
+// @include     https://*.sohu.com/*
 // @grant       GM_xmlhttpRequest
 // @run-at      document-end
 // ==/UserScript==
