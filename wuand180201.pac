@@ -1,4 +1,4 @@
-// update: 2018.2.1
+// update: 2018.2.3
 // 鉴于《刑法》、《网络安全法》等法律的有关条款，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
@@ -13,11 +13,14 @@ if (
 ) return "PROXY 127.0.0.1";
 // v2ray-jp
 if (
-  dnsDomainIs(host, "www.dmm.com") ||
-  dnsDomainIs(host, "osapi.dmm.com") ||
-  dnsDomainIs(host, "games.dmm.com") ||
-  dnsDomainIs(host, "accounts.dmm.com") ||
-  dnsDomainIs(host, "w010.touken-ranbu.jp") ||
+  dnsDomainIs(host, "dmm.com") ||
+  dnsDomainIs(host, "dmmgames.com") ||
+  dnsDomainIs(host, "touken-ranbu.jp") ||
+  dnsDomainIs(host, "cxpublic.com") ||
+  dnsDomainIs(host, "a-i-ad.com") ||
+  shExpMatch(url, "http://pics.dmm.co.jp/digital/*48/*") ||
+  shExpMatch(url, "http://203.104.209.*/*") ||
+  dnsDomainIs(host, "dovs9u514acja.cloudfront.net") ||
   dnsDomainIs(host, "wikiwiki.jp") 
  ) return "PROXY 127.0.0.1:20201";
 // goproxy-ru
@@ -37,14 +40,11 @@ if (
   dnsDomainIs(host, "gvt1.com") ||
   dnsDomainIs(host, "googlesource.com") ||
   dnsDomainIs(host, "goo.gl") ||
-// dmm
-  dnsDomainIs(host, "dmm.com") ||
-  dnsDomainIs(host, "cxpublic.com") ||
-  dnsDomainIs(host, "a-i-ad.com") ||
-  shExpMatch(url, "http://pics.dmm.co.jp/digital/*48/*") ||
-  shExpMatch(url, "http://203.104.209.*/*") ||
-  dnsDomainIs(host, "static.touken-ranbu.jp") ||
-  dnsDomainIs(host, "cdn.bungo.dmmgames.com") ||
+// pinterest
+  dnsDomainIs(host, "pinterest.com") ||
+  dnsDomainIs(host, "pinimg.com") ||
+  dnsDomainIs(host, "cedexis.com") ||
+  dnsDomainIs(host, "cedexis-radar.net") ||
 // famous
   dnsDomainIs(host, "youtube.com") ||
   dnsDomainIs(host, "ytimg.com") ||
@@ -60,8 +60,6 @@ if (
   dnsDomainIs(host, "wikipedia.org") ||
   dnsDomainIs(host, "wikimedia.org") ||
   dnsDomainIs(host, "medium.com") ||
-  dnsDomainIs(host, "pinterest.com") ||
-  dnsDomainIs(host, "pinimg.com") ||
   dnsDomainIs(host, "vimeo.com") ||
   dnsDomainIs(host, "vimeocdn.com") ||
 // acg
