@@ -21,6 +21,7 @@ if (
   shExpMatch(url, "http://pics.dmm.co.jp/digital/*48/*") ||
   shExpMatch(url, "http://203.104.209.*/*") ||
   dnsDomainIs(host, "dovs9u514acja.cloudfront.net") ||
+  dnsDomainIs(host, "pinterest.com") ||
   dnsDomainIs(host, "wikiwiki.jp") 
  ) return "PROXY 127.0.0.1:20201";
 // goproxy-ru
@@ -41,7 +42,6 @@ if (
   dnsDomainIs(host, "googlesource.com") ||
   dnsDomainIs(host, "goo.gl") ||
 // pinterest
-  dnsDomainIs(host, "pinterest.com") ||
   dnsDomainIs(host, "pinimg.com") ||
   dnsDomainIs(host, "cedexis.com") ||
   dnsDomainIs(host, "cedexis-radar.net") ||
