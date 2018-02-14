@@ -119,6 +119,6 @@ if (
   dnsDomainIs(host, "cloudfront.net") ||
 // debug
   dnsDomainIs(host, "ip.cn") 
-) return "SOCKS5 127.0.0.1:10214";
+) return "PROXY 127.0.0.1:10214";
 return "DIRECT";
 }
