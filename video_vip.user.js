@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VIP视频在线解析
 // @namespace    http://goudidiao.com/
-// @version      1.3.7
+// @version      1.3.6
 // @description  在视频标题旁上显示“vip解析”按钮和“搜索电影”按钮，在线播放vip视频；支持优酷vip，腾讯vip，爱奇艺vip，芒果vip，乐视vip等常用视频...
 // @author       goudidiao
 // @match        *://v.youku.com/v_show/*
@@ -50,11 +50,11 @@
     if(reYk.test(videoSite)){
         var youkuTitle = $('#subtitle');
         if(youkuTitle.length !== 0){
-        	youkuTitle.after(vipBtn);
+        	youkuTitle.parent('.title').after(vipBtn);
 	        $('#goudidiaoVipBtn').css({'font-size':'17px','display':'inline-block','height':'22px','line-height':'22px','margin':'0 5px','vertical-align':'bottom'});
 	        $('#goudidiaoSearchBtn').css({'font-size':'17px','display':'inline-block','height':'22px','line-height':'22px','margin':'0 5px','vertical-align':'bottom'});
 	        if($('.tvinfo').length !== 0){
-	        	curWords = $('.tvinfo').find('h2').eq(0).find('a').text();
+	        	curWords = $('.tvinfo').find('h3').eq(0).text();
 	        }else{
 	        	curWords = $('.title').attr('title');
 	        }
