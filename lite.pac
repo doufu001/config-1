@@ -4,12 +4,7 @@ function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(ur
 function FindProxyForURL(url, host) {
 // blacklist
 if (
-  shExpMatch(url, "https://plus.google.com/*") ||
-  shExpMatch(url, "https://www.youtube.com/upload") ||
-  shExpMatch(url, "https://twitter.com/i/tweet/create") ||
-  shExpMatch(url, "https://login.wikimedia.org/*") ||
-  shExpMatch(url, "https://www.facebook.com/ajax/updatestatus.php*") ||
-  shExpMatch(url, "https://www.facebook.com/ufi/add/comment*") 
+  shExpMatch(url, "https://plus.google.com/*") 
 ) return "PROXY 127.0.0.1";
 // v2ray-jp
 if (
@@ -41,34 +36,24 @@ if (
   dnsDomainIs(host, "gvt1.com") ||
   dnsDomainIs(host, "googlesource.com") ||
   dnsDomainIs(host, "goo.gl") ||
+  dnsDomainIs(host, "accounts.youtube.com") ||
+  dnsDomainIs(host, "consent.youtube.com") ||
 // pinterest
   dnsDomainIs(host, "pinimg.com") ||
   dnsDomainIs(host, "cedexis.com") ||
   dnsDomainIs(host, "cedexis-radar.net") ||
-// famous
-  dnsDomainIs(host, "youtube.com") ||
-  dnsDomainIs(host, "ytimg.com") ||
-  dnsDomainIs(host, "googlevideo.com") ||
-  dnsDomainIs(host, "youtu.be") ||
-  dnsDomainIs(host, "twitter.com") ||
-  dnsDomainIs(host, "twimg.com") ||
-  dnsDomainIs(host, "t.co") ||
-  dnsDomainIs(host, "facebook.com") ||
-  dnsDomainIs(host, "fbcdn.net") ||
-  dnsDomainIs(host, "facebook.net") ||
+// Instagram
   dnsDomainIs(host, "instagram.com") ||
-  dnsDomainIs(host, "wikipedia.org") ||
-  dnsDomainIs(host, "wikimedia.org") ||
-  dnsDomainIs(host, "medium.com") ||
-  dnsDomainIs(host, "vimeo.com") ||
-  dnsDomainIs(host, "vimeocdn.com") ||
+  dnsDomainIs(host, "cdninstagram.com") ||
+  shExpMatch(url, "https://connect.facebook.net/*") ||
+  shExpMatch(url, "https://staticxx.facebook.com/connect/*") ||
+  shExpMatch(url, "https://www.facebook.com/connect/*") ||
 // acg
   dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||
   dnsDomainIs(host, "nimg.jp") ||
   dnsDomainIs(host, "dmhy.org") ||
   dnsDomainIs(host, "pixiv.net") ||
-  dnsDomainIs(host, "getchu.com") ||
   dnsDomainIs(host, "line.me") ||
   dnsDomainIs(host, "line-apps.com") ||
   dnsDomainIs(host, "lineblog.me") ||
@@ -90,21 +75,12 @@ if (
 // art
   dnsDomainIs(host, "deviantart.com") ||
   dnsDomainIs(host, "deviantart.net") ||
-// netdisk
-  dnsDomainIs(host, "dropbox.com") ||
-  dnsDomainIs(host, "dropboxstatic.com") ||
-  dnsDomainIs(host, "onedrive.live.com") ||
-  dnsDomainIs(host, "mediafire.com") ||
-  dnsDomainIs(host, "getuploader.com") ||
 // shopping
   dnsDomainIs(host, "nordstrom.com") ||
   dnsDomainIs(host, "nordstromimage.com") ||
   dnsDomainIs(host, "nordstrommedia.com") ||
 // music
   dnsDomainIs(host, "soundcloud.com") ||
-// news
-  dnsDomainIs(host, "economist.com") ||
-  dnsDomainIs(host, "bloomberg.com") ||
 // game
   dnsDomainIs(host, "twitch.tv") ||
   dnsDomainIs(host, "jtvnw.net") ||
