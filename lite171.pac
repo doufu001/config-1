@@ -1,15 +1,10 @@
-// update: 2018.2.21
+// update: 2018.2.25
 // 鉴于《刑法》、《网络安全法》等法律的有关条款，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
 // blacklist
 if (
-  shExpMatch(url, "https://plus.google.com/*") ||
-  shExpMatch(url, "https://www.youtube.com/upload") ||
-  shExpMatch(url, "https://twitter.com/i/tweet/create") ||
-  shExpMatch(url, "https://login.wikimedia.org/*") ||
-  shExpMatch(url, "https://www.facebook.com/ajax/updatestatus.php*") ||
-  shExpMatch(url, "https://www.facebook.com/ufi/add/comment*") 
+  shExpMatch(url, "https://plus.google.com/*") 
 ) return "PROXY 127.0.0.1";
 // goproxy-jp
 if (
@@ -22,8 +17,8 @@ if (
   shExpMatch(url, "http://203.104.209.*/*") ||
   dnsDomainIs(host, "dovs9u514acja.cloudfront.net") ||
   dnsDomainIs(host, "wikiwiki.jp") 
- ) return "PROXY 127.0.0.1:20221";
-// goproxy-gae
+ ) return "PROXY 127.0.0.1:20225";
+// goproxy-ru
 if (
 // google
   shExpMatch(url, "*://*.google.*/*") ||
@@ -40,35 +35,25 @@ if (
   dnsDomainIs(host, "gvt1.com") ||
   dnsDomainIs(host, "googlesource.com") ||
   dnsDomainIs(host, "goo.gl") ||
+  dnsDomainIs(host, "accounts.youtube.com") ||
+  dnsDomainIs(host, "consent.youtube.com") ||
 // pinterest
   dnsDomainIs(host, "pinterest.com") ||
   dnsDomainIs(host, "pinimg.com") ||
   dnsDomainIs(host, "cedexis.com") ||
   dnsDomainIs(host, "cedexis-radar.net") ||
-// famous
-  dnsDomainIs(host, "youtube.com") ||
-  dnsDomainIs(host, "ytimg.com") ||
-  dnsDomainIs(host, "googlevideo.com") ||
-  dnsDomainIs(host, "youtu.be") ||
-  dnsDomainIs(host, "twitter.com") ||
-  dnsDomainIs(host, "twimg.com") ||
-  dnsDomainIs(host, "t.co") ||
-  dnsDomainIs(host, "facebook.com") ||
-  dnsDomainIs(host, "fbcdn.net") ||
-  dnsDomainIs(host, "facebook.net") ||
+// Instagram
   dnsDomainIs(host, "instagram.com") ||
-  dnsDomainIs(host, "wikipedia.org") ||
-  dnsDomainIs(host, "wikimedia.org") ||
-  dnsDomainIs(host, "medium.com") ||
-  dnsDomainIs(host, "vimeo.com") ||
-  dnsDomainIs(host, "vimeocdn.com") ||
+  dnsDomainIs(host, "cdninstagram.com") ||
+  shExpMatch(url, "https://connect.facebook.net/*") ||
+  shExpMatch(url, "https://staticxx.facebook.com/connect/*") ||
+  shExpMatch(url, "https://www.facebook.com/connect/*") ||
 // acg
   dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||
   dnsDomainIs(host, "nimg.jp") ||
   dnsDomainIs(host, "dmhy.org") ||
   dnsDomainIs(host, "pixiv.net") ||
-  dnsDomainIs(host, "getchu.com") ||
   dnsDomainIs(host, "line.me") ||
   dnsDomainIs(host, "line-apps.com") ||
   dnsDomainIs(host, "lineblog.me") ||
@@ -90,25 +75,13 @@ if (
 // art
   dnsDomainIs(host, "deviantart.com") ||
   dnsDomainIs(host, "deviantart.net") ||
-// netdisk
-  dnsDomainIs(host, "dropbox.com") ||
-  dnsDomainIs(host, "dropboxstatic.com") ||
-  dnsDomainIs(host, "onedrive.live.com") ||
-  dnsDomainIs(host, "mediafire.com") ||
-  dnsDomainIs(host, "getuploader.com") ||
 // shopping
   dnsDomainIs(host, "nordstrom.com") ||
   dnsDomainIs(host, "nordstromimage.com") ||
   dnsDomainIs(host, "nordstrommedia.com") ||
 // music
   dnsDomainIs(host, "soundcloud.com") ||
-// news
-  dnsDomainIs(host, "economist.com") ||
-  dnsDomainIs(host, "bloomberg.com") ||
 // game
-  dnsDomainIs(host, "twitch.tv") ||
-  dnsDomainIs(host, "jtvnw.net") ||
-  dnsDomainIs(host, "ttvnw.net") ||
   dnsDomainIs(host, "bahamut.com.tw") ||
   dnsDomainIs(host, "gamer.com.tw") ||
   dnsDomainIs(host, "miniclip.com") ||
@@ -122,6 +95,6 @@ if (
   dnsDomainIs(host, "cloudfront.net") ||
 // debug
   dnsDomainIs(host, "ip.cn") 
-) return "PROXY 127.0.0.1:10221";
+) return "PROXY 127.0.0.1:10225";
 return "DIRECT";
 }
