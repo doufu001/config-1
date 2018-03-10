@@ -97,6 +97,7 @@ if (
   dnsDomainIs(host, "amazonaws.com") ||
   dnsDomainIs(host, "cloudfront.net") ||
 // debug
+  dnsDomainIs(host, "wuan.in") ||
   dnsDomainIs(host, "ip.cn") 
 ) return "PROXY 127.0.0.1:10310";
 return "DIRECT";
