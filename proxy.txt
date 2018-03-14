@@ -1,6 +1,6 @@
 [AutoProxy 0.2.9]
 ! Expires: 6h
-! Last Modified: 2018.1.29
+! Last Modified: 2018.3.14
 
 !--github
 ||github.com
@@ -54,6 +54,7 @@
 ||apkpure.com
 ||gigsgigscloud.com
 ||pathofexile.com
+||cloudfront
 
 !--domain
 .jp^
