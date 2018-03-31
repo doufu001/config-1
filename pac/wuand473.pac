@@ -1,4 +1,4 @@
-// update: 2018.3.30
+// update: 2018.3.31
 // 鉴于《刑法》、《网络安全法》等法律的有关条款，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
@@ -9,18 +9,23 @@ if (
   shExpMatch(url, "https://twitter.com/i/tweet/create") ||
   shExpMatch(url, "https://login.wikimedia.org/*") ||
   shExpMatch(url, "https://www.facebook.com/ajax/updatestatus.php*") ||
-  shExpMatch(url, "https://www.facebook.com/ufi/add/comment*") 
-) return "PROXY 127.0.0.1";
+  shExpMatch(url, "https://www.facebook.com/ufi/add/comment*") ||
+  dnsDomainIs(host, "live.github.com") 
+) return "DIRECT";
 // goagent-php
 if (
 // surprise
   dnsDomainIs(host, "facebook.com") ||
-// coding
-  dnsDomainIs(host, "github.com") ||
 // pinterest
   dnsDomainIs(host, "pinterest.com") ||
 // google
-  shExpMatch(url, "*://*.google.*/*") 
+  shExpMatch(url, "*://*.google.*/*") ||
+  dnsDomainIs(host, "gstatic.com") ||
+  dnsDomainIs(host, "googleapis.com") ||
+  dnsDomainIs(host, "googleusercontent.com") ||
+  dnsDomainIs(host, "ggpht.com") ||
+// coding
+  dnsDomainIs(host, "github.com") 
  ) return "PROXY 127.0.0.1:30330";
 // goproxy-gae
 if (
