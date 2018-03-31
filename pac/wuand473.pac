@@ -12,6 +12,10 @@ if (
   shExpMatch(url, "https://www.facebook.com/ufi/add/comment*") ||
   dnsDomainIs(host, "live.github.com") 
 ) return "DIRECT";
+// goproxy-php
+if (
+  dnsDomainIs(host, "scholar.google.com") 
+) return "PROXY 127.0.0.1:10330";
 // goagent-php
 if (
 // surprise
