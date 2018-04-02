@@ -49,6 +49,7 @@ if (
   dnsDomainIs(host, "a-i-ad.com") ||
   shExpMatch(url, "http://pics.dmm.co.jp/digital/*48/*") ||
   shExpMatch(url, "http://203.104.209.*/*") ||
+  dnsDomainIs(host, "dovs9u514acja.cloudfront.net") ||
 // acg
   dnsDomainIs(host, "wikiwiki.jp") 
  ) return "PROXY 127.0.0.1:40330";
