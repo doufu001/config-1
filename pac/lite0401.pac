@@ -5,14 +5,31 @@ function FindProxyForURL(url, host) {
 // blacklist
 if (
   shExpMatch(url, "https://plus.google.com/*") ||
-  shExpMatch(url, "https://www.youtube.com/upload") ||
-  shExpMatch(url, "https://twitter.com/i/tweet/create") ||
-  shExpMatch(url, "https://login.wikimedia.org/*") ||
-  shExpMatch(url, "https://www.facebook.com/ajax/updatestatus.php*") ||
-  shExpMatch(url, "https://www.facebook.com/ufi/add/comment*") ||
   dnsDomainIs(host, "live.github.com") 
 ) return "DIRECT";
-// v2ray-jp
+// goproxy-php
+if (
+  dnsDomainIs(host, "scholar.google.com") 
+) return "PROXY 127.0.0.1:10330";
+// goagent-php
+if (
+// pinterest
+  dnsDomainIs(host, "pinterest.com") ||
+// google
+  shExpMatch(url, "*://*.google.*/*") ||
+  dnsDomainIs(host, "gstatic.com") ||
+  dnsDomainIs(host, "googleapis.com") ||
+  dnsDomainIs(host, "googleusercontent.com") ||
+  dnsDomainIs(host, "ggpht.com") ||
+// coding
+  dnsDomainIs(host, "github.com") 
+ ) return "PROXY 127.0.0.1:30330";
+// goproxy-gae
+if (
+// game
+  dnsDomainIs(host, "twitch.tv") 
+ ) return "PROXY 127.0.0.1:20330";
+// goproxy-jp
 if (
 // dmm
   dnsDomainIs(host, "dmm.com") ||
@@ -27,33 +44,8 @@ if (
 // acg
   dnsDomainIs(host, "wikiwiki.jp") 
  ) return "PROXY 127.0.0.1:40330";
-// v2ray
+// goproxy-php
 if (
-// surprise
-  dnsDomainIs(host, "youtube.com") ||
-  dnsDomainIs(host, "ytimg.com") ||
-  dnsDomainIs(host, "googlevideo.com") ||
-  dnsDomainIs(host, "youtu.be") ||
-  dnsDomainIs(host, "twitter.com") ||
-  dnsDomainIs(host, "twimg.com") ||
-  dnsDomainIs(host, "t.co") ||
-  dnsDomainIs(host, "facebook.com") ||
-  dnsDomainIs(host, "fbcdn.net") ||
-  dnsDomainIs(host, "facebook.net") ||
-  dnsDomainIs(host, "instagram.com") ||
-  dnsDomainIs(host, "wikipedia.org") ||
-  dnsDomainIs(host, "wikimedia.org") ||
-  dnsDomainIs(host, "medium.com") ||
-  dnsDomainIs(host, "vimeo.com") ||
-  dnsDomainIs(host, "vimeocdn.com") ||
-  dnsDomainIs(host, "dropbox.com") ||
-  dnsDomainIs(host, "dropboxstatic.com") ||
-  dnsDomainIs(host, "onedrive.live.com") ||
-  dnsDomainIs(host, "mediafire.com") ||
-  dnsDomainIs(host, "getuploader.com") ||
-  dnsDomainIs(host, "economist.com") ||
-  dnsDomainIs(host, "bloomberg.com") ||
-  dnsDomainIs(host, "issuu.com") ||
 // google
   shExpMatch(url, "*://*.google.*/*") ||
   dnsDomainIs(host, "gstatic.com") ||
