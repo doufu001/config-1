@@ -1,4 +1,4 @@
-// update: 2018.5.3
+// update: 2018.4.27
 // 鉴于《刑法》、《网络安全法》等法律的有关条款，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
@@ -23,6 +23,7 @@ if (
   dnsDomainIs(host, "a-i-ad.com") ||
   shExpMatch(url, "http://pics.dmm.co.jp/digital/*48/*") ||
   shExpMatch(url, "http://203.104.209.*/*") ||
+  dnsDomainIs(host, "dovs9u514acja.cloudfront.net") ||
 // acg
   dnsDomainIs(host, "wikiwiki.jp") 
  ) return "PROXY 127.0.0.1:40330";
