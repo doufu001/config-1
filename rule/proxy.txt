@@ -1,6 +1,6 @@
 [AutoProxy 0.2.9]
 ! Expires: 6h
-! Last Modified: 2018.3.14
+! Last Modified: 2018.5.11
 
 !--github
 ||github.com
@@ -55,6 +55,7 @@
 ||gigsgigscloud.com
 ||pathofexile.com
 ||cloudfront
+||findyoutube.net
 
 !--domain
 .jp^

@@ -1,4 +1,4 @@
-// update: 2018.4.27
+// update: 2018.5.11
 // 鉴于《刑法》、《网络安全法》等法律的有关条款，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
@@ -54,6 +54,7 @@ if (
   dnsDomainIs(host, "economist.com") ||
   dnsDomainIs(host, "bloomberg.com") ||
   dnsDomainIs(host, "issuu.com") ||
+  dnsDomainIs(host, "findyoutube.net") ||
 // google
   shExpMatch(url, "*://*.google.*/*") ||
   dnsDomainIs(host, "gstatic.com") ||
