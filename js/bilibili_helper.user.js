@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         解除B站区域限制
 // @namespace    http://tampermonkey.net/
-// @version      6.8.2
+// @version      6.8.4
 // @description  通过替换获取视频地址接口的方式, 实现解除B站区域限制; 只对HTML5播放器生效; 只支持番剧视频;
 // @author       ipcjs
 // @supportURL   https://github.com/ipcjs/bilibili-helper/issues
@@ -16,6 +16,7 @@
 // @include      *://m.bilibili.com/bangumi/play/ss*
 // @include      *://bangumi.bilibili.com/anime/*
 // @include      *://bangumi.bilibili.com/movie/*
+// @include      *://www.bilibili.com/bangumi/media/md*
 // @include      *://www.bilibili.com/blackboard/html5player.html*
 // @run-at       document-start
 // @grant        none
@@ -755,6 +756,7 @@ function scriptSource(invokeBy) {
         player_in_av: util_func_catched(() => util_page.player() && window.top.location.href.includes('www.bilibili.com/video/av'), (e) => log(e), false),
         av: () => location.href.includes('www.bilibili.com/video/av'),
         bangumi: () => location.href.match(new RegExp('^https?://bangumi\\.bilibili\\.com/anime/\\d+/?$')),
+        bangumi_md: () => location.href.includes('www.bilibili.com/bangumi/media/md'),
         // movie页面使用window.aid, 保存当前页面av号
         movie: () => location.href.includes('bangumi.bilibili.com/movie/'),
         // anime页面使用window.season_id, 保存当前页面season号
@@ -1321,9 +1323,11 @@ function scriptSource(invokeBy) {
                 },
                 transToProxyUrl: function (url, bangumi) {
                     if (bangumi === undefined) {
-                        bangumi = !util_page.player_in_av()// 只有在av页面中的iframe标签形式的player, 不是番剧视频
-                        // season_type, 1 为动画, 5 为电视剧; 为5时, 不是番剧视频
-                        if (util_url_param(url, 'season_type') === '5') {
+                        // av页面中的iframe标签形式的player, 不是番剧视频
+                        bangumi = !util_page.player_in_av()
+                        // season_type, 1 为动画, 5 为电视剧; 为5/3时, 不是番剧视频
+                        let season_type_param = util_url_param(url, 'season_type')
+                        if (season_type_param === '5' || season_type_param === '3') {
                             bangumi = false
                         }
                     }
@@ -1479,7 +1483,7 @@ function scriptSource(invokeBy) {
 
         util_init(() => {
             // 除了播放器和番剧列表页面, 其他页面都需要检测html5
-            if (!(util_page.bangumi() || util_page.player())) {
+            if (!(util_page.bangumi() || util_page.bangumi_md() || util_page.player())) {
                 checkHtml5()
             }
         })
@@ -1638,37 +1642,42 @@ function scriptSource(invokeBy) {
                 .then(function (result) {
                     if (result === undefined) return // 上一个then不返回内容时, 不需要处理
                     if (result.code === 10) { // av属于番剧页面, 通过接口却未能找到番剧信息
-                        log(`av${aid}属于番剧${season_id}, 但却不能找到番剧页的信息, 试图直接创建播放器`)
-                        generatePlayer(avData, aid, page, cid)
-                        return
-                    }
-                    if (result.code) {
-                        return Promise.reject(JSON.stringify(result));
-                    }
-                    let ep_id_by_cid, ep_id_by_aid_page, ep_id_by_aid,
-                        episodes = result.result.episodes,
-                        ep;
-                    // 为何要用三种不同方式匹配, 详见: https://greasyfork.org/zh-CN/forum/discussion/22379/x#Comment_34127
-                    for (let i = 0; i < episodes.length; i++) {
-                        ep = episodes[i];
-                        if (ep.danmaku == cid) {
-                            ep_id_by_cid = ep.episode_id;
+                        let ep_id_newest = avData && avData.bangumi && avData.bangumi.newest_ep_id
+                        if (ep_id_newest) {
+                            episode_id = ep_id_newest // 此时, 若avData中有最新的ep_id, 则直接使用它
+                        } else {
+                            log(`av${aid}属于番剧${season_id}, 但却不能找到番剧页的信息, 试图直接创建播放器`)
+                            generatePlayer(avData, aid, page, cid)
+                            return
                         }
-                        if (ep.av_id == aid && ep.page == page) {
-                            ep_id_by_aid_page = ep.episode_id;
-                        }
-                        if (ep.av_id == aid) {
-                            ep_id_by_aid = ep.episode_id;
-                        }
-                    }
-                    episode_id = ep_id_by_cid || ep_id_by_aid_page || ep_id_by_aid;
-                    if (episode_id) {
-                        let bangumi_url = `//bangumi.bilibili.com/anime/${season_id}/play#${episode_id}`;
-                        log('Redirect', 'aid:', aid, 'page:', page, 'cid:', cid, '==>', bangumi_url, '(ep_id:', ep_id_by_cid, ep_id_by_aid_page, ep_id_by_aid, ')');
-                        msg.innerText = '即将跳转到：' + bangumi_url;
-                        location.href = bangumi_url;
+                    } else if (result.code) {
+                        return Promise.reject(JSON.stringify(result))
                     } else {
-                        return Promise.reject('查询episode_id失败');
+                        let ep_id_by_cid, ep_id_by_aid_page, ep_id_by_aid,
+                            episodes = result.result.episodes,
+                            ep
+                        // 为何要用三种不同方式匹配, 详见: https://greasyfork.org/zh-CN/forum/discussion/22379/x#Comment_34127
+                        for (let i = 0; i < episodes.length; i++) {
+                            ep = episodes[i]
+                            if (ep.danmaku == cid) {
+                                ep_id_by_cid = ep.episode_id
+                            }
+                            if (ep.av_id == aid && ep.page == page) {
+                                ep_id_by_aid_page = ep.episode_id
+                            }
+                            if (ep.av_id == aid) {
+                                ep_id_by_aid = ep.episode_id
+                            }
+                        }
+                        episode_id = ep_id_by_cid || ep_id_by_aid_page || ep_id_by_aid
+                    }
+                    if (episode_id) {
+                        let bangumi_url = `//www.bilibili.com/bangumi/play/ss${season_id}#${episode_id}`
+                        log('Redirect', 'aid:', aid, 'page:', page, 'cid:', cid, '==>', bangumi_url, 'season_id:', season_id, 'ep_id:', episode_id)
+                        msg.innerText = '即将跳转到：' + bangumi_url
+                        location.href = bangumi_url
+                    } else {
+                        return Promise.reject('查询episode_id失败')
                     }
                 })
                 .catch(function (e) {
