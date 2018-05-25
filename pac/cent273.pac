@@ -109,6 +109,11 @@ if (
   dnsDomainIs(host, "line-apps.com") ||
   dnsDomainIs(host, "line-scdn.net") ||
   dnsDomainIs(host, "mgoon.com") ||
+// telegram
+  dnsDomainIs(host, "t.me") ||
+  shExpMatch(url, "https://telegram.org/css/*") ||
+  shExpMatch(url, "https://telegram.org/img/*") ||
+  dnsDomainIs(host, "telesco.pe") ||
 // config
   dnsDomainIs(host, "adblockplus.org") ||
   dnsDomainIs(host, "greasyfork.org") ||
