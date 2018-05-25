@@ -1,4 +1,4 @@
-// update: 2018.5.11
+// update: 2018.5.24
 // 鉴于《刑法》、《网络安全法》等法律的有关条款，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
@@ -27,34 +27,8 @@ if (
 // acg
   dnsDomainIs(host, "wikiwiki.jp") 
  ) return "PROXY 127.0.0.1:40330";
-// v2ray
+// v2ray-ru
 if (
-// surprise
-  dnsDomainIs(host, "youtube.com") ||
-  dnsDomainIs(host, "ytimg.com") ||
-  dnsDomainIs(host, "googlevideo.com") ||
-  dnsDomainIs(host, "youtu.be") ||
-  dnsDomainIs(host, "twitter.com") ||
-  dnsDomainIs(host, "twimg.com") ||
-  dnsDomainIs(host, "t.co") ||
-  dnsDomainIs(host, "facebook.com") ||
-  dnsDomainIs(host, "fbcdn.net") ||
-  dnsDomainIs(host, "facebook.net") ||
-  dnsDomainIs(host, "instagram.com") ||
-  dnsDomainIs(host, "wikipedia.org") ||
-  dnsDomainIs(host, "wikimedia.org") ||
-  dnsDomainIs(host, "medium.com") ||
-  dnsDomainIs(host, "vimeo.com") ||
-  dnsDomainIs(host, "vimeocdn.com") ||
-  dnsDomainIs(host, "dropbox.com") ||
-  dnsDomainIs(host, "dropboxstatic.com") ||
-  dnsDomainIs(host, "onedrive.live.com") ||
-  dnsDomainIs(host, "mediafire.com") ||
-  dnsDomainIs(host, "getuploader.com") ||
-  dnsDomainIs(host, "economist.com") ||
-  dnsDomainIs(host, "bloomberg.com") ||
-  dnsDomainIs(host, "issuu.com") ||
-  dnsDomainIs(host, "findyoutube.net") ||
 // google
   shExpMatch(url, "*://*.google.*/*") ||
   dnsDomainIs(host, "gstatic.com") ||
@@ -74,15 +48,12 @@ if (
   dnsDomainIs(host, "consent.youtube.com") ||
   dnsDomainIs(host, "goo.gl") ||
 // pinterest
-  dnsDomainIs(host, "pinterest.com") ||
-  dnsDomainIs(host, "pinterest.jp") ||
+  shExpMatch(url, "*://*.pinterest.*/*") ||
   dnsDomainIs(host, "pinimg.com") ||
-  dnsDomainIs(host, "cedexis.com") ||
-  dnsDomainIs(host, "cedexis-radar.net") ||
 // Instagram
   dnsDomainIs(host, "instagram.com") ||
   dnsDomainIs(host, "cdninstagram.com") ||
-  dnsDomainIs(host, "instagram.fsgn8-1.fna.fbcdn.net") ||
+  shExpMatch(url, "https://instagram.*.fbcdn.net/*") ||
 // acg
   dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||
@@ -136,11 +107,11 @@ if (
 // entertainment
   dnsDomainIs(host, "line.me") ||
   dnsDomainIs(host, "line-apps.com") ||
+  dnsDomainIs(host, "line-scdn.net") ||
   dnsDomainIs(host, "mgoon.com") ||
 // config
   dnsDomainIs(host, "adblockplus.org") ||
   dnsDomainIs(host, "greasyfork.org") ||
-  dnsDomainIs(host, "bit.ly") ||
 // cdn
   dnsDomainIs(host, "akamaihd.net") ||
   dnsDomainIs(host, "amazonaws.com") ||
