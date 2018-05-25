@@ -10,6 +10,7 @@ if (
   shExpMatch(url, "https://login.wikimedia.org/*") ||
   shExpMatch(url, "https://www.facebook.com/ajax/updatestatus.php*") ||
   shExpMatch(url, "https://www.facebook.com/ufi/add/comment*") ||
+  dnsDomainIs(host, "web.telegram.org") ||
   dnsDomainIs(host, "live.github.com") 
 ) return "DIRECT";
 // goproxy-php
@@ -118,8 +119,7 @@ if (
   dnsDomainIs(host, "mgoon.com") ||
 // telegram
   dnsDomainIs(host, "t.me") ||
-  shExpMatch(url, "https://telegram.org/css/*") ||
-  shExpMatch(url, "https://telegram.org/img/*") ||
+  dnsDomainIs(host, "telegram.org") ||
   dnsDomainIs(host, "telesco.pe") ||
 // config
   dnsDomainIs(host, "adblockplus.org") ||
