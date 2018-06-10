@@ -13,18 +13,7 @@ if (
   dnsDomainIs(host, "web.telegram.org") ||
   dnsDomainIs(host, "live.github.com") 
 ) return "DIRECT";
-// goproxy-php
-if (
-  shExpMatch(url, "*://smile-*.nicovideo.jp/*") ||
-  dnsDomainIs(host, "assets-cdn.github.com") ||
-  shExpMatch(url, "*://scholar.google.*/*") 
-) return "PROXY 127.0.0.1:10330";
-// goproxy-gae
-if (
-// game
-  dnsDomainIs(host, "twitch.tv") 
- ) return "PROXY 127.0.0.1:20330";
-// goproxy-jp
+// v2ray-jp
 if (
 // education
   shExpMatch(url, "*://sci-hub.*/*") ||
@@ -44,8 +33,33 @@ if (
   dnsDomainIs(host, "www.nicovideo.jp") ||
   dnsDomainIs(host, "wikiwiki.jp") 
  ) return "PROXY 127.0.0.1:40330";
-// goagent-php
+// v2ray-ru
 if (
+// surprise
+  dnsDomainIs(host, "youtube.com") ||
+  dnsDomainIs(host, "ytimg.com") ||
+  dnsDomainIs(host, "googlevideo.com") ||
+  dnsDomainIs(host, "youtu.be") ||
+  dnsDomainIs(host, "twitter.com") ||
+  dnsDomainIs(host, "twimg.com") ||
+  dnsDomainIs(host, "t.co") ||
+  dnsDomainIs(host, "facebook.com") ||
+  dnsDomainIs(host, "fbcdn.net") ||
+  dnsDomainIs(host, "facebook.net") ||
+  dnsDomainIs(host, "instagram.com") ||
+  dnsDomainIs(host, "wikipedia.org") ||
+  dnsDomainIs(host, "wikimedia.org") ||
+  dnsDomainIs(host, "medium.com") ||
+  dnsDomainIs(host, "vimeo.com") ||
+  dnsDomainIs(host, "vimeocdn.com") ||
+  dnsDomainIs(host, "dropbox.com") ||
+  dnsDomainIs(host, "dropboxstatic.com") ||
+  dnsDomainIs(host, "onedrive.live.com") ||
+  dnsDomainIs(host, "mediafire.com") ||
+  dnsDomainIs(host, "getuploader.com") ||
+  dnsDomainIs(host, "issuu.com") ||
+  dnsDomainIs(host, "isu.pub") ||
+  dnsDomainIs(host, "findyoutube.net") ||
 // google
   shExpMatch(url, "*://*.google.*/*") ||
   dnsDomainIs(host, "google.com") ||
@@ -69,29 +83,20 @@ if (
   dnsDomainIs(host, "golang.org") ||
 // pinterest
   shExpMatch(url, "*://*.pinterest.*/*") ||
-// shopping
-  dnsDomainIs(host, "nordstrom.com") ||
-  dnsDomainIs(host, "nordstrommedia.com") ||
-// acg
-  dnsDomainIs(host, "nicovideo.jp") ||
-// coding
-  dnsDomainIs(host, "github.com") 
- ) return "PROXY 127.0.0.1:30330";
-// goproxy-php
-if (
-// pinterest
   dnsDomainIs(host, "pinimg.com") ||
 // Instagram
   dnsDomainIs(host, "instagram.com") ||
   dnsDomainIs(host, "cdninstagram.com") ||
   shExpMatch(url, "https://instagram.*.fbcdn.net/*") ||
 // acg
+  dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||
   dnsDomainIs(host, "nimg.jp") ||
   dnsDomainIs(host, "dmhy.org") ||
   dnsDomainIs(host, "pixiv.net") ||
   dnsDomainIs(host, "saucenao.com") ||
 // coding
+  dnsDomainIs(host, "github.com") ||
   dnsDomainIs(host, "githubusercontent.com") ||
   dnsDomainIs(host, "githubapp.com") ||
   dnsDomainIs(host, "github.io") ||
@@ -114,6 +119,9 @@ if (
   dnsDomainIs(host, "flickr.com") ||
   dnsDomainIs(host, "s.yimg.com") ||
   dnsDomainIs(host, "proko.com") ||
+// shopping
+  dnsDomainIs(host, "nordstrom.com") ||
+  dnsDomainIs(host, "nordstrommedia.com") ||
 // music
   dnsDomainIs(host, "soundcloud.com") ||
   dnsDomainIs(host, "sndcdn.com") ||
@@ -122,6 +130,7 @@ if (
   dnsDomainIs(host, "gamer.com.tw") ||
   dnsDomainIs(host, "miniclip.com") ||
   dnsDomainIs(host, "miniclipcdn.com") ||
+  dnsDomainIs(host, "twitch.tv") ||
   dnsDomainIs(host, "twitchcdn.net") ||
   dnsDomainIs(host, "twitchsvc.net") ||
   dnsDomainIs(host, "jtvnw.net") ||
