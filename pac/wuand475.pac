@@ -18,14 +18,14 @@ if (
   shExpMatch(url, "*://smile-*.nicovideo.jp/*") ||
   dnsDomainIs(host, "assets-cdn.github.com") ||
   shExpMatch(url, "*://scholar.google.*/*") 
-) return "PROXY 127.0.0.1:10330";
+) return "PROXY 127.0.0.1:233";
 // goproxy-gae
 if (
 // surprise
   dnsDomainIs(host, "api.twitter.com") ||
 // game
   dnsDomainIs(host, "twitch.tv") 
- ) return "PROXY 127.0.0.1:20330";
+ ) return "PROXY 127.0.0.1:23333";
 // goproxy-jp
 if (
 // education
@@ -45,7 +45,7 @@ if (
 // acg
   dnsDomainIs(host, "www.nicovideo.jp") ||
   dnsDomainIs(host, "wikiwiki.jp") 
- ) return "PROXY 127.0.0.1:40330";
+ ) return "PROXY 127.0.0.1:666";
 // goagent-php
 if (
 // surprise
@@ -81,7 +81,7 @@ if (
   dnsDomainIs(host, "nicovideo.jp") ||
 // coding
   dnsDomainIs(host, "github.com") 
- ) return "PROXY 127.0.0.1:30330";
+ ) return "PROXY 127.0.0.1:2333";
 // goproxy-php
 if (
 // surprise
@@ -175,6 +175,6 @@ if (
   dnsDomainIs(host, "cloudfront.net") ||
 // debug
   dnsDomainIs(host, "ip.cn") 
-) return "PROXY 127.0.0.1:10330";
+) return "PROXY 127.0.0.1:233";
 return "DIRECT";
 }

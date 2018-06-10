@@ -32,7 +32,7 @@ if (
 // acg
   dnsDomainIs(host, "www.nicovideo.jp") ||
   dnsDomainIs(host, "wikiwiki.jp") 
- ) return "PROXY 127.0.0.1:40330";
+ ) return "PROXY 127.0.0.1:666";
 // v2ray-ru
 if (
 // surprise
@@ -156,6 +156,6 @@ if (
   dnsDomainIs(host, "cloudfront.net") ||
 // debug
   dnsDomainIs(host, "ip.cn") 
-) return "PROXY 127.0.0.1:10330";
+) return "PROXY 127.0.0.1:233";
 return "DIRECT";
 }
