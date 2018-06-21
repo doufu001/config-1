@@ -35,31 +35,6 @@ if (
  ) return "PROXY 127.0.0.1:666";
 // v2ray-ru
 if (
-// surprise
-  dnsDomainIs(host, "youtube.com") ||
-  dnsDomainIs(host, "ytimg.com") ||
-  dnsDomainIs(host, "googlevideo.com") ||
-  dnsDomainIs(host, "youtu.be") ||
-  dnsDomainIs(host, "twitter.com") ||
-  dnsDomainIs(host, "twimg.com") ||
-  dnsDomainIs(host, "t.co") ||
-  dnsDomainIs(host, "facebook.com") ||
-  dnsDomainIs(host, "fbcdn.net") ||
-  dnsDomainIs(host, "facebook.net") ||
-  dnsDomainIs(host, "instagram.com") ||
-  dnsDomainIs(host, "wikipedia.org") ||
-  dnsDomainIs(host, "wikimedia.org") ||
-  dnsDomainIs(host, "medium.com") ||
-  dnsDomainIs(host, "vimeo.com") ||
-  dnsDomainIs(host, "vimeocdn.com") ||
-  dnsDomainIs(host, "dropbox.com") ||
-  dnsDomainIs(host, "dropboxstatic.com") ||
-  dnsDomainIs(host, "onedrive.live.com") ||
-  dnsDomainIs(host, "mediafire.com") ||
-  dnsDomainIs(host, "getuploader.com") ||
-  dnsDomainIs(host, "issuu.com") ||
-  dnsDomainIs(host, "isu.pub") ||
-  dnsDomainIs(host, "findyoutube.net") ||
 // google
   shExpMatch(url, "*://*.google.*/*") ||
   dnsDomainIs(host, "google.com") ||

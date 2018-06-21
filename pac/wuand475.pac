@@ -21,8 +21,6 @@ if (
 ) return "PROXY 127.0.0.1:233";
 // goproxy-gae
 if (
-// surprise
-  dnsDomainIs(host, "api.twitter.com") ||
 // game
   dnsDomainIs(host, "twitch.tv") 
  ) return "PROXY 127.0.0.1:23333";
@@ -48,9 +46,6 @@ if (
  ) return "PROXY 127.0.0.1:666";
 // goagent-php
 if (
-// surprise
-  dnsDomainIs(host, "facebook.com") ||
-  dnsDomainIs(host, "twitter.com") ||
 // google
   shExpMatch(url, "*://*.google.*/*") ||
   dnsDomainIs(host, "google.com") ||
@@ -84,29 +79,6 @@ if (
  ) return "PROXY 127.0.0.1:2333";
 // goproxy-php
 if (
-// surprise
-  dnsDomainIs(host, "youtube.com") ||
-  dnsDomainIs(host, "ytimg.com") ||
-  dnsDomainIs(host, "googlevideo.com") ||
-  dnsDomainIs(host, "youtu.be") ||
-  dnsDomainIs(host, "twimg.com") ||
-  dnsDomainIs(host, "t.co") ||
-  dnsDomainIs(host, "fbcdn.net") ||
-  dnsDomainIs(host, "facebook.net") ||
-  dnsDomainIs(host, "instagram.com") ||
-  dnsDomainIs(host, "wikipedia.org") ||
-  dnsDomainIs(host, "wikimedia.org") ||
-  dnsDomainIs(host, "medium.com") ||
-  dnsDomainIs(host, "vimeo.com") ||
-  dnsDomainIs(host, "vimeocdn.com") ||
-  dnsDomainIs(host, "dropbox.com") ||
-  dnsDomainIs(host, "dropboxstatic.com") ||
-  dnsDomainIs(host, "onedrive.live.com") ||
-  dnsDomainIs(host, "mediafire.com") ||
-  dnsDomainIs(host, "getuploader.com") ||
-  dnsDomainIs(host, "issuu.com") ||
-  dnsDomainIs(host, "isu.pub") ||
-  dnsDomainIs(host, "findyoutube.net") ||
 // pinterest
   dnsDomainIs(host, "pinimg.com") ||
 // Instagram
