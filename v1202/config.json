@@ -1,0 +1,199 @@
+{
+  "log": {
+    "loglevel": "debug"
+  },
+  "inboundDetour" : [
+    {
+      "domainOverride" : [
+        "http",
+        "tls"
+      ],
+      "port" : 1086,
+      "listen" : "127.0.0.1",
+      "protocol" : "socks",
+      "settings" : {
+        "auth" : "noauth",
+        "udp" : true
+      }
+    }
+  ],
+  "inbound": {
+    "port": 233,
+    "listen": "127.0.0.1",
+    "protocol": "http",
+    "settings": {
+      "timeout": 0
+    }
+  },
+  "outbound": {
+    "protocol": "freedom",
+    "settings": {},
+    "tag": "direct"
+  },
+  "outboundDetour" : [
+    {
+      "protocol" : "vmess",
+      "settings" : {
+        "vnext" : [
+          {
+            "users" : [
+              {
+                "id" : "adcd7daa-1a19-445c-a7c3-236f668a95fe",
+                "alterId" : 64
+              }
+            ],
+            "address" : "v-1.233jiasu.com",
+            "port" : 233
+          }
+        ]
+      },
+      "tag" : "proxy1"
+    },
+    {
+      "protocol" : "vmess",
+      "settings" : {
+        "vnext" : [
+          {
+            "users" : [
+              {
+                "id" : "adcd7daa-1a19-445c-a7c3-236f668a95fe",
+                "alterId" : 64
+              }
+            ],
+            "address" : "v-2.233jiasu.com",
+            "port" : 233
+          }
+        ]
+      },
+      "tag" : "proxy2"
+    },
+    {
+      "protocol" : "vmess",
+      "settings" : {
+        "vnext" : [
+          {
+            "users" : [
+              {
+                "id" : "adcd7daa-1a19-445c-a7c3-236f668a95fe",
+                "alterId" : 64
+              }
+            ],
+            "address" : "v-3.233jiasu.com",
+            "port" : 233
+          }
+        ]
+      },
+      "tag" : "proxy3"
+    },
+	    {
+      "protocol" : "blackhole",
+      "settings" : {
+      },
+      "tag" : "block"
+    }
+  ],
+  "routing" : {
+    "settings" : {
+      "rules" : [
+        {
+          "type" : "field",
+          "domain" : [
+            "plus.google.com"
+          ],
+          "outboundTag" : "block"
+        },
+        {
+          "type" : "field",
+          "domain" : [
+            "dmm.com",
+            "dmmgames.com",
+            "gsspat.jp",
+            "touken-ranbu.jp",
+            "cxpublic.com",
+            "cxense.com",
+            "a-i-ad.com",
+            "ravenjs.com",
+            "203.104.209",
+            "dovs9u514acja.cloudfront.net"
+          ],
+          "outboundTag" : "proxy3"
+        },
+        {
+          "type" : "field",
+          "domain" : [
+            "google",
+            "pinterest",
+            "github"
+          ],
+          "outboundTag" : "proxy2"
+        },
+        {
+          "type" : "field",
+          "domain" : [
+            "gstatic.com",
+            "ggpht.com",
+            "gmail.com",
+            "gvt1.com",
+            "accounts.youtube.com",
+            "pinimg.com",
+			"instagram",
+            "deviantart.com",
+            "deviantart.net",
+            "behance.net",
+            "shutterstock.com",
+            "sketchappsources.com",
+            "flickr.com",
+            "s.yimg.com",
+            "proko.com",
+            "nicovideo.jp",
+            "smilevideo.jp",
+            "nimg.jp",
+            "pixiv.net",
+            "dmhy.org",
+            "wikiwiki.jp",
+            "saucenao.com",
+            "sourceforge.net",
+            "fsdn.com",
+            "w3schools.com",
+            "android.com",
+            "golang.org",
+            "python.org",
+            "gitbook",
+            "coursera.org",
+            "archive.org",
+            "sci-hub",
+            "wuancake.org",
+            "soundcloud.com",
+            "sndcdn.com",
+			"twitch",
+            "jtvnw.net",
+            "ttvnw.net",
+            "bahamut.com.tw",
+            "gamer.com.tw",
+            "miniclip.com",
+            "miniclipcdn.com",
+            "garena.live",
+            "garena.tv",
+            "line.me",
+            "line-apps.com",
+            "line-scdn.net",
+            "mgoon.com",
+            "wecandeo.com",
+            "btbtt.co",
+            "nordstrom",
+            "adblockplus.org",
+            "greasyfork.org",
+            "akamaihd.net",
+            "amazonaws.com",
+            "cloudfront.net",
+            "cloudflare.com",
+            "ip.cn"
+          ],
+          "outboundTag" : "proxy1"
+        }
+      ],
+      "domainStrategy" : "AsIs"
+    },
+    "strategy" : "rules"
+  }
+}
