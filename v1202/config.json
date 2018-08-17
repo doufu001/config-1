@@ -48,24 +48,6 @@
                 "alterId" : 64
               }
             ],
-            "address" : "v-1.233jiasu.com",
-            "port" : 233
-          }
-        ]
-      },
-      "tag" : "proxy1"
-    },
-    {
-      "protocol" : "vmess",
-      "settings" : {
-        "vnext" : [
-          {
-            "users" : [
-              {
-                "id" : "adcd7daa-1a19-445c-a7c3-236f668a95fe",
-                "alterId" : 64
-              }
-            ],
             "address" : "v-2.233jiasu.com",
             "port" : 233
           }
@@ -104,13 +86,15 @@
         {
           "type" : "field",
           "domain" : [
-            "plus.google.com"
+            "plus.google.com",
+			"googlevideo.com"
           ],
           "outboundTag" : "block"
         },
         {
           "type" : "field",
           "domain" : [
+            "scholar.google",
             "dmm.com",
             "dmmgames.com",
             "gsspat.jp",
@@ -120,7 +104,8 @@
             "a-i-ad.com",
             "ravenjs.com",
             "203.104.209",
-            "dovs9u514acja.cloudfront.net"
+            "dovs9u514acja.cloudfront.net",
+			"shiropro-re.net"
           ],
           "outboundTag" : "proxy3"
         },
@@ -128,21 +113,14 @@
           "type" : "field",
           "domain" : [
             "google",
-            "pinterest",
-            "github"
-          ],
-          "outboundTag" : "proxy2"
-        },
-        {
-          "type" : "field",
-          "domain" : [
-            "gstatic.com",
+			"gstatic.com",
             "ggpht.com",
             "gmail.com",
             "gvt1.com",
             "accounts.youtube.com",
+            "pinterest",
             "pinimg.com",
-            "instagram",
+			"instagram",
             "deviantart.com",
             "deviantart.net",
             "behance.net",
@@ -158,6 +136,9 @@
             "dmhy.org",
             "wikiwiki.jp",
             "saucenao.com",
+			"kadokawa.co.jp",
+			"konachan.com",
+			"github",
             "sourceforge.net",
             "fsdn.com",
             "w3schools.com",
@@ -169,9 +150,10 @@
             "archive.org",
             "sci-hub",
             "wuancake.org",
+			"jmlc.org",
             "soundcloud.com",
             "sndcdn.com",
-            "twitch",
+			"twitch",
             "jtvnw.net",
             "ttvnw.net",
             "bahamut.com.tw",
@@ -180,6 +162,8 @@
             "miniclipcdn.com",
             "garena.live",
             "garena.tv",
+			"humblebundle.com",
+			"steamcommunity.com",
             "line.me",
             "line-apps.com",
             "line-scdn.net",
@@ -195,7 +179,7 @@
             "cloudflare.com",
             "ip.cn"
           ],
-          "outboundTag" : "proxy1"
+          "outboundTag" : "proxy2"
         }
       ],
       "domainStrategy" : "AsIs"
