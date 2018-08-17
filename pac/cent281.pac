@@ -17,6 +17,7 @@ if (
   dnsDomainIs(host, "gmail.com") ||
   dnsDomainIs(host, "gvt1.com") ||
   dnsDomainIs(host, "accounts.youtube.com") ||
+  dnsDomainIs(host, "img.youtube.com") ||
 // dmm
   dnsDomainIs(host, "dmm.com") ||
   dnsDomainIs(host, "dmmgames.com") ||
@@ -51,7 +52,6 @@ if (
   dnsDomainIs(host, "wikiwiki.jp") ||
   dnsDomainIs(host, "saucenao.com") ||
   dnsDomainIs(host, "kadokawa.co.jp") ||
-  dnsDomainIs(host, "konachan.com") ||
 // coding
   dnsDomainIs(host, "github.com") ||
   dnsDomainIs(host, "githubusercontent.com") ||
