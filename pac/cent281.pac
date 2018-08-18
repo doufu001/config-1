@@ -1,4 +1,4 @@
-// update: 2018.8.17
+// update: 2018.8.18
 // 鉴于《刑法》、《网络安全法》等法律的有关条款，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
@@ -31,6 +31,8 @@ if (
   shExpMatch(url, "http://203.104.209.*/*") ||
   dnsDomainIs(host, "dovs9u514acja.cloudfront.net") ||
   dnsDomainIs(host, "shiropro-re.net") ||
+  dnsDomainIs(host, "millennium-war.net") ||
+  dnsDomainIs(host, "itchibanketsu.jp") ||
 // art
   shExpMatch(url, "*://*.pinterest.*/*") ||
   dnsDomainIs(host, "pinimg.com") ||
@@ -71,6 +73,9 @@ if (
   shExpMatch(url, "*://sci-hub.*/*") ||
   dnsDomainIs(host, "wuancake.org") ||
   dnsDomainIs(host, "jmlc.org") ||
+  dnsDomainIs(host, "rus.ec") ||
+  dnsDomainIs(host, "nih.gov") ||
+  dnsDomainIs(host, "pubmed.gov") ||
 // music
   dnsDomainIs(host, "soundcloud.com") ||
   dnsDomainIs(host, "sndcdn.com") ||
