@@ -42,7 +42,7 @@
 !--education
 ||coursera.org
 ||rus.ec
-||nih.gov
+||pubmed.gov
 
 !--others
 ||sourceforge.net
