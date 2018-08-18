@@ -1,4 +1,4 @@
-// update: 2018.8.14
+// update: 2018.8.18
 // 鉴于《刑法》、《网络安全法》等法律的有关条款，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
@@ -6,26 +6,6 @@ function FindProxyForURL(url, host) {
 if (
   shExpMatch(url, "https://plus.google.com/*") 
 ) return "DIRECT";
-// goagent-php
-if (
-// google
-  shExpMatch(url, "*://*.google.*/*") ||
-  dnsDomainIs(host, "gstatic.com") ||
-  dnsDomainIs(host, "googleapis.com") ||
-  dnsDomainIs(host, "googleusercontent.com") ||
-  dnsDomainIs(host, "ggpht.com") ||
-  dnsDomainIs(host, "gmail.com") ||
-  dnsDomainIs(host, "gvt1.com") ||
-  dnsDomainIs(host, "accounts.youtube.com") ||
-  dnsDomainIs(host, "google-analytics.com") ||
-// art
-  shExpMatch(url, "*://*.pinterest.*/*") ||
-  dnsDomainIs(host, "s.pinimg.com") ||
-// acg
-  dnsDomainIs(host, "nicovideo.jp") ||
-// coding
-  dnsDomainIs(host, "github.com")
- ) return "PROXY 127.0.0.1:2333";
 // goproxy-jp
 if (
 // dmm
@@ -39,8 +19,34 @@ if (
   dnsDomainIs(host, "ravenjs.com") ||
   shExpMatch(url, "http://pics.dmm.co.jp/digital/*48/*") ||
   shExpMatch(url, "http://203.104.209.*/*") ||
-  dnsDomainIs(host, "dovs9u514acja.cloudfront.net") 
+  dnsDomainIs(host, "dovs9u514acja.cloudfront.net") ||
+  dnsDomainIs(host, "shiropro-re.net") ||
+  dnsDomainIs(host, "millennium-war.net") ||
+  dnsDomainIs(host, "itchibanketsu.jp") ||
+// google
+  shExpMatch(url, "*://scholar.google.*/*")
  ) return "PROXY 127.0.0.1:666";
+// goagent-php
+if (
+// google
+  shExpMatch(url, "*://*.google.*/*") ||
+  dnsDomainIs(host, "gstatic.com") ||
+  dnsDomainIs(host, "googleapis.com") ||
+  dnsDomainIs(host, "googleusercontent.com") ||
+  dnsDomainIs(host, "ggpht.com") ||
+  dnsDomainIs(host, "gmail.com") ||
+  dnsDomainIs(host, "gvt1.com") ||
+  dnsDomainIs(host, "accounts.youtube.com") ||
+  dnsDomainIs(host, "img.youtube.com") ||
+  dnsDomainIs(host, "google-analytics.com") ||
+// art
+  shExpMatch(url, "*://*.pinterest.*/*") ||
+  dnsDomainIs(host, "pinimg.com") ||
+// acg
+  dnsDomainIs(host, "nicovideo.jp") ||
+// coding
+  dnsDomainIs(host, "github.com")
+ ) return "PROXY 127.0.0.1:2333";
 // goproxy-gae
 if (
 // game
@@ -49,7 +55,6 @@ if (
 // goproxy-php
 if (
 // art
-  dnsDomainIs(host, "pinimg.com") ||
   dnsDomainIs(host, "instagram.com") ||
   dnsDomainIs(host, "deviantart.com") ||
   dnsDomainIs(host, "deviantart.net") ||
@@ -66,6 +71,7 @@ if (
   dnsDomainIs(host, "dmhy.org") ||
   dnsDomainIs(host, "wikiwiki.jp") ||
   dnsDomainIs(host, "saucenao.com") ||
+  dnsDomainIs(host, "kadokawa.co.jp") ||
 // coding
   dnsDomainIs(host, "githubusercontent.com") ||
   dnsDomainIs(host, "githubapp.com") ||
@@ -83,6 +89,10 @@ if (
   dnsDomainIs(host, "archive.org") ||
   shExpMatch(url, "*://sci-hub.*/*") ||
   dnsDomainIs(host, "wuancake.org") ||
+  dnsDomainIs(host, "jmlc.org") ||
+  dnsDomainIs(host, "rus.ec") ||
+  dnsDomainIs(host, "nih.gov") ||
+  dnsDomainIs(host, "pubmed.gov") ||
 // music
   dnsDomainIs(host, "soundcloud.com") ||
   dnsDomainIs(host, "sndcdn.com") ||
@@ -97,6 +107,8 @@ if (
   dnsDomainIs(host, "miniclipcdn.com") ||
   dnsDomainIs(host, "garena.live") ||
   dnsDomainIs(host, "garena.tv") ||
+  dnsDomainIs(host, "humblebundle.com") ||
+  dnsDomainIs(host, "steamcommunity.com") ||
 // entertainment
   dnsDomainIs(host, "line.me") ||
   dnsDomainIs(host, "line-apps.com") ||
