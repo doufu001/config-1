@@ -1,6 +1,6 @@
 [AutoProxy 0.2.9]
 ! Expires: 6h
-! Last Modified: 2018.5.11
+! Last Modified: 2018.8.18
 
 !--github
 ||github.com
@@ -41,6 +41,8 @@
 
 !--education
 ||coursera.org
+||rus.ec
+||nih.gov
 
 !--others
 ||sourceforge.net
@@ -71,7 +73,7 @@
 ||myav.tv
 ||p9a.space
 ||playio1.com
-||dio889.net
+||dio6666.net
 /mp43/
 
 ！--picture
