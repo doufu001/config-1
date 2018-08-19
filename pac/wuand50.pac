@@ -1,4 +1,4 @@
-// update: 2018.8.18
+// update: 2018.8.19
 // 鉴于《刑法》、《网络安全法》等法律的有关条款，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
@@ -23,6 +23,8 @@ if (
   dnsDomainIs(host, "shiropro-re.net") ||
   dnsDomainIs(host, "millennium-war.net") ||
   dnsDomainIs(host, "itchibanketsu.jp") ||
+// acg
+  dnsDomainIs(host, "granbluefantasy.jp") ||
 // google
   shExpMatch(url, "*://scholar.google.*/*")
  ) return "PROXY 127.0.0.1:666";
