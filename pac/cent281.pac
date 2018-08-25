@@ -45,6 +45,7 @@ if (
   dnsDomainIs(host, "flickr.com") ||
   dnsDomainIs(host, "s.yimg.com") ||
   dnsDomainIs(host, "proko.com") ||
+  dnsDomainIs(host, "tineye.com") ||
 // acg
   dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||
@@ -55,6 +56,7 @@ if (
   dnsDomainIs(host, "saucenao.com") ||
   dnsDomainIs(host, "kadokawa.co.jp") ||
   dnsDomainIs(host, "granbluefantasy.jp") ||
+  dnsDomainIs(host, "ja.wikipedia.org") ||
 // coding
   dnsDomainIs(host, "github.com") ||
   dnsDomainIs(host, "githubusercontent.com") ||
@@ -68,6 +70,7 @@ if (
   dnsDomainIs(host, "python.org") ||
   dnsDomainIs(host, "gitbook.com") ||
   dnsDomainIs(host, "gitbooks.io") ||
+  dnsDomainIs(host, "tensorflow.org") ||
 // education
   dnsDomainIs(host, "coursera.org") ||
   dnsDomainIs(host, "archive.org") ||
@@ -77,7 +80,7 @@ if (
   dnsDomainIs(host, "rus.ec") ||
   dnsDomainIs(host, "nih.gov") ||
   dnsDomainIs(host, "pubmed.gov") ||
-  dnsDomainIs(host, "ja.wikipedia.org") ||
+  dnsDomainIs(host, "quora.com") ||
 // music
   dnsDomainIs(host, "soundcloud.com") ||
   dnsDomainIs(host, "sndcdn.com") ||
