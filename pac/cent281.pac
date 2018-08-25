@@ -1,4 +1,4 @@
-// update: 2018.8.19
+// update: 2018.8.25
 // 鉴于《刑法》、《网络安全法》等法律的有关条款，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
@@ -77,6 +77,7 @@ if (
   dnsDomainIs(host, "rus.ec") ||
   dnsDomainIs(host, "nih.gov") ||
   dnsDomainIs(host, "pubmed.gov") ||
+  dnsDomainIs(host, "ja.wikipedia.org") ||
 // music
   dnsDomainIs(host, "soundcloud.com") ||
   dnsDomainIs(host, "sndcdn.com") ||
@@ -105,6 +106,7 @@ if (
   dnsDomainIs(host, "nordstrom.com") ||
   dnsDomainIs(host, "nordstrommedia.com") ||
   dnsDomainIs(host, "nordstromdata.com") ||
+  dnsDomainIs(host, "amazon.co.jp") ||
 // config
   dnsDomainIs(host, "adblockplus.org") ||
   dnsDomainIs(host, "greasyfork.org") ||
