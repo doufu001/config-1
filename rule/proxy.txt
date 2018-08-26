@@ -1,6 +1,6 @@
 [AutoProxy 0.2.9]
 ! Expires: 6h
-! Last Modified: 2018.8.18
+! Last Modified: 2018.8.26
 
 !--github
 ||github.com
@@ -21,6 +21,8 @@
 ||touken-ranbu.jp
 ||dmmgames.com
 ||itchibanketsu.jp
+||shiropro-re.net
+||millennium-war.net
 
 !--twitch
 ||twitch.tv
@@ -32,8 +34,9 @@
 ||smilevideo.jp
 ||nimg.jp
 
-!--picture
+!--acg
 ||saucenao.com
+||kadokawa.co.jp
 
 !--code
 ||w3schools.com
@@ -42,7 +45,14 @@
 !--education
 ||coursera.org
 ||rus.ec
+||nih.gov
 ||pubmed.gov
+
+!--education
+||btbtt.co
+
+!--shopping
+||nordstrommedia.com
 
 !--others
 ||sourceforge.net
