@@ -65,6 +65,8 @@ if (
   dnsDomainIs(host, "dovs9u514acja.cloudfront.net") ||
   dnsDomainIs(host, "itchibanketsu.jp") ||
   dnsDomainIs(host, "touken-ranbu.jp") ||
+  dnsDomainIs(host, "shiropro-re.net") ||
+  dnsDomainIs(host, "millennium-war.net") ||
 // shopping
   dnsDomainIs(host, "nordstrom.com") ||
   dnsDomainIs(host, "nordstrommedia.com") ||
