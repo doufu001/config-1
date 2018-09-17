@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: Wuand Adblock List
-! Last Modified: 2018.3.30
+! Last Modified: 2018.9.2
 ! Expires: 6 hours
 ! Homepage: http://www.wuan.in/
 
@@ -8,6 +8,7 @@
 !--WhiteList
 @@||dmm.com^
 @@||dmm.co.jp^
+@@||captcha.yundun.com
 
 !--goudidiao
 goudidiao.com##a[style="color: red;"]

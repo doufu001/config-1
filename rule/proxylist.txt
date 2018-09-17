@@ -1,0 +1,22 @@
+; Summary: Proxy Rule List
+; Date: 2018.9.9
+
+#BEGIN
+
+[Wildcard]
+
+*://*.brightcove.com/*
+*://*.cloudfront.net/*
+*://*.jp/*
+*://ip.cn/*
+
+[RegExp]
+
+google
+youtube
+twitter
+facebook
+github
+dmm
+
+#END

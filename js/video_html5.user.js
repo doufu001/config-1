@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name             视频站启用html5播放器
-// @description      三大功能 。启用html5播放器；万能网页全屏；添加快捷键：快进、快退、暂停/播放、音量、下一集、切换(网页)全屏、上下帧、播放速度。支持视频站点：优.土、QQ、B站、新浪、微博、网易视频[娱乐、云课堂、新闻]、搜狐、乐视、风行、百度云视频等；直播：斗鱼、熊猫、YY、虎牙、龙珠。可自定义站点
-// @version          0.95
+// @description      三大功能 。启用html5播放器；万能网页全屏；添加快捷键：快进、快退、暂停/播放、音量、下一集、切换(网页)全屏、上下帧、播放速度。支持视频站点：油管、TED、优.土、QQ、B站、新浪、微博、网易视频[娱乐、云课堂、新闻]、搜狐、乐视、风行、百度云视频等；直播：斗鱼、熊猫、YY、虎牙、龙珠。可自定义站点
+// @version          0.99
 // @homepage         http://bbs.kafan.cn/thread-2093014-1-1.html
 // @include          *://v.sports.qq.com/*
 // @include          https://y.qq.com/*/mv/v/*
@@ -9,7 +9,10 @@
 // @include          *://view.inews.qq.com/*
 // @include          *://news.qq.com/*
 // @include          https://www.weiyun.com/video_*
-// @include          *://www.bilibili.com/*
+// @include          *://www.youku.com/
+// include          https://vku.youku.com/live/*
+// @include          https://tv.sohu.com/v/*
+// @include          https://tv.sohu.com/201*
 // @include          *://www.fun.tv/vplay/*
 // @include          *://m.fun.tv/*
 // @include          http://*.mtime.com/*
@@ -26,13 +29,13 @@
 // @include          *://*.weibo.com/*
 // @include          *://pan.baidu.com/*
 // @include          *://yun.baidu.com/*
-// @include          *://v.yinyuetai.com/video/h5/*
-// @include          *://v.yinyuetai.com/playlist/h5/*
 // @include          *://www.365yg.com/*
 // @include          *://v.ifeng.com/video_*
 // @include          *://www.icourse163.org/learn/*
+
 // @include          https://www.youtube.com/watch?v=*
 // @include          https://www.ted.com/talks/*
+
 // @include          *://www.yy.com/*
 // @include          *://v.huya.com/play/*
 // @include          *://www.huya.com/*
@@ -46,8 +49,7 @@
 // @run-at           document-start
 // @require      https://greasyfork.org/scripts/29319-web-streams-polyfill/code/web-streams-polyfill.js?version=191261
 // @require      https://greasyfork.org/scripts/29306-fetch-readablestream/code/fetch-readablestream.js?version=191832
-// @require      https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.4/adapter.min.js
-// @namespace  https://greasyfork.org/users/7036
+// @namespace    https://greasyfork.org/users/7036
 // ==/UserScript==
 'use strict';
 if (!NodeList.prototype[Symbol.iterator])
@@ -99,10 +101,7 @@ doClick = e => {
 	if (typeof e === 'string') e = q(e);
 	if (e) { e.click ? e.click() : e.dispatchEvent(new MouseEvent('click')) };
 },
-underFirefox57 = (() => {
-	const x = r1(/Firefox\/(\d+)/, navigator.userAgent);
-	return x && x < 57;
-})(),
+firefoxVer = r1(/Firefox\/(\d+)/, navigator.userAgent),
 fakeUA = ua => Object.defineProperty(navigator, 'userAgent', {
 	value: ua,
 	writable: false,
@@ -278,11 +277,11 @@ app = {
 		if (this.isLive && [37,39,78,88,67,90].includes(e.keyCode)) return;
 		this.getVideos();
 		this.checkUI();
+		if (events.keydown && events.keydown(e)) return;
 		let n;
 		switch (e.keyCode) {
 		case 32: //space
 			if (this.disableSpace) return;
-			//if (u=='youtube' && e.target.matches('.html5-video-player')) return;
 			if (this.btnPlay) this.play();
 			else v.paused ? v.play() : v.pause();
 			e.preventDefault();
@@ -415,31 +414,31 @@ app = {
 	findMV() {
 		return this.vList[0];
 	},
+	onLoad() {
+		this.vList = document.getElementsByTagName('video');
+		if (v = this.findMV()) this.bindEvent();
+		else {
+			this.observer = new MutationObserver(records => {
+				if (v = this.findMV()) {
+					this.observer.disconnect();
+					delete this.observer;
+					this.bindEvent(v);
+				}
+				if (this.adsCSS) willRemove(this.adsCSS);
+				if (events.observe && events.observe()) delete events.observe;
+			});
+			this.observer.observe(document.body, {childList : true, subtree : true});
+		}
+		events.DOMReady && events.DOMReady();
+	},
 	init() {
-		document.addEventListener('DOMContentLoaded', () => {
-			this.vList = document.getElementsByTagName('video');
-			if (v = this.findMV()) this.bindEvent();
-			else {
-				this.observer = new MutationObserver(records => {
-					if (v = this.findMV()) {
-						this.observer.disconnect();
-						delete this.observer;
-						this.bindEvent(v);
-					}
-					if (this.adsCSS) willRemove(this.adsCSS);
-					if (events.observe && events.observe()) delete events.observe;
-				});
-				this.observer.observe(document.body, {childList : true, subtree : true});
-			}
-			events.DOMReady && events.DOMReady();
-		});
+		document.addEventListener('DOMContentLoaded', this.onLoad.bind(this));
 	}
 };
 
 let router = {
 	youtube() {
 		app.fullCSS = '.ytp-fullscreen-button';
-		//app.playCSS = '.ytp-play-button';
 		app.disableSpace = true;
 		app.nextCSS = '.ytp-next-button';
 	},
@@ -454,9 +453,7 @@ let router = {
 			webfullCSS: '.txp_btn_fake',
 			fullCSS: '.txp_btn_fullscreen',
 		});
-		setInterval(()=>{
-			localStorage.clear();
-		}, 300);
+		setInterval(() => localStorage.clear(), 500);
 		fakeUA('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:48.0) Gecko/20100101 Firefox/48.0');
 	},
 	youku() {
@@ -477,27 +474,29 @@ let router = {
 		}
 	},
 	bilibili() {
-		let x = localStorage.bilibili_player_settings;
+		let newPlayer, x = localStorage.bilibili_player_settings;
 		if (x) {
 			x = JSON.parse(x);
 			x.video_status.highquality = true;
 			x.video_status.iswidescreen = true;
-			x.video_status.widescreensave = true;
-			x.setting_config.defquality = '80';
+			//x.setting_config.defquality = '80';
 			localStorage.bilibili_player_settings = JSON.stringify(x);
 		} else
-			//defquality 选择清晰度，720P：64  1080P：80   宽屏 iswidescreen
+			//defquality 选择清晰度，720P：64  1080P：80
 			localStorage.bilibili_player_settings = `{"setting_config":{"type":"div","opacity":"1.00","fontfamily":"SimHei, 'Microsoft JhengHei'","fontfamilycustom":"","bold":false,"preventshade":false,"fontborder":0,"speedplus":"1.0","speedsync":false,"fontsize":"1.0","fullscreensync":false,"danmakunumber":50,"fullscreensend":false,"defquality":"80","sameaspanel":false},"video_status":{"autopart":1,"highquality":true,"widescreensave":true,"iswidescreen":true,"videomirror":false,"videospeed":1,"volume":1},"block":{"status":true,"type_scroll":true,"type_top":true,"type_bottom":true,"type_reverse":true,"type_guest":true,"type_color":true,"function_normal":true,"function_subtitle":true,"function_special":true,"cloud_level":2,"cloud_source_video":true,"cloud_source_partition":true,"cloud_source_all":true,"size":0,"regexp":false,"list":[]},"message":{"system":false,"bangumi":false,"news":false}}`;
-		const newType = path.startsWith('/video/');//false为bangumi
 		app.nextCSS = '.bilibili-player-video-btn-next';
-		app.webfullCSS = '.bilibili-player-video-web-fullscreen';
-		app.fullCSS = newType ? '.bilibili-player-video-btn-fullscreen' : '.bilibili-player-iconfont-fullscreen';
+		events.on('foundMV', () => {
+			newPlayer = !!q('#entryOld');
+			app.webfullCSS = newPlayer ? '.bilibili-player-video-web-fullscreen': 'i[name="web_fullscreen"]';
+			app.fullCSS = newPlayer ? '.bilibili-player-video-btn-fullscreen' : 'i[name="browser_fullscreen"]';
+		});
 		const _setPlayer = () => {
 			v = q('#bofqi video[src]');
 			if (!v) {
 				setTimeout(_setPlayer, 300);
 				return;
 			}
+			app.btnNext = app.btnWFS = app.btnFS = null;
 			doClick('i.bilibili-player-iconfont-repeat.icon-24repeaton'); //关循环播放
 			// doClick('i[name=ctlbar_danmuku_close]');//关弹幕
 			// 以下4行，自动播放
@@ -506,11 +505,7 @@ let router = {
 				v.play();
 			};
 
-			if (!newType) {
-				x = v.closest('#bangumi_player');
-				x = x && x.offsetTop || 300;
-				window.scrollTo(0, x);
-			}
+			!newPlayer && v.scrollIntoView();
 		};
 		const fn = history.pushState;
 		history.pushState = function() {
@@ -527,10 +522,30 @@ let router = {
 	},
 	weibo() {
 		app.isFixFPView = true;
-		app.multipleV = path.startsWith('/u/');//path.lastIndexOf('/') == 0;
+		app.multipleV = path.startsWith('/u/');
 	},
 	miaopai() {
 		app.multipleV = path.startsWith('/u/');
+	},
+	baidu() {
+		if (path.startsWith('/play/')) events.on('keydown', e => {
+			let n, api = w.videojs.getPlayers("video-player").html5player.tech_;
+			switch (e.keyCode) {
+			case 67: //按键C：加速播放 +0.1
+				n = 0.1;
+			case 88: //按键X：减速播放 -0.1
+				n = n || -0.1;
+				n += v.playbackRate;
+				if (0 < n && n <= 16) api.setPlaybackRate(n);
+				break;
+			case 90: //按键Z：正常速度播放
+				api.setPlaybackRate(1);
+				break;
+			default:
+				return !1;
+			}
+			return true;
+		});
 	},
 	le() {
 		fakeUA('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 Version/7.0.3 Safari/7046A194A');
@@ -567,40 +582,35 @@ let router = {
 		return true;
 	}
 };
-router['163'] = router.mtime = router.sina;
-router.baidu = noopFn;
+//if (host !== 'study.163.com') router['163'] =
+router.mtime = router.sina;
 
 if (!router[u]) { //直播站点
 	router = {
 		douyu() {
 			if (isEdge) fakeUA(ua_chrome);
 			const css = 'i.sign-spec',
-			inRoom = /^\/(t\/)?\w+$/.test(path); //w.$ROOM?.room_id
-			if (inRoom) app.findMV = function(){
-				return [].find.call(this.vList, e=>e.matches('#js-room-video video'));
-			};
-			else if (host.startsWith('v.')) app.findMV = function(){
-				const p = w.__player;
-				if (!p) return;
-				if (p.isH5) return this.vList[0];
-				p.switchPlayer('h5');
-				p.isH5 = 1;
-			};
-			inRoom && events.on('canplay', function() {
+			inRoom = /^\/(t\/)?\w+$/.test(path), //w.$ROOM?.room_id
+			cleanAds = () => {
 				$$(app.adsCSS);
 				$$(css, e=>e.parentNode.remove());
-				if (path==='/') return;
-				const player = v.parentNode.parentNode,
-				s = `#${player.id}>div:not([class]):not([style]), #dialog-more-video~*`;
+				if (path==='/' || !v) return;
+				let s = v.parentNode.parentNode;
+				s = `#${s.id}>div:not([class]):not([style]), #dialog-more-video~*`;
 				setTimeout($$, 300, s);
-				setTimeout($$, 3900, s);
-			});
-			document.addEventListener('visibilitychange', ev => {
-				if (!document.hidden) {
-					$$(app.adsCSS);
-					$$(css, e=>e.parentNode.remove());
-				}
-			});
+				setTimeout($$, 1900, s);
+			},
+			swapH5 = e => {
+				const p = w.__player;
+				if (p && !v) p.switchPlayer('h5');
+			};
+			app.findMV = function() {
+				const i = this.vList.length -1;
+				if (i >= 0 && this.vList[i].matches('[src^=blob]')) return this.vList[i];
+			};
+			w.addEventListener('load', swapH5);
+			events.on('canplay', cleanAds);
+			document.addEventListener('visibilitychange', cleanAds);
 			app.webfullCSS = inRoom ? 'div[title="网页全屏"]' : 'input[title="进入网页全屏"]';
 			app.fullCSS = inRoom ? 'div[title="窗口全屏"]' : 'input[title="进入全屏"]';
 			// .watermark-4231db, .animation_container-005ab7 +div
@@ -608,7 +618,6 @@ if (!router[u]) { //直播站点
 		},
 		panda() {
 			if (isEdge) fakeUA(ua_chrome);
-			localStorage.setItem('panda.tv/user/player', '{"useH5player": true}');
 			app.webfullCSS = '.h5player-control-bar-fullscreen';
 			app.fullCSS = '.h5player-control-bar-allfullscreen';
 			app.adsCSS = '.act-zhuxianmarch-container, #liveos-container, .ad-container, .room-banner-images';
@@ -620,7 +629,7 @@ if (!router[u]) { //直播站点
 			app.webfullCSS = '.liveplayerToolbar-cinema';
 		},
 		huya() {
-			if (underFirefox57) return true;
+			if (firefoxVer && firefoxVer < 57) return true;
 			if (!w.chrome) fakeUA(ua_chrome);
 			app.webfullCSS = '.player-fullpage-btn';
 			app.fullCSS = '.player-fullscreen-btn';
