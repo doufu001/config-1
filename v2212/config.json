@@ -110,14 +110,15 @@
 			"pinterest",
 			"nicovideo.jp",
 			"sci-hub",
-			"github",
+			"github"
           ],
           "outboundTag" : "proxy2"
         },
         {
           "type" : "field",
           "domain" : [
-            "dmm",
+            "dmm.com",
+			"dmmgames.com",
             "gsspat.jp",
             "cxpublic.com",
             "cxense.com",
@@ -176,9 +177,7 @@
             "quora.com",
             "soundcloud.com",
             "sndcdn.com",
-            "twitch.tv",
-            "twitchcdn.net",
-            "twitchsvc.net",
+            "twitch",
             "jtvnw.net",
             "ttvnw.net",
             "bahamut.com.tw",
