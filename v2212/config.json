@@ -117,8 +117,7 @@
         {
           "type" : "field",
           "domain" : [
-            "dmm.com",
-            "dmmgames.com",
+            "dmm",
             "gsspat.jp",
             "cxpublic.com",
             "cxense.com",
@@ -130,9 +129,7 @@
             "touken-ranbu.jp",
             "shiropro-re.net",
             "millennium-war.net",
-            "nordstrom.com",
-            "nordstrommedia.com",
-            "nordstromdata.com"
+            "nordstrom"
           ],
           "outboundTag" : "proxy3"
         },
