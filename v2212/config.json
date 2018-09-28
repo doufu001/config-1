@@ -108,6 +108,7 @@
             "accounts.youtube.com",
             "img.youtube.com",
 			"pinterest",
+            "pinimg.com",
 			"nicovideo.jp",
 			"sci-hub",
 			"github"
@@ -138,7 +139,6 @@
         {
           "type" : "field",
           "domain" : [
-            "pinimg.com",
             "instagram",
             "deviantart.com",
             "deviantart.net",
