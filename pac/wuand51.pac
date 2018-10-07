@@ -29,7 +29,6 @@ if (
   dnsDomainIs(host, "img.youtube.com") ||
 // art
   shExpMatch(url, "*://*.pinterest.*/*") ||
-  dnsDomainIs(host, "pinimg.com") ||
 // acg
   dnsDomainIs(host, "nicovideo.jp") ||
 // education
@@ -67,6 +66,7 @@ if (
 // goproxy-ru
 if (
 // art
+  dnsDomainIs(host, "pinimg.com") ||
   dnsDomainIs(host, "instagram.com") ||
   shExpMatch(url, "*://instagram.*.fbcdn.net/*") ||
   dnsDomainIs(host, "deviantart.com") ||
