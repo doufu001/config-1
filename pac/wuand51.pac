@@ -1,23 +1,14 @@
-// update: 2018.9.27
+// update: 2018.10.7
 // 鉴于《刑法》、《网络安全法》等法律的有关条款，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
 // blacklist
 if (
-// surprise
-  shExpMatch(url, "https://www.youtube.com/upload") ||
-  shExpMatch(url, "https://twitter.com/i/tweet/create") ||
-  shExpMatch(url, "https://login.wikimedia.org/*") ||
-  shExpMatch(url, "https://www.facebook.com/ajax/updatestatus.php*") ||
-  shExpMatch(url, "https://www.facebook.com/ufi/add/comment*") ||
 // google plus
   shExpMatch(url, "https://plus.google.com/*") 
 ) return "DIRECT";
 // goagent
 if (
-// surprise
-  dnsDomainIs(host, "twitter.com") ||
-  dnsDomainIs(host, "facebook.com") ||
 // google
   shExpMatch(url, "*://*.google.*/*") ||
   dnsDomainIs(host, "gstatic.com") ||
@@ -36,6 +27,9 @@ if (
   dnsDomainIs(host, "google-analytics.com") ||
   dnsDomainIs(host, "accounts.youtube.com") ||
   dnsDomainIs(host, "img.youtube.com") ||
+// art
+  shExpMatch(url, "*://*.pinterest.*/*") ||
+  dnsDomainIs(host, "pinimg.com") ||
 // acg
   dnsDomainIs(host, "nicovideo.jp") ||
 // education
@@ -45,9 +39,6 @@ if (
  ) return "PROXY 127.0.0.1:2333";
 // goproxy-gae
 if (
-// art
-  shExpMatch(url, "*://*.pinterest.*/*") ||
-  dnsDomainIs(host, "pinimg.com") ||
 // game
   dnsDomainIs(host, "twitch.tv") 
  ) return "PROXY 127.0.0.1:23333";
@@ -75,29 +66,6 @@ if (
  ) return "PROXY 127.0.0.1:666";
 // goproxy-ru
 if (
-// surprise
-  dnsDomainIs(host, "youtube.com") ||
-  dnsDomainIs(host, "ytimg.com") ||
-  dnsDomainIs(host, "googlevideo.com") ||
-  dnsDomainIs(host, "youtu.be") ||
-  dnsDomainIs(host, "twimg.com") ||
-  dnsDomainIs(host, "t.co") ||
-  dnsDomainIs(host, "fbcdn.net") ||
-  dnsDomainIs(host, "facebook.net") ||
-  dnsDomainIs(host, "wikipedia.org") ||
-  dnsDomainIs(host, "wikimedia.org") ||
-  dnsDomainIs(host, "medium.com") ||
-  dnsDomainIs(host, "vimeo.com") ||
-  dnsDomainIs(host, "vimeocdn.com") ||
-  dnsDomainIs(host, "dropbox.com") ||
-  dnsDomainIs(host, "dropboxstatic.com") ||
-  dnsDomainIs(host, "onedrive.live.com") ||
-  dnsDomainIs(host, "mediafire.com") ||
-  dnsDomainIs(host, "getuploader.com") ||
-  dnsDomainIs(host, "economist.com") ||
-  dnsDomainIs(host, "bloomberg.com") ||
-  dnsDomainIs(host, "reuters.com") ||
-  dnsDomainIs(host, "issuu.com") ||
 // art
   dnsDomainIs(host, "instagram.com") ||
   shExpMatch(url, "*://instagram.*.fbcdn.net/*") ||
@@ -169,6 +137,13 @@ if (
   dnsDomainIs(host, "btbtt.co") ||
 // shopping
   dnsDomainIs(host, "amazon.co.jp") ||
+// netdisk
+  dnsDomainIs(host, "dropbox.com") ||
+  dnsDomainIs(host, "dropboxstatic.com") ||
+  dnsDomainIs(host, "onedrive.live.com") ||
+  dnsDomainIs(host, "1drv.ms") ||
+  dnsDomainIs(host, "mediafire.com") ||
+  dnsDomainIs(host, "getuploader.com") ||
 // config
   dnsDomainIs(host, "adblockplus.org") ||
   dnsDomainIs(host, "greasyfork.org") ||

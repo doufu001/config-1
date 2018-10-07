@@ -1,4 +1,4 @@
-// update: 2018.10.3
+// update: 2018.10.7
 // 鉴于《刑法》、《网络安全法》等法律的有关条款，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
@@ -27,6 +27,9 @@ if (
   dnsDomainIs(host, "google-analytics.com") ||
   dnsDomainIs(host, "accounts.youtube.com") ||
   dnsDomainIs(host, "img.youtube.com") ||
+// art
+  shExpMatch(url, "*://*.pinterest.*/*") ||
+  dnsDomainIs(host, "pinimg.com") ||
 // acg
   dnsDomainIs(host, "nicovideo.jp") ||
 // education
@@ -36,9 +39,6 @@ if (
  ) return "PROXY 127.0.0.1:2333";
 // goproxy-gae
 if (
-// art
-  shExpMatch(url, "*://*.pinterest.*/*") ||
-  dnsDomainIs(host, "pinimg.com") ||
 // game
   dnsDomainIs(host, "twitch.tv") 
  ) return "PROXY 127.0.0.1:23333";
@@ -137,6 +137,13 @@ if (
   dnsDomainIs(host, "btbtt.co") ||
 // shopping
   dnsDomainIs(host, "amazon.co.jp") ||
+// netdisk
+  dnsDomainIs(host, "dropbox.com") ||
+  dnsDomainIs(host, "dropboxstatic.com") ||
+  dnsDomainIs(host, "onedrive.live.com") ||
+  dnsDomainIs(host, "1drv.ms") ||
+  dnsDomainIs(host, "mediafire.com") ||
+  dnsDomainIs(host, "getuploader.com") ||
 // config
   dnsDomainIs(host, "adblockplus.org") ||
   dnsDomainIs(host, "greasyfork.org") ||
