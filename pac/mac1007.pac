@@ -1,4 +1,4 @@
-// update: 2018.10.14
+// update: 2018.10.18
 // 鉴于《刑法》、《网络安全法》等法律的有关条款，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
@@ -9,6 +9,26 @@ if (
 ) return "DIRECT";
 // v2ray
 if (
+// surprise
+  dnsDomainIs(host, "youtube.com") ||
+  dnsDomainIs(host, "ytimg.com") ||
+  dnsDomainIs(host, "googlevideo.com") ||
+  dnsDomainIs(host, "youtu.be") ||
+  dnsDomainIs(host, "twitter.com") ||
+  dnsDomainIs(host, "twimg.com") ||
+  dnsDomainIs(host, "t.co") ||
+  dnsDomainIs(host, "facebook.com") ||
+  dnsDomainIs(host, "fbcdn.net") ||
+  dnsDomainIs(host, "facebook.net") ||
+  dnsDomainIs(host, "wikipedia.org") ||
+  dnsDomainIs(host, "wikimedia.org") ||
+  dnsDomainIs(host, "medium.com") ||
+  dnsDomainIs(host, "vimeo.com") ||
+  dnsDomainIs(host, "vimeocdn.com") ||
+  dnsDomainIs(host, "economist.com") ||
+  dnsDomainIs(host, "bloomberg.com") ||
+  dnsDomainIs(host, "reuters.com") ||
+  dnsDomainIs(host, "issuu.com") ||
 // google
   shExpMatch(url, "*://*.google.*/*") ||
   dnsDomainIs(host, "gstatic.com") ||
@@ -27,13 +47,6 @@ if (
   dnsDomainIs(host, "google-analytics.com") ||
   dnsDomainIs(host, "accounts.youtube.com") ||
   dnsDomainIs(host, "img.youtube.com") ||
-// art
-  shExpMatch(url, "*://*.pinterest.*/*") ||
-  dnsDomainIs(host, "pinimg.com") ||
-// acg
-  dnsDomainIs(host, "nicovideo.jp") ||
-// coding
-  dnsDomainIs(host, "github.com") ||
 // dmm
   dnsDomainIs(host, "dmm.com") ||
   dnsDomainIs(host, "dmmgames.com") ||
@@ -49,11 +62,10 @@ if (
   dnsDomainIs(host, "touken-ranbu.jp") ||
   dnsDomainIs(host, "shiropro-re.net") ||
   dnsDomainIs(host, "millennium-war.net") ||
-// shopping
-  dnsDomainIs(host, "nordstrom.com") ||
-  dnsDomainIs(host, "nordstrommedia.com") ||
-  dnsDomainIs(host, "nordstromdata.com") ||
 // art
+  shExpMatch(url, "*://*.pinterest.*/*") ||
+  dnsDomainIs(host, "pinimg.com") ||
+  dnsDomainIs(host, "accountkit.com") ||
   dnsDomainIs(host, "instagram.com") ||
   shExpMatch(url, "*://instagram.*.fbcdn.net/*") ||
   dnsDomainIs(host, "deviantart.com") ||
@@ -66,8 +78,10 @@ if (
   dnsDomainIs(host, "proko.com") ||
   dnsDomainIs(host, "tineye.com") ||
 // acg
+  dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||
   dnsDomainIs(host, "nimg.jp") ||
+  dnsDomainIs(host, "dmc.nico") ||
   dnsDomainIs(host, "pixiv.net") ||
   dnsDomainIs(host, "dmhy.org") ||
   dnsDomainIs(host, "wikiwiki.jp") ||
@@ -76,6 +90,7 @@ if (
   dnsDomainIs(host, "granbluefantasy.jp") ||
   dnsDomainIs(host, "ja.wikipedia.org") ||
 // coding
+  dnsDomainIs(host, "github.com") ||
   dnsDomainIs(host, "githubusercontent.com") ||
   dnsDomainIs(host, "githubapp.com") ||
   dnsDomainIs(host, "github.io") ||
@@ -124,6 +139,9 @@ if (
   dnsDomainIs(host, "wecandeo.com") ||
   dnsDomainIs(host, "btbtt.co") ||
 // shopping
+  dnsDomainIs(host, "nordstrom.com") ||
+  dnsDomainIs(host, "nordstrommedia.com") ||
+  dnsDomainIs(host, "nordstromdata.com") ||
   dnsDomainIs(host, "amazon.co.jp") ||
 // netdisk
   dnsDomainIs(host, "dropbox.com") ||

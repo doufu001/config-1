@@ -25,11 +25,6 @@ if (
   dnsDomainIs(host, "medium.com") ||
   dnsDomainIs(host, "vimeo.com") ||
   dnsDomainIs(host, "vimeocdn.com") ||
-  dnsDomainIs(host, "dropbox.com") ||
-  dnsDomainIs(host, "dropboxstatic.com") ||
-  dnsDomainIs(host, "onedrive.live.com") ||
-  dnsDomainIs(host, "mediafire.com") ||
-  dnsDomainIs(host, "getuploader.com") ||
   dnsDomainIs(host, "economist.com") ||
   dnsDomainIs(host, "bloomberg.com") ||
   dnsDomainIs(host, "reuters.com") ||
