@@ -31,6 +31,7 @@ if (
   shExpMatch(url, "*://*.pinterest.*/*") ||
   dnsDomainIs(host, "pinimg.com") ||
   dnsDomainIs(host, "cedexis") ||
+  dnsDomainIs(host, "cedexis-radar.net") ||
 // acg
   dnsDomainIs(host, "nicovideo.jp") ||
 // coding

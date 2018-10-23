@@ -66,6 +66,7 @@ if (
 // art
   dnsDomainIs(host, "pinimg.com") ||
   dnsDomainIs(host, "cedexis") ||
+  dnsDomainIs(host, "cedexis-radar.net") ||
   dnsDomainIs(host, "instagram.com") ||
   shExpMatch(url, "*://instagram.*.fbcdn.net/*") ||
   dnsDomainIs(host, "deviantart.com") ||
