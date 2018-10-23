@@ -30,6 +30,7 @@ if (
 // art
   shExpMatch(url, "*://*.pinterest.*/*") ||
   dnsDomainIs(host, "pinimg.com") ||
+  dnsDomainIs(host, "cedexis") ||
 // acg
   dnsDomainIs(host, "nicovideo.jp") ||
 // coding

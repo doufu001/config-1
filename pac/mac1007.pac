@@ -65,6 +65,7 @@ if (
 // art
   shExpMatch(url, "*://*.pinterest.*/*") ||
   dnsDomainIs(host, "pinimg.com") ||
+  dnsDomainIs(host, "cedexis") ||
   dnsDomainIs(host, "accountkit.com") ||
   dnsDomainIs(host, "instagram.com") ||
   shExpMatch(url, "*://instagram.*.fbcdn.net/*") ||
