@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         解除B站区域限制
 // @namespace    http://tampermonkey.net/
-// @version      6.8.6
-// @description  通过替换获取视频地址接口的方式, 实现解除B站区域限制; 只对HTML5播放器生效; 只支持番剧视频;
+// @version      7.0.6.1
+// @description  通过替换获取视频地址接口的方式, 实现解除B站区域限制; 只对HTML5播放器生效;
 // @author       ipcjs
 // @supportURL   https://github.com/ipcjs/bilibili-helper/issues
 // @compatible   chrome
@@ -73,10 +73,19 @@ function scriptSource(invokeBy) {
         setTimeout(() => scriptSource(invokeBy + '.timeout'), 0) // 这里会暴力执行多次, 直到状态不为uninitialized...
         return
     }
+
+    const r_text = {
+        ok: { en: 'OK', zh_cn: '确定', },
+        close: { en: 'Close', zh_cn: '关闭' },
+        welcome_to_acfun: '<p><b>缺B乐 了解下？</b></p><br><p>PS: A站白屏/播放卡顿/被区域限制等问题，可以通过安装 <a href="https://github.com/esterTion/AcFun-HTML5-Player">AcFun HTML5 Player</a> 解决</p>',
+    }
+    const _t = (key) => {
+        const text = r_text[key]
+        const lang = 'zh_cn'
+        return typeof text === 'string' ? text : text[lang]
+    }
+
     const r = {
-        text: {
-            ok: { en: 'OK', zh_cn: '确定', },
-        },
         html: {},
         css: {
             settings: '#balh-settings {font-size: 12px;color: #6d757a;}  #balh-settings h1 {color: #161a1e}  #balh-settings a {color: #00a1d6;}  #balh-settings a:hover {color: #f25d8e}  #balh-settings input {margin-left: 3px;margin-right: 3px;}  @keyframes balh-settings-bg { from {background: rgba(0, 0, 0, 0)} to {background: rgba(0, 0, 0, .7)} }  #balh-settings label {width: 100%;display: inline-block;cursor: pointer}  #balh-settings label:after {content: "";width: 0;height: 1px;background: #4285f4;transition: width .3s;display: block}  #balh-settings label:hover:after {width: 100%}  form {margin: 0}  #balh-settings input[type="radio"] {-webkit-appearance: radio;-moz-appearance: radio;appearance: radio;}  #balh-settings input[type="checkbox"] {-webkit-appearance: checkbox;-moz-appearance: checkbox;appearance: checkbox;} ',
@@ -96,7 +105,7 @@ function scriptSource(invokeBy) {
                 REDIRECT: 'redirect',// 重定向模式, 直接重定向所有番剧视频的接口到代理服务器; 所有番剧视频都通过代理服务器获取视频地址, 如果代理服务器不稳定, 可能加载不出视频;
             },
             server: {
-                S0: 'https://biliplus.ipcjs.win',
+                S0: 'https://biliplus.ipcjs.top',
                 S1: 'https://www.biliplus.com',
                 defaultServer: function () {
                     return this.S0
@@ -104,7 +113,11 @@ function scriptSource(invokeBy) {
             },
             TRUE: 'Y',
             FALSE: '',
-        }
+        },
+        baipiao: [
+            { key: 'zomble_land_saga', match: () => (window.__INITIAL_STATE__ && window.__INITIAL_STATE__.epInfo && window.__INITIAL_STATE__.epInfo.ep_id) === 251255, link: 'http://www.acfun.cn/bangumi/ab5022161_31405_278830', message: r_text.welcome_to_acfun },
+            { key: 'zomble_land_saga', match: () => (window.__INITIAL_STATE__ && window.__INITIAL_STATE__.mediaInfo && window.__INITIAL_STATE__.mediaInfo.media_id) === 140772, link: 'http://www.acfun.cn/bangumi/aa5022161', message: r_text.welcome_to_acfun },
+        ]
     }
     const util_stringify = (item) => {
         if (typeof item === 'object') {
@@ -468,8 +481,30 @@ function scriptSource(invokeBy) {
             return transformer ? transformer(this) : this
         }
     }())
+    const util_promise_timeout = function (timeout) {
+        return new Promise((resolve, reject) => {
+            setTimeout(resolve, timeout);
+        })
+    }
+    // 直到满足condition()为止, 才执行promiseCreator(), 创建Promise
+    // https://stackoverflow.com/questions/40328932/javascript-es6-promise-for-loop
+    const util_promise_condition = function (condition, promiseCreator, retryCount = Number.MAX_VALUE, interval = 1) {
+        const loop = (time) => {
+            if (!condition()) {
+                if (time < retryCount) {
+                    return util_promise_timeout(interval).then(loop.bind(null, time + 1))
+                } else {
+                    return Promise.reject(`util_promise_condition timeout, condition: ${condition.toString()}`)
+                }
+            } else {
+                return promiseCreator()
+            }
+        }
+        return loop(0)
+    }
+
     const util_ajax = function (options) {
-        return new Promise(function (resolve, reject) {
+        const creator = () => new Promise(function (resolve, reject) {
             typeof options !== 'object' && (options = { url: options });
 
             options.async === undefined && (options.async = true);
@@ -482,7 +517,8 @@ function scriptSource(invokeBy) {
             };
             util_debug('ajax:', options.url)
             $.ajax(options);
-        });
+        })
+        return util_promise_condition(() => window.$, creator, 100, 100) // 重试 100 * 100 = 10s
     }
     /**
     * @param promiseCeator  创建Promise的函数
@@ -508,10 +544,13 @@ function scriptSource(invokeBy) {
         }
     }
     /**
-     * 创建元素的快捷方法
+     * 创建元素的快捷方法: 
+     * 1. type, props, children
+     * 2. type, props, innerHTML
+     * 3. 'text', text
      * @param type string, 标签名; 特殊的, 若为text, 则表示创建文字, 对应的t为文字的内容
      * @param props object, 属性; 特殊的属性名有: className, 类名; style, 样式, 值为(样式名, 值)形式的object; event, 值为(事件名, 监听函数)形式的object;
-     * @param children array, 子元素;
+     * @param children array, 子元素; 也可以直接是html文本;
      */
     const util_ui_element_creator = (type, props, children) => {
         let elem = null;
@@ -536,9 +575,13 @@ function scriptSource(invokeBy) {
             }
         }
         if (children) {
-            for (let i = 0; i < children.length; i++) {
-                if (children[i] != null)
-                    elem.appendChild(children[i]);
+            if (typeof children === 'string') {
+                elem.innerHTML = children;
+            } else {
+                for (let i = 0; i < children.length; i++) {
+                    if (children[i] != null)
+                        elem.appendChild(children[i]);
+                }
             }
         }
         return elem;
@@ -635,17 +678,69 @@ function scriptSource(invokeBy) {
         document.body.appendChild(div);
     }
 
-    const util_ui_alert = function (message, callback) {
+    const util_ui_alert = function (message, resolve, reject) {
         setTimeout(() => {
-            if (callback) {
+            if (resolve) {
                 if (window.confirm(message)) {
-                    callback()
+                    resolve()
+                } else {
+                    if (reject) {
+                        reject()
+                    }
                 }
             } else {
                 alert(message)
             }
         }, 500)
     }
+
+    /**
+     * - param.content: 内容元素数组/HTML
+     * - param.showConfirm: 是否显示确定按钮
+     * - param.confirmBtn: 确定按钮的文字
+     * - param.onConfirm: 确定回调
+     * - param.onClose: 关闭回调
+     */
+    const util_ui_pop = function (param) {
+        if (typeof param.content === 'string') {
+            let template = _('template');
+            template.innerHTML = param.content.trim()
+            param.content = Array.from(template.content.childNodes)
+        } else if (!(param.content instanceof Array)) {
+            util_log(`param.content(${param.content}) 不是数组`)
+            return;
+        }
+
+        if (document.getElementById('AHP_Notice_style') == null) {
+            let noticeWidth = Math.min(500, innerWidth - 40);
+            document.head.appendChild(_('style', { id: 'AHP_Notice_style' }, [_('text', `#AHP_Notice{ line-height:normal;position:fixed;left:0;right:0;top:0;height:0;z-index:20000;transition:.5s;cursor:default } .AHP_down_banner{ margin:2px;padding:2px;color:#FFFFFF;font-size:13px;font-weight:bold;background-color:green } .AHP_down_btn{ margin:2px;padding:4px;color:#1E90FF;font-size:14px;font-weight:bold;border:#1E90FF 2px solid;display:inline-block;border-radius:5px } body.ABP-FullScreen{ overflow:hidden } @keyframes pop-iframe-in{0%{opacity:0;transform:scale(.7);}100%{opacity:1;transform:scale(1)}} @keyframes pop-iframe-out{0%{opacity:1;transform:scale(1);}100%{opacity:0;transform:scale(.7)}} #AHP_Notice>div{ position:absolute;bottom:0;left:0;right:0;font-size:15px } #AHP_Notice>div>div{ border:1px #AAA solid;width:${noticeWidth}px;margin:0 auto;padding:20px 10px 5px;background:#EFEFF4;color:#000;border-radius:5px;box-shadow:0 0 5px -2px } #AHP_Notice>div>div *{ margin:5px 0; } #AHP_Notice input[type=text]{ border: none;border-bottom: 1px solid #AAA;width: 60%;background: transparent } #AHP_Notice input[type=text]:active{ border-bottom-color:#4285f4 } #AHP_Notice input[type=button] { border-radius: 2px; border: #adadad 1px solid; padding: 3px; margin: 0 5px; min-width:50px } #AHP_Notice input[type=button]:hover { background: #FFF; } #AHP_Notice input[type=button]:active { background: #CCC; } .noflash-alert{display:none}`)]));
+        }
+
+        if (document.querySelector('#AHP_Notice') != null)
+            document.querySelector('#AHP_Notice').remove();
+
+        let div = _('div', { id: 'AHP_Notice' });
+        let childs = [];
+        if (param.showConfirm || param.confirmBtn || param.onConfirm) {
+            childs.push(_('input', { value: param.confirmBtn || _t('ok'), type: 'button', className: 'confirm', event: { click: param.onConfirm } }));
+        }
+        childs.push(_('input', {
+            value: _t('close'), type: 'button', className: 'close', event: {
+                click: function () {
+                    param.onClose && param.onClose();
+                    div.style.height = 0;
+                    setTimeout(function () { div.remove(); }, 500);
+                }
+            }
+        }));
+        div.appendChild(_('div', {}, [_('div', {},
+            param.content.concat([_('hr'), _('div', { style: { textAlign: 'right' } }, childs)])
+        )]));
+        document.body.appendChild(div);
+        div.style.height = div.firstChild.offsetHeight + 'px';
+    }
+
+
     /**
      * MessageBox -> from base.core.js
      * MessageBox.show(referenceElement, message, closeTime, boxType, buttonTypeConfirmCallback)
@@ -755,6 +850,7 @@ function scriptSource(invokeBy) {
         // 在av页面中的iframe标签形式的player
         player_in_av: util_func_catched(() => util_page.player() && window.top.location.href.includes('www.bilibili.com/video/av'), (e) => log(e), false),
         av: () => location.href.includes('www.bilibili.com/video/av'),
+        av_new: function () { return this.av() && (window.__playinfo__ || window.__playinfo__origin) },
         bangumi: () => location.href.match(new RegExp('^https?://bangumi\\.bilibili\\.com/anime/\\d+/?$')),
         bangumi_md: () => location.href.includes('www.bilibili.com/bangumi/media/md'),
         // movie页面使用window.aid, 保存当前页面av号
@@ -778,8 +874,8 @@ function scriptSource(invokeBy) {
                     switch (prop) {
                         case 'server':
                             value = value || r.const.server.defaultServer()
-                            // 从tk域名迁移到新的默认域名
-                            if (value.includes('biliplus.ipcjsdev.tk')) {
+                            // 从win域名迁移到新的默认域名
+                            if (value.includes('biliplus.ipcjs.win')) {
                                 value = r.const.server.defaultServer()
                                 balh_config.server = value
                             }
@@ -787,9 +883,11 @@ function scriptSource(invokeBy) {
                         case 'mode':
                             value = value || (balh_config.blocked_vip ? r.const.mode.REDIRECT : r.const.mode.DEFAULT)
                             break
+                        case 'flv_prefer_ws':
+                            value = r.const.FALSE // 关闭该选项
+                            break
                         default:
                             // case 'blocked_vip':
-                            // case 'flv_prefer_ws':
                             // case 'remove_pre_ad':
                             break
                     }
@@ -819,7 +917,45 @@ function scriptSource(invokeBy) {
     // https://www.biliplus.com/api/h5play.php?tid=33&cid=31166258&type=vupload&vid=vupload_31166258&bangumi=1
     const balh_api_plus_playurl_for_mp4 = (cid, bangumi = true) => util_ajax(`${balh_config.server}/api/h5play.php?tid=33&cid=${cid}&type=vupload&vid=vupload_${cid}&bangumi=${bangumi ? 1 : 0}`)
         .then(text => (text.match(/srcUrl=\{"mp4":"(https?.*)"\};/) || ['', ''])[1]); // 提取mp4的url
-
+    const balh_feature_switch_to_old_player = (function () {
+        if (!util_page.av() || localStorage.balh_disable_switch_to_old_player) {
+            return
+        }
+        util_init(() => {
+            let $switchToOldBtn = document.querySelector('#entryOld > .old-btn > a')
+            if ($switchToOldBtn) {
+                util_ui_pop({
+                    content: `${GM_info.script.name} 对新版播放器的支持还在测试阶段, 不稳定, 推荐切换回旧版`,
+                    confirmBtn: '切换回旧版',
+                    onConfirm: () => $switchToOldBtn.click(),
+                    onClose: () => localStorage.balh_disable_switch_to_old_player = r.const.TRUE,
+                })
+            }
+        })
+    })()
+    const balh_feature_area_limit_new = (function () {
+        if (!(util_page.av() && balh_config.enable_in_av)) {
+            return
+        }
+        if (window.__playinfo__) {
+            util_log("window.__playinfo__", window.__playinfo__)
+            window.__playinfo__origin = window.__playinfo__
+            let playinfo = undefined
+            // 将__playinfo__置空, 让播放器去重新加载它...
+            Object.defineProperty(window, '__playinfo__', {
+                configurable: true,
+                enumerable: true,
+                get: () => {
+                    log('__playinfo__', 'get')
+                    return playinfo
+                },
+                set: (value) => {
+                    log('__playinfo__', 'set')
+                    playinfo = value
+                },
+            })
+        }
+    })()
     const balh_feature_area_limit = (function () {
         function injectXHR() {
             util_debug('XMLHttpRequest的描述符:', Object.getOwnPropertyDescriptor(window, 'XMLHttpRequest'))
@@ -835,8 +971,9 @@ function scriptSource(invokeBy) {
                     return new Proxy(new target(...args), {
                         set: function (target, prop, value, receiver) {
                             if (prop === 'onreadystatechange') {
+                                container.__onreadystatechange = value
                                 let cb = value
-                                value = function () {
+                                value = function (event) {
                                     if (target.readyState === 4) {
                                         if (target.responseURL.includes('bangumi.bilibili.com/view/web_api/season/user/status')) {
                                             log('/season/user/status:', target.responseText)
@@ -876,6 +1013,15 @@ function scriptSource(invokeBy) {
                                                 json.data.vipStatus = 1; // 状态, 启用
                                                 container.responseText = JSON.stringify(json)
                                             }
+                                        } else if (target.responseURL.includes('api.bilibili.com/x/player/playurl')) {
+                                            util_log('/x/player/playurl', 'origin', `block: ${container.__block_response}`, target.response)
+                                            // todo      : 当前只实现了r.const.mode.REPLACE, 需要支持其他模式
+                                            // 2018-10-14: 等B站全面启用新版再说(;¬_¬)
+                                        }
+                                        if (container.__block_response) {
+                                            // 屏蔽并保存response
+                                            container.__response = target.response
+                                            return
                                         }
                                     }
                                     // 这里的this是原始的xhr, 在container.responseText设置了值时需要替换成代理对象
@@ -892,6 +1038,49 @@ function scriptSource(invokeBy) {
                                 let func = value
                                 // open等方法, 必须在原始的xhr对象上才能调用...
                                 value = function () {
+                                    if (prop === 'open') {
+                                        container.__method = arguments[0]
+                                        container.__url = arguments[1]
+                                    } else if (prop === 'send') {
+                                        let dispatchResultTransformerCreator = () => {
+                                            container.__block_response = true
+                                            let event = {} // 伪装的event
+                                            // debugger
+                                            return p => p
+                                                .then(r => {
+                                                    container.readyState = 4
+                                                    container.response = r
+                                                    container.__onreadystatechange(event) // 直接调用会不会存在this指向错误的问题? => 目前没看到, 先这样(;¬_¬)
+                                                })
+                                                .catch(e => {
+                                                    // 失败时, 让原始的response可以交付
+                                                    container.__block_response = false
+                                                    if (container.__response != null) {
+                                                        container.readyState = 4
+                                                        container.response = container.__response
+                                                        container.__onreadystatechange(event) // 同上
+                                                    }
+                                                })
+                                        }
+                                        if (container.__url.includes('api.bilibili.com/x/player/playurl') && balh_config.enable_in_av) {
+                                            log('/x/player/playurl')
+                                            // debugger
+                                            bilibiliApis._playurl.asyncAjax(container.__url)
+                                                .then(data => {
+                                                    if (!data.code) {
+                                                        data = {
+                                                            code: 0,
+                                                            data: data,
+                                                            message: "0",
+                                                            ttl: 1
+                                                        }
+                                                    }
+                                                    util_log('/x/player/playurl', 'proxy', data)
+                                                    return data
+                                                })
+                                                .compose(dispatchResultTransformerCreator())
+                                        }
+                                    }
                                     return func.apply(target, arguments)
                                 }
                             }
@@ -905,7 +1094,6 @@ function scriptSource(invokeBy) {
         function injectAjax() {
             let originalAjax = $.ajax;
             $.ajax = function (arg0, arg1) {
-                // log(arguments);
                 let param;
                 if (arg1 === undefined) {
                     param = arg0;
@@ -917,12 +1105,13 @@ function scriptSource(invokeBy) {
                 let oriError = param.error;
                 let mySuccess, myError;
                 // 投递结果的transformer, 结果通过oriSuccess/Error投递
-                const dispatchResultTransformer = p => p
+                let dispatchResultTransformer = p => p
                     .then(r => oriSuccess(r))
                     .catch(e => oriError(e))
                 // 转换原始请求的结果的transformer
                 let oriResultTransformer
                 let one_api;
+                // log(param)
                 if (param.url.match('/web_api/get_source')) {
                     one_api = bilibiliApis._get_source;
                     oriResultTransformer = p => p
@@ -958,6 +1147,25 @@ function scriptSource(invokeBy) {
                                 return json
                             }
                         })
+                    const oriDispatchResultTransformer = dispatchResultTransformer
+                    dispatchResultTransformer = p => p
+                        .then(r => {
+                            if (!r.from && !r.result && !r.accept_description) {
+                                util_log('playurl的result缺少必要的字段:', r)
+                                r.from = 'local'
+                                r.result = 'suee'
+                                r.accept_description = ['未知 3P']
+                                // r.timelength = r.durl.map(it => it.length).reduce((a, b) => a + b, 0)
+                                if (r.durl && r.durl[0] && r.durl[0].url.includes('biliplus-vid.win')) {
+                                    const aid = window.__INITIAL_STATE__ && window.__INITIAL_STATE__.aid || 'fuck'
+                                    util_ui_pop({
+                                        content: `原视频已被删除, 当前播放的是<a href="https://bg.biliplus-vid.win/">转存服务器</a>中的视频, 速度较慢<br>被删的原因可能是:<br>1. 视频违规<br>2. 视频被归类到番剧页面 => 试下<a href="https://search.bilibili.com/bangumi?keyword=${aid}">搜索av${aid}</a>`
+                                    })
+                                }
+                            }
+                            return r
+                        })
+                        .compose(oriDispatchResultTransformer)
                 } else if (param.url.match('//interface.bilibili.com/player?')) {
                     if (balh_config.blocked_vip) {
                         mySuccess = function (data) {
@@ -1441,6 +1649,39 @@ function scriptSource(invokeBy) {
             var jQuery;
             Object.defineProperty(window, 'jQuery', {
                 configurable: true, enumerable: true, set: function (v) {
+                    // debugger
+                    log('set jQuery', jQuery, '->', v)
+                    // 临时规避这个问题：https://github.com/ipcjs/bilibili-helper/issues/297
+                    // 新的av页面中, 运行脚本的 injectXHR() 后, 页面会往该方法先后设置两个jQuery...原因未知
+                    // 一个从jquery.min.js中设置, 一个从player.js中设置
+                    // 并且点击/载入等事件会从两个jQuery中向下分发...导致很多功能失常
+                    // 这里我们屏蔽掉jquery.min.js分发的一些事件, 避免一些问题
+                    if (util_page.av_new() && balh_config.enable_in_av) {
+                        try { // 获取调用栈的方法不是标准方法, 需要try-catch
+                            const stack = (new Error()).stack.split('\n')
+                            if (stack[stack.length - 1].includes('jquery')) { // 若从jquery.min.js中调用
+                                log('set jQueury by jquery.min.js', v)
+                                v.fn.balh_on = v.fn.on
+                                v.fn.on = function (arg0, arg1) {
+                                    if (arg0 === 'click.reply' && arg1 === '.reply') {
+                                        // 屏蔽掉"回复"按钮的点击事件
+                                        log('block click.reply', arguments)
+                                        return
+                                    }
+                                    return v.fn.balh_on.apply(this, arguments)
+                                }
+                            }
+                            // jQuery.fn.paging方法用于创建评论区的页标, 需要迁移到新的jQuery上
+                            if (jQuery != null && jQuery.fn.paging != null
+                                && v != null && v.fn.paging == null) {
+                                log('迁移jQuery.fn.paging')
+                                v.fn.paging = jQuery.fn.paging
+                            }
+                        } catch (e) {
+                            util_error(e)
+                        }
+                    }
+
                     jQuery = v;
                     injectAjax();// 设置jQuery后, 立即注入
                 }, get: function () {
@@ -2040,27 +2281,14 @@ function scriptSource(invokeBy) {
                 _('h1', {}, [_('text', `${GM_info.script.name} v${GM_info.script.version} 参数设置`)]),
                 _('br'),
                 _('form', { id: 'balh-settings-form', event: { change: onSettingsFormChange } }, [
-                    _('text', '使用的服务器：'), _('br'),
+                    _('text', '代理服务器：'), _('a', { href: 'javascript:', event: { click: balh_feature_runPing } }, [_('text', '测速')]), _('br'),
                     _('div', { style: { display: 'flex' } }, [
-                        _('label', { style: { flex: 1 } }, [_('input', { type: 'radio', name: 'balh_server', value: r.const.server.S0 }), _('text', '默认代理服务器')]),
+                        _('label', { style: { flex: 1 } }, [_('input', { type: 'radio', name: 'balh_server', value: r.const.server.S0 }), _('text', '默认代理服务器（土豆服）')]),
                         _('label', { style: { flex: 1 } }, [_('input', { type: 'radio', name: 'balh_server', value: r.const.server.S1 }), _('text', '备选代理服务器（更稳定）')]),
                     ]), _('br'),
-                    _('div', { id: 'balh_server_ping', style: { whiteSpace: 'pre-wrap', overflow: 'auto' } }, [_('a', { href: 'javascript:', event: { click: balh_feature_runPing } }, [_('text', '服务器测速')])]), _('br'),
-                    _('text', '脚本工作模式：'), _('br'),
-                    _('div', { style: { display: 'flex' } }, [
-                        _('label', { style: { flex: 1 } }, [_('input', { type: 'radio', name: 'balh_mode', value: r.const.mode.DEFAULT }), _('text', '默认：自动判断')]),
-                        _('label', { style: { flex: 1 } }, [_('input', { type: 'radio', name: 'balh_mode', value: r.const.mode.REPLACE }), _('text', '替换：在需要时处理番剧')]),
-                        _('label', { style: { flex: 1 } }, [_('input', { type: 'radio', name: 'balh_mode', value: r.const.mode.REDIRECT }), _('text', '重定向：完全代理所有番剧')])
-                    ]), _('br'),
-                    _('text', '其他：'), _('br'),
-                    _('div', { style: { display: 'flex' } }, [
-                        _('label', { style: { flex: 1 } }, [_('input', { type: 'checkbox', name: 'balh_blocked_vip' }), _('text', '被永封的大会员'), _('a', { href: 'https://github.com/ipcjs/bilibili-helper/blob/user.js/bilibili_bangumi_area_limit_hack.md#大会员账号被b站永封了', target: '_blank' }, [_('text', '(？)')])]),
-                        _('label', { style: { flex: 1 } }, [_('input', { type: 'checkbox', name: 'balh_enable_in_av' }), _('text', '在AV页面启用'), _('a', { href: 'https://github.com/ipcjs/bilibili-helper/issues/172', target: '_blank' }, [_('text', '(？)')])]),
-                        _('div', { style: { flex: 1, display: 'flex' } }, [
-                            _('label', { style: { flex: 1 } }, [_('input', { type: 'checkbox', name: 'balh_remove_pre_ad' }), _('text', '去前置广告')]),
-                            _('label', { style: { flex: 1 } }, [_('input', { type: 'checkbox', name: 'balh_flv_prefer_ws' }), _('text', '优先使用ws')]),
-                        ])
-                    ]), _('div', { title: '变更后 切换清晰度 或 刷新 生效' }, [
+                    _('div', { id: 'balh_server_ping', style: { whiteSpace: 'pre-wrap', overflow: 'auto' } }, []),
+                    _('text', 'upos服务器：'), _('br'),
+                    _('div', { title: '变更后 切换清晰度 或 刷新 生效' }, [
                         _('input', { style: { visibility: 'hidden' }, type: 'checkbox' }),
                         _('text', '替换upos视频服务器：'),
                         _('select', {
@@ -2070,6 +2298,7 @@ function scriptSource(invokeBy) {
                                     let server = this.value;
                                     let message = $('#upos-server-message');
                                     let clearMsg = function () { message.text('') }
+                                    message.text('保存中...')
                                     $.ajax(balh_config.server + '/api/setUposServer?server=' + server, {
                                         xhrFields: { withCredentials: true },
                                         dataType: 'json',
@@ -2097,6 +2326,21 @@ function scriptSource(invokeBy) {
                             ]),
                         _('span', { 'id': 'upos-server-message' })
                     ]), _('br'),
+                    _('text', '脚本工作模式：'), _('br'),
+                    _('div', { style: { display: 'flex' } }, [
+                        _('label', { style: { flex: 1 } }, [_('input', { type: 'radio', name: 'balh_mode', value: r.const.mode.DEFAULT }), _('text', '默认：自动判断')]),
+                        _('label', { style: { flex: 1 } }, [_('input', { type: 'radio', name: 'balh_mode', value: r.const.mode.REPLACE }), _('text', '替换：在需要时处理番剧')]),
+                        _('label', { style: { flex: 1 } }, [_('input', { type: 'radio', name: 'balh_mode', value: r.const.mode.REDIRECT }), _('text', '重定向：完全代理所有番剧')])
+                    ]), _('br'),
+                    _('text', '其他：'), _('br'),
+                    _('div', { style: { display: 'flex' } }, [
+                        _('label', { style: { flex: 1 } }, [_('input', { type: 'checkbox', name: 'balh_blocked_vip' }), _('text', '被永封的大会员'), _('a', { href: 'https://github.com/ipcjs/bilibili-helper/blob/user.js/bilibili_bangumi_area_limit_hack.md#大会员账号被b站永封了', target: '_blank' }, [_('text', '(？)')])]),
+                        _('label', { style: { flex: 1 } }, [_('input', { type: 'checkbox', name: 'balh_enable_in_av' }), _('text', '在AV页面启用'), _('a', { href: 'https://github.com/ipcjs/bilibili-helper/issues/172', target: '_blank' }, [_('text', '(？)')])]),
+                        _('div', { style: { flex: 1, display: 'flex' } }, [
+                            _('label', { style: { flex: 1 } }, [_('input', { type: 'checkbox', name: 'balh_remove_pre_ad' }), _('text', '去前置广告')]),
+                            // _('label', { style: { flex: 1 } }, [_('input', { type: 'checkbox', name: 'balh_flv_prefer_ws' }), _('text', '优先使用ws')]),
+                        ])
+                    ]), _('br'),
                     _('a', { href: 'javascript:', 'data-sign': 'in', event: { click: onSignClick } }, [_('text', '帐号授权')]),
                     _('text', '　'),
                     _('a', { href: 'javascript:', 'data-sign': 'out', event: { click: onSignClick } }, [_('text', '取消授权')]),
@@ -2120,7 +2364,9 @@ function scriptSource(invokeBy) {
 
         util_init(() => {
             if (!(util_page.player() || (util_page.av() && !balh_config.enable_in_av))) {
-                addSettingsButton()
+                if (!util_page.av()) { // av页面添加这个按钮不知道为啥页面会混乱...屏蔽掉(;¬_¬)
+                    addSettingsButton()
+                }
             }
         }, util_init.PRIORITY.DEFAULT, util_init.RUN_AT.DOM_LOADED_AFTER)
         return {
@@ -2129,11 +2375,35 @@ function scriptSource(invokeBy) {
         }
     }())
 
+    const balh_jump_to_baipiao = (function () {
+        function main() {
+            for (let bp of r.baipiao) {
+                const cookie_key = `balh_baipao_${bp.key}`
+                if (bp.match() && !util_cookie[cookie_key]) {
+                    util_ui_pop({
+                        content: [
+                            _('text', '发现白嫖地址: '), _('a', { href: bp.link }, bp.link),
+                            _('div', {}, bp.message),
+                        ],
+                        confirmBtn: '一键跳转',
+                        onConfirm: () => { location.href = bp.link },
+                        onClose: () => { util_cookie.set(cookie_key, r.const.TRUE, '') }
+                    })
+                    break
+                }
+            }
+        }
+        util_init(() => {
+            main()
+        }, util_init.PRIORITY.DEFAULT, util_init.RUN_AT.DOM_LOADED_AFTER)
+    }())
+
     function main() {
         util_log(
             'mode:', balh_config.mode,
             'blocked_vip:', balh_config.blocked_vip,
             'server:', balh_config.server,
+            'upos_server:', balh_config.upos_server,
             'flv_prefer_ws:', balh_config.flv_prefer_ws,
             'remove_pre_ad:', balh_config.remove_pre_ad,
             'readyState:', document.readyState,

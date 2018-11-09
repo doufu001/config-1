@@ -41,6 +41,8 @@
 ; others
 *://*.apple.com/*
 *://*.v2ray.com/*
+*://*.greasyfork.org/*
+*://*.savefrom.net/*
 
 ; jp
 *://*.jp/*

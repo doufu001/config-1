@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VIP视频在线解析
 // @namespace    http://czjx8.com/
-// @version      1.4.0
+// @version      1.4.0.1
 // @description  在视频标题旁上显示“vip解析”按钮和“搜索电影”按钮，在线播放vip视频；支持优酷vip，腾讯vip，爱奇艺vip，芒果vip，乐视vip等常用视频...
 // @author       czjx8
 // @match        *://v.youku.com/v_show/*
@@ -170,6 +170,6 @@
     }
     $('#czjx8VipBtn').on('click',function(){
         curPlaySite = window.location.href;
-        window.location.href = 'http://api.baiyug.cn/vip/index.php?url=' + curPlaySite;
+        window.location.href = 'http://app.baiyug.cn:2019/vip/index.php?url=' + curPlaySite;
     });
 })();
