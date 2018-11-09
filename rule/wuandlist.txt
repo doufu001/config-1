@@ -9,6 +9,3 @@
 @@||dmm.com^
 @@||dmm.co.jp^
 @@||captcha.yundun.com
-
-!--savefrom
-||keyrolan.com
