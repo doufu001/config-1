@@ -1,13 +1,65 @@
 ; Summary: Proxy Rule List
-; Date: 2018.9.9
+; Date: 2018.11.9
 
 #BEGIN
 
 [Wildcard]
 
-*://*.brightcove.com/*
-*://*.cloudfront.net/*
+; google
+*://*.doubleclick.net/*
+
+; art
+*://*.behance.net/*
+
+; acg
+*://*.pximg.net/*
+*://*saucenao.com/*
+
+; education
+*://*.coursera.org/*
+*://*.sci-hub.*/*
+*://*.rus.ec/*
+*://*.gov/*
+*://*.quoracdn.net/*
+
+; game
+*://*.ttvnw.net/*
+*://*.jtvnw.net/*
+*://*.garena.tv/*
+*://*.humblebundle.com/*
+
+; entertainment
+*://*.wecandeo.com/*
+
+; news
+*://*.wsj.net/*
+*://*.btbtt.co/*
+
+; netdisk
+*://*.mediafire.com/*
+
+; others
+*://*.apple.com/*
+*://*.v2ray.com/*
+
+; jp
 *://*.jp/*
+*://*.brightcove.com/*
+*://*.cxense.com/*
+*://*.eyeota.net/*
+*://203.104.209.*/*
+
+; adult
+*://*dio*.net/*
+*://*.jkforum.net/*
+*://*.myav.tv/*
+*://*.av9.*/*
+
+;cdn
+*://*.adblockplus.org/*
+*://*.cloudfront.net/*
+
+; debug
 *://ip.cn/*
 
 [RegExp]
@@ -18,5 +70,11 @@ twitter
 facebook
 github
 dmm
+dropbox
+twitch
+nordstrom
+amazon
+akamai
+cloudflare
 
 #END
