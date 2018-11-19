@@ -1,4 +1,4 @@
-// update: 2018.10.18
+// update: 2018.11.19
 // 鉴于《刑法》、《网络安全法》等法律的有关条款，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
@@ -79,6 +79,8 @@ if (
   dnsDomainIs(host, "s.yimg.com") ||
   dnsDomainIs(host, "proko.com") ||
   dnsDomainIs(host, "tineye.com") ||
+  dnsDomainIs(host, "depositphotos.com") ||
+  dnsDomainIs(host, "istockphoto.com") ||
 // acg
   dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||
@@ -106,7 +108,8 @@ if (
   dnsDomainIs(host, "gitbooks.io") ||
   dnsDomainIs(host, "tensorflow.org") ||
   dnsDomainIs(host, "mozilla.org") ||
-// education
+  dnsDomainIs(host, "getpostman.com") ||
+// scholar
   dnsDomainIs(host, "coursera.org") ||
   dnsDomainIs(host, "archive.org") ||
   dnsDomainIs(host, "wuancake.org") ||
@@ -115,6 +118,8 @@ if (
   dnsDomainIs(host, "nih.gov") ||
   dnsDomainIs(host, "pubmed.gov") ||
   dnsDomainIs(host, "quora.com") ||
+  dnsDomainIs(host, "bioconductor.org") ||
+  dnsDomainIs(host, "dictionary.goo.ne.jp") ||
 // music
   dnsDomainIs(host, "soundcloud.com") ||
   dnsDomainIs(host, "sndcdn.com") ||
@@ -145,6 +150,7 @@ if (
   dnsDomainIs(host, "nordstrommedia.com") ||
   dnsDomainIs(host, "nordstromdata.com") ||
   dnsDomainIs(host, "amazon.co.jp") ||
+  dnsDomainIs(host, "sierratradingpost.com") ||
 // netdisk
   dnsDomainIs(host, "dropbox.com") ||
   dnsDomainIs(host, "dropboxstatic.com") ||
