@@ -51,6 +51,10 @@
 *://*.eyeota.net/*
 *://203.104.209.*/*
 
+; tw
+*://*.tw/*
+*://*momoho45.com/*
+
 ; adult
 *://*dio*.net/*
 *://*.jkforum.net/*
