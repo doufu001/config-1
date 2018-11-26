@@ -89,6 +89,7 @@ if (
   dnsDomainIs(host, "tensorflow.org") ||
   dnsDomainIs(host, "mozilla.org") ||
   dnsDomainIs(host, "getpostman.com") ||
+  dnsDomainIs(host, "nvidia.com") ||
 // scholar
   dnsDomainIs(host, "coursera.org") ||
   dnsDomainIs(host, "archive.org") ||

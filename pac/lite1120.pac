@@ -89,6 +89,7 @@ if (
   dnsDomainIs(host, "tensorflow.org") ||
   dnsDomainIs(host, "mozilla.org") ||
   dnsDomainIs(host, "getpostman.com") ||
+  dnsDomainIs(host, "nvidia.com") ||
 // scholar
   dnsDomainIs(host, "coursera.org") ||
   dnsDomainIs(host, "archive.org") ||
@@ -131,13 +132,6 @@ if (
   dnsDomainIs(host, "nordstromdata.com") ||
   dnsDomainIs(host, "amazon.co.jp") ||
   dnsDomainIs(host, "sierratradingpost.com") ||
-// netdisk
-  dnsDomainIs(host, "dropbox.com") ||
-  dnsDomainIs(host, "dropboxstatic.com") ||
-  dnsDomainIs(host, "onedrive.live.com") ||
-  dnsDomainIs(host, "1drv.ms") ||
-  dnsDomainIs(host, "mediafire.com") ||
-  dnsDomainIs(host, "getuploader.com") ||
 // config
   dnsDomainIs(host, "adblockplus.org") ||
   dnsDomainIs(host, "greasyfork.org") ||
