@@ -1,5 +1,5 @@
 ; Summary: Proxy Rule List
-; Date: 2018.11.9
+; Date: 2018.12.3
 
 #BEGIN
 
@@ -54,6 +54,9 @@
 ; tw
 *://*.tw/*
 *://*momoho45.com/*
+
+; uk
+*://*.uk/*
 
 ; adult
 *://*dio*.net/*
