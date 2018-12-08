@@ -1,5 +1,5 @@
 ; Summary: Proxy Rule List
-; Date: 2018.12.3
+; Date: 2018.12.8
 
 #BEGIN
 
@@ -38,12 +38,6 @@
 ; netdisk
 *://*.mediafire.com/*
 
-; others
-*://*.apple.com/*
-*://*.v2ray.com/*
-*://*.greasyfork.org/*
-*://*.savefrom.net/*
-
 ; jp
 *://*.jp/*
 *://*.brightcove.com/*
@@ -58,15 +52,20 @@
 ; uk
 *://*.uk/*
 
+; others
+*://*.apple.com/*
+*://*.v2ray.com/*
+*://*.greasyfork.org/*
+*://*.savefrom.net/*
+*://*.adblockplus.org/*
+*://*.cloudfront.net/*
+*://*.funcaptcha.com/*
+
 ; adult
 *://*dio*.net/*
 *://*.jkforum.net/*
 *://*.myav.tv/*
 *://*.av9.*/*
-
-;cdn
-*://*.adblockplus.org/*
-*://*.cloudfront.net/*
 
 ; debug
 *://ip.cn/*

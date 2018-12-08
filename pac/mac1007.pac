@@ -1,4 +1,4 @@
-// update: 2018.11.26
+// update: 2018.12.8
 // 鉴于《刑法》、《网络安全法》等法律的有关条款，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
@@ -159,14 +159,14 @@ if (
   dnsDomainIs(host, "1drv.ms") ||
   dnsDomainIs(host, "mediafire.com") ||
   dnsDomainIs(host, "getuploader.com") ||
-// config
+// others
   dnsDomainIs(host, "adblockplus.org") ||
   dnsDomainIs(host, "greasyfork.org") ||
-// cdn
   dnsDomainIs(host, "akamaihd.net") ||
   dnsDomainIs(host, "amazonaws.com") ||
   dnsDomainIs(host, "cloudfront.net") ||
   dnsDomainIs(host, "cloudflare.com") ||
+  dnsDomainIs(host, "funcaptcha.com") ||
 // debug
   dnsDomainIs(host, "ip.cn") 
 ) return "PROXY 127.0.0.1:2333";
