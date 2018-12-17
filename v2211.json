@@ -2,6 +2,12 @@
   "log": {
     "loglevel": "warning"
   },
+  "dns": {
+      "servers": [
+        "8.8.8.8",
+        "8.8.4.4"
+      ]
+  },
   "inbound": {
       "port" : 10808,
       "listen" : "127.0.0.1",
