@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         解除B站区域限制
 // @namespace    http://tampermonkey.net/
-// @version      7.0.6.1
+// @version      7.1.6
 // @description  通过替换获取视频地址接口的方式, 实现解除B站区域限制; 只对HTML5播放器生效;
 // @author       ipcjs
 // @supportURL   https://github.com/ipcjs/bilibili-helper/issues
@@ -18,12 +18,20 @@
 // @include      *://bangumi.bilibili.com/movie/*
 // @include      *://www.bilibili.com/bangumi/media/md*
 // @include      *://www.bilibili.com/blackboard/html5player.html*
+// @include      *://link.acg.tv/forum.php*
 // @run-at       document-start
 // @grant        none
 // ==/UserScript==
 
 'use strict';
 const log = console.log.bind(console, 'injector:')
+
+if (location.href.match('link.acg.tv/forum.php') != null && location.href.match('access_key') != null && window.opener != null) {
+    window.stop();
+    document.children[0].innerHTML = '<title>BALH - 授权</title><meta charset="UTF-8" name="viewport" content="width=device-width">正在跳转……';
+    window.opener.postMessage('balh-login-credentials: ' + location.href, '*');
+    return;
+}
 
 function injector() {
     if (document.getElementById('balh-injector-source')) {
@@ -713,7 +721,7 @@ function scriptSource(invokeBy) {
 
         if (document.getElementById('AHP_Notice_style') == null) {
             let noticeWidth = Math.min(500, innerWidth - 40);
-            document.head.appendChild(_('style', { id: 'AHP_Notice_style' }, [_('text', `#AHP_Notice{ line-height:normal;position:fixed;left:0;right:0;top:0;height:0;z-index:20000;transition:.5s;cursor:default } .AHP_down_banner{ margin:2px;padding:2px;color:#FFFFFF;font-size:13px;font-weight:bold;background-color:green } .AHP_down_btn{ margin:2px;padding:4px;color:#1E90FF;font-size:14px;font-weight:bold;border:#1E90FF 2px solid;display:inline-block;border-radius:5px } body.ABP-FullScreen{ overflow:hidden } @keyframes pop-iframe-in{0%{opacity:0;transform:scale(.7);}100%{opacity:1;transform:scale(1)}} @keyframes pop-iframe-out{0%{opacity:1;transform:scale(1);}100%{opacity:0;transform:scale(.7)}} #AHP_Notice>div{ position:absolute;bottom:0;left:0;right:0;font-size:15px } #AHP_Notice>div>div{ border:1px #AAA solid;width:${noticeWidth}px;margin:0 auto;padding:20px 10px 5px;background:#EFEFF4;color:#000;border-radius:5px;box-shadow:0 0 5px -2px } #AHP_Notice>div>div *{ margin:5px 0; } #AHP_Notice input[type=text]{ border: none;border-bottom: 1px solid #AAA;width: 60%;background: transparent } #AHP_Notice input[type=text]:active{ border-bottom-color:#4285f4 } #AHP_Notice input[type=button] { border-radius: 2px; border: #adadad 1px solid; padding: 3px; margin: 0 5px; min-width:50px } #AHP_Notice input[type=button]:hover { background: #FFF; } #AHP_Notice input[type=button]:active { background: #CCC; } .noflash-alert{display:none}`)]));
+            document.head.appendChild(_('style', { id: 'AHP_Notice_style' }, [_('text', `#AHP_Notice{ line-height:normal;position:fixed;left:0;right:0;top:0;height:0;z-index:20000;transition:.5s;cursor:default;pointer-events:none } .AHP_down_banner{ margin:2px;padding:2px;color:#FFFFFF;font-size:13px;font-weight:bold;background-color:green } .AHP_down_btn{ margin:2px;padding:4px;color:#1E90FF;font-size:14px;font-weight:bold;border:#1E90FF 2px solid;display:inline-block;border-radius:5px } body.ABP-FullScreen{ overflow:hidden } @keyframes pop-iframe-in{0%{opacity:0;transform:scale(.7);}100%{opacity:1;transform:scale(1)}} @keyframes pop-iframe-out{0%{opacity:1;transform:scale(1);}100%{opacity:0;transform:scale(.7)}} #AHP_Notice>div{ position:absolute;bottom:0;left:0;right:0;font-size:15px } #AHP_Notice>div>div{ border:1px #AAA solid;width:${noticeWidth}px;margin:0 auto;padding:20px 10px 5px;background:#EFEFF4;color:#000;border-radius:5px;box-shadow:0 0 5px -2px;pointer-events:auto;white-space:pre-wrap } #AHP_Notice>div>div *{ margin:5px 0; } #AHP_Notice input[type=text]{ border: none;border-bottom: 1px solid #AAA;width: 60%;background: transparent } #AHP_Notice input[type=text]:active{ border-bottom-color:#4285f4 } #AHP_Notice input[type=button] { border-radius: 2px; border: #adadad 1px solid; padding: 3px; margin: 0 5px; min-width:50px } #AHP_Notice input[type=button]:hover { background: #FFF; } #AHP_Notice input[type=button]:active { background: #CCC; } .noflash-alert{display:none}`)]));
         }
 
         if (document.querySelector('#AHP_Notice') != null)
@@ -917,6 +925,26 @@ function scriptSource(invokeBy) {
     // https://www.biliplus.com/api/h5play.php?tid=33&cid=31166258&type=vupload&vid=vupload_31166258&bangumi=1
     const balh_api_plus_playurl_for_mp4 = (cid, bangumi = true) => util_ajax(`${balh_config.server}/api/h5play.php?tid=33&cid=${cid}&type=vupload&vid=vupload_${cid}&bangumi=${bangumi ? 1 : 0}`)
         .then(text => (text.match(/srcUrl=\{"mp4":"(https?.*)"\};/) || ['', ''])[1]); // 提取mp4的url
+
+    const balh_is_close = (function () {
+        const isClose = false
+        if (isClose) {
+            util_init(() => {
+                if (!balh_config.is_close_do_not_remind) {
+                    util_ui_pop({
+                        content: `<h3>${GM_info.script.name}</h3>VPS托管商跑路了 导致服务临时下线，预计下周恢复<br>想了解最新动态，请关注<a href="https://github.com/ipcjs/bilibili-helper/issues/311">这个页面</a>`,
+                        confirmBtn: '知道了, 不再提醒',
+                        onConfirm: function () {
+                            balh_config.is_close_do_not_remind = r.const.TRUE
+                            location.reload()
+                        },
+                    })
+                }
+            })
+        }
+        return isClose
+    })()
+
     const balh_feature_switch_to_old_player = (function () {
         if (!util_page.av() || localStorage.balh_disable_switch_to_old_player) {
             return
@@ -934,6 +962,8 @@ function scriptSource(invokeBy) {
         })
     })()
     const balh_feature_area_limit_new = (function () {
+        if (balh_is_close) return
+
         if (!(util_page.av() && balh_config.enable_in_av)) {
             return
         }
@@ -957,6 +987,8 @@ function scriptSource(invokeBy) {
         }
     })()
     const balh_feature_area_limit = (function () {
+        if (balh_is_close) return
+
         function injectXHR() {
             util_debug('XMLHttpRequest的描述符:', Object.getOwnPropertyDescriptor(window, 'XMLHttpRequest'))
             let firstCreateXHR = true
@@ -975,7 +1007,8 @@ function scriptSource(invokeBy) {
                                 let cb = value
                                 value = function (event) {
                                     if (target.readyState === 4) {
-                                        if (target.responseURL.includes('bangumi.bilibili.com/view/web_api/season/user/status')) {
+                                        if (target.responseURL.includes('bangumi.bilibili.com/view/web_api/season/user/status')
+                                            || target.responseURL.includes('api.bilibili.com/pgc/view/web/season/user/status')) {
                                             log('/season/user/status:', target.responseText)
                                             let json = JSON.parse(target.responseText)
                                             let rewriteResult = false
@@ -1150,7 +1183,7 @@ function scriptSource(invokeBy) {
                     const oriDispatchResultTransformer = dispatchResultTransformer
                     dispatchResultTransformer = p => p
                         .then(r => {
-                            if (!r.from && !r.result && !r.accept_description) {
+                            if (!r.code && !r.from && !r.result && !r.accept_description) {
                                 util_log('playurl的result缺少必要的字段:', r)
                                 r.from = 'local'
                                 r.result = 'suee'
@@ -1787,8 +1820,16 @@ function scriptSource(invokeBy) {
                     clearLoginFlag()
                     updateLoginFlag(() => {
                         if (!isLogin()) {
-                            localStorage.balh_must_remind_login_v1 = r.const.FALSE
-                            util_ui_alert(`${GM_info.script.name}\n要不要考虑进行一下授权？\n\n授权后可以观看区域限定番剧的1080P\n（如果你是大会员或承包过这部番的话）\n\n你可以随时在设置中打开授权页面`, balh_feature_sign.showLogin)
+                            localStorage.balh_must_remind_login_v1 = r.const.FALSE;
+                            util_ui_pop({
+                                content: [
+                                    _('text', `${GM_info.script.name}\n要不要考虑进行一下授权？\n\n授权后可以观看区域限定番剧的1080P\n（如果你是大会员或承包过这部番的话）\n\n你可以随时在设置中打开授权页面`)
+                                ],
+                                onConfirm: () => {
+                                    balh_feature_sign.showLogin();
+                                    document.querySelector('#AHP_Notice').remove()
+                                }
+                            })
                         }
                     })
                 } else if ((isLogin() && Date.now() - parseInt(localStorage.oauthTime) > 24 * 60 * 60 * 1000) // 已登录，每天为周期检测key有效期，过期前五天会自动续期
@@ -1801,9 +1842,33 @@ function scriptSource(invokeBy) {
         }
 
         function showLogin() {
+            const balh_auth_window = window.open('about:blank');
+            balh_auth_window.document.title = 'BALH - 授权';
+            balh_auth_window.document.body.innerHTML = '<meta charset="UTF-8" name="viewport" content="width=device-width">正在获取授权，请稍候……';
+            window.balh_auth_window = balh_auth_window;
+            $.ajax('https://passport.bilibili.com/login/app/third?appkey=27eb53fc9058f8c3&api=http%3A%2F%2Flink.acg.tv%2Fforum.php&sign=67ec798004373253d60114caaad89a8c', {
+                xhrFields: { withCredentials: true },
+                type: 'GET',
+                dataType: 'json',
+                success: (data) => {
+                    balh_auth_window.document.body.innerHTML = '<meta charset="UTF-8" name="viewport" content="width=device-width">正在跳转……';
+                    balh_auth_window.location.href = data.data.confirm_uri;
+                },
+                error: (e) => {
+                    alert('error');
+                }
+            })
+        }
+
+        function showLoginByPassword() {
             const loginUrl = balh_config.server + '/login'
-            const iframeSrc = 'https://passport.bilibili.com/login?appkey=27eb53fc9058f8c3&api=' + encodeURIComponent(loginUrl) + '&sign=' + hex_md5('api=' + loginUrl + 'c2ed53a74eeefe3cf99fbd01d8c9c375')
-            util_ui_popframe(iframeSrc)
+            util_ui_pop({
+                content: `B站当前关闭了第三方登录的接口<br>目前只能使用帐号密码的方式<a href="${loginUrl}">登录代理服务器</a><br><br>登录完成后, 请手动刷新当前页面`,
+                confirmBtn: '前往登录页面',
+                onConfirm: () => {
+                    window.open(loginUrl)
+                }
+            })
         }
 
         function showLogout() {
@@ -1812,20 +1877,29 @@ function scriptSource(invokeBy) {
 
         // 监听登录message
         window.addEventListener('message', function (e) {
-            switch (e.data) {
-                case 'BiliPlus-Login-Success':
+            if (typeof e.data !== 'string') return // 只处理e.data为string的情况
+            switch (e.data.split(':')[0]) {
+                case 'BiliPlus-Login-Success': {
                     //登入
                     localStorage.balh_must_updateLoginFlag = r.const.TRUE
                     Promise.resolve('start')
                         .then(() => util_jsonp(balh_config.server + '/login?act=getlevel'))
                         .then(() => location.reload())
                         .catch(() => location.reload())
-                    break
-                case 'BiliPlus-Logout-Success':
+                    break;
+                }
+                case 'BiliPlus-Logout-Success': {
                     //登出
                     clearLoginFlag()
                     location.reload()
-                    break
+                    break;
+                }
+                case 'balh-login-credentials': {
+                    balh_auth_window.close();
+                    let url = e.data.split(': ')[1];
+                    util_ui_popframe(url.replace('http://link.acg.tv/forum.php', balh_config.server + '/login'));
+                    break;
+                }
             }
         })
 
@@ -2284,7 +2358,7 @@ function scriptSource(invokeBy) {
                     _('text', '代理服务器：'), _('a', { href: 'javascript:', event: { click: balh_feature_runPing } }, [_('text', '测速')]), _('br'),
                     _('div', { style: { display: 'flex' } }, [
                         _('label', { style: { flex: 1 } }, [_('input', { type: 'radio', name: 'balh_server', value: r.const.server.S0 }), _('text', '默认代理服务器（土豆服）')]),
-                        _('label', { style: { flex: 1 } }, [_('input', { type: 'radio', name: 'balh_server', value: r.const.server.S1 }), _('text', '备选代理服务器（更稳定）')]),
+                        _('label', { style: { flex: 1 } }, [_('input', { type: 'radio', name: 'balh_server', value: r.const.server.S1 }), _('text', `${r.const.server.S1}（更稳定）`), _('a', { href: 'https://www.biliplus.com/?about' }, [_('text', '（捐赠）')])]),
                     ]), _('br'),
                     _('div', { id: 'balh_server_ping', style: { whiteSpace: 'pre-wrap', overflow: 'auto' } }, []),
                     _('text', 'upos服务器：'), _('br'),
