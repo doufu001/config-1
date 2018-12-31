@@ -1,4 +1,4 @@
-// update: 2018.12.28
+// update: 2018.12.31
 // 鉴于《刑法》、《网络安全法》等法律的有关条款，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
@@ -157,7 +157,14 @@ if (
   dnsDomainIs(host, "nordstromdata.com") ||
   dnsDomainIs(host, "amazon.co.jp") ||
   dnsDomainIs(host, "sierratradingpost.com") ||
-// non-lite
+// netdisk
+  dnsDomainIs(host, "dropbox.com") ||
+  dnsDomainIs(host, "dropboxstatic.com") ||
+  dnsDomainIs(host, "onedrive.live.com") ||
+  dnsDomainIs(host, "1drv.ms") ||
+  dnsDomainIs(host, "mediafire.com") ||
+  dnsDomainIs(host, "getuploader.com") ||
+// others
   dnsDomainIs(host, "quora.com") ||
   dnsDomainIs(host, "reddit.com") ||
   dnsDomainIs(host, "redditstatic.com") ||
@@ -168,14 +175,7 @@ if (
   shExpMatch(url, "*://www.bbc.co.uk/learningenglish/*") ||
   dnsDomainIs(host, "bbci.co.uk") ||
   dnsDomainIs(host, "apkpure.com") ||
-// netdisk
-  dnsDomainIs(host, "dropbox.com") ||
-  dnsDomainIs(host, "dropboxstatic.com") ||
-  dnsDomainIs(host, "onedrive.live.com") ||
-  dnsDomainIs(host, "1drv.ms") ||
-  dnsDomainIs(host, "mediafire.com") ||
-  dnsDomainIs(host, "getuploader.com") ||
-// others
+// config&cdn
   dnsDomainIs(host, "adblockplus.org") ||
   dnsDomainIs(host, "greasyfork.org") ||
   dnsDomainIs(host, "akamaihd.net") ||

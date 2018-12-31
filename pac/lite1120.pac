@@ -1,4 +1,4 @@
-// update: 2018.11.17
+// update: 2018.12.31
 // 鉴于《刑法》、《网络安全法》等法律的有关条款，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
@@ -19,12 +19,6 @@ if (
   dnsDomainIs(host, "googlesource.com") ||
   dnsDomainIs(host, "gvt1.com") ||
   dnsDomainIs(host, "goo.gl") ||
-  dnsDomainIs(host, "googletagmanager.com") ||
-  dnsDomainIs(host, "googletagservices") ||
-  dnsDomainIs(host, "googlesyndication.com") ||
-  dnsDomainIs(host, "googleadservices.com") ||
-  dnsDomainIs(host, "doubleclick.net") ||
-  dnsDomainIs(host, "google-analytics.com") ||
   dnsDomainIs(host, "accounts.youtube.com") ||
   dnsDomainIs(host, "img.youtube.com") ||
 // dmm
@@ -35,6 +29,8 @@ if (
   dnsDomainIs(host, "cxense.com") ||
   dnsDomainIs(host, "a-i-ad.com") ||
   dnsDomainIs(host, "ravenjs.com") ||
+  dnsDomainIs(host, "nex8.net") ||
+  dnsDomainIs(host, "advg.jp") ||
   shExpMatch(url, "http://pics.dmm.co.jp/digital/*48/*") ||
   shExpMatch(url, "http://203.104.209.*/*") ||
   dnsDomainIs(host, "dovs9u514acja.cloudfront.net") ||
@@ -42,6 +38,8 @@ if (
   dnsDomainIs(host, "touken-ranbu.jp") ||
   dnsDomainIs(host, "shiropro-re.net") ||
   dnsDomainIs(host, "millennium-war.net") ||
+  dnsDomainIs(host, "happyelements.co.jp") ||
+  dnsDomainIs(host, "hekk.org") ||
 // art
   shExpMatch(url, "*://*.pinterest.*/*") ||
   dnsDomainIs(host, "pinimg.com") ||
@@ -73,6 +71,7 @@ if (
   dnsDomainIs(host, "kadokawa.co.jp") ||
   dnsDomainIs(host, "granbluefantasy.jp") ||
   dnsDomainIs(host, "ja.wikipedia.org") ||
+  dnsDomainIs(host, "cmoa.jp") ||
 // coding
   dnsDomainIs(host, "github.com") ||
   dnsDomainIs(host, "githubusercontent.com") ||
@@ -90,6 +89,8 @@ if (
   dnsDomainIs(host, "mozilla.org") ||
   dnsDomainIs(host, "getpostman.com") ||
   dnsDomainIs(host, "nvidia.com") ||
+  dnsDomainIs(host, "bitbucket.org") ||
+  dnsDomainIs(host, "evgnet.com") ||
 // scholar
   dnsDomainIs(host, "coursera.org") ||
   dnsDomainIs(host, "archive.org") ||
@@ -98,9 +99,9 @@ if (
   dnsDomainIs(host, "rus.ec") ||
   dnsDomainIs(host, "nih.gov") ||
   dnsDomainIs(host, "pubmed.gov") ||
-  dnsDomainIs(host, "quora.com") ||
   dnsDomainIs(host, "bioconductor.org") ||
   dnsDomainIs(host, "dictionary.goo.ne.jp") ||
+  dnsDomainIs(host, "bing.com") ||
 // music
   dnsDomainIs(host, "soundcloud.com") ||
   dnsDomainIs(host, "sndcdn.com") ||
@@ -126,20 +127,23 @@ if (
   dnsDomainIs(host, "mgoon.com") ||
   dnsDomainIs(host, "wecandeo.com") ||
   dnsDomainIs(host, "btbtt.co") ||
+  dnsDomainIs(host, "gyao.yahoo.co.jp") ||
+  dnsDomainIs(host, "yimg.jp") ||
+  dnsDomainIs(host, "brightcove.com") ||
 // shopping
   dnsDomainIs(host, "nordstrom.com") ||
   dnsDomainIs(host, "nordstrommedia.com") ||
   dnsDomainIs(host, "nordstromdata.com") ||
   dnsDomainIs(host, "amazon.co.jp") ||
   dnsDomainIs(host, "sierratradingpost.com") ||
-// config
+// config&cdn
   dnsDomainIs(host, "adblockplus.org") ||
   dnsDomainIs(host, "greasyfork.org") ||
-// cdn
   dnsDomainIs(host, "akamaihd.net") ||
   dnsDomainIs(host, "amazonaws.com") ||
   dnsDomainIs(host, "cloudfront.net") ||
   dnsDomainIs(host, "cloudflare.com") ||
+  dnsDomainIs(host, "funcaptcha.com") ||
 // debug
   dnsDomainIs(host, "ip.cn") 
 ) return "PROXY 127.0.0.1:2333";
