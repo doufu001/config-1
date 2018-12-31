@@ -51,7 +51,6 @@ if (
   dnsDomainIs(host, "a-i-ad.com") ||
   dnsDomainIs(host, "ravenjs.com") ||
   dnsDomainIs(host, "nex8.net") ||
-  dnsDomainIs(host, "advg.jp") ||
   shExpMatch(url, "http://pics.dmm.co.jp/digital/*48/*") ||
   shExpMatch(url, "http://203.104.209.*/*") ||
   dnsDomainIs(host, "dovs9u514acja.cloudfront.net") ||
