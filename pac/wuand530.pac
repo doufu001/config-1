@@ -68,6 +68,7 @@ if (
   dnsDomainIs(host, "accountkit.com") ||
   dnsDomainIs(host, "instagram.com") ||
   shExpMatch(url, "*://instagram.*.fbcdn.net/*") ||
+  dnsDomainIs(host, "graph.facebook.com") ||
   dnsDomainIs(host, "deviantart.com") ||
   dnsDomainIs(host, "deviantart.net") ||
   dnsDomainIs(host, "behance.net") ||
