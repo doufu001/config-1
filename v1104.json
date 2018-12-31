@@ -84,6 +84,7 @@
           "type" : "field",
           "domain" : [
             "plus.google.com",
+            "youtube",
             "googlevideo.com"
           ],
           "outboundTag" : "block"
