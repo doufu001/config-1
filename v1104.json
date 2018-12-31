@@ -74,18 +74,18 @@
         {
           "type" : "field",
           "domain" : [
-			"irs01.com",
-			"l.qq.com",
-			"btrace.qq.com",
-			"mtrace.qq.com",
-			"ifacelog.iqiyi.com",
-			"msg.qy.net",
-			"adash-c.ut.taobao.com",
-			"amdc.m.taobao.com",
-			"atm.youku.com",
-			"iyes.youku.com",
-			"plus.google.com",
-			"googlevideo.com"
+            "irs01.com",
+            "l.qq.com",
+            "btrace.qq.com",
+            "mtrace.qq.com",
+            "ifacelog.iqiyi.com",
+            "msg.qy.net",
+            "adash-c.ut.taobao.com",
+            "amdc.m.taobao.com",
+            "atm.youku.com",
+            "iyes.youku.com",
+            "plus.google.com",
+            "googlevideo.com"
           ],
           "outboundTag" : "block"
         },
@@ -93,7 +93,7 @@
           "type" : "field",
           "domain" : [
             "dmm.com",
-			"dmmgames.com",
+            "dmmgames.com",
             "gsspat.jp",
             "cxpublic.com",
             "cxense.com",
@@ -126,7 +126,7 @@
             "cedexis",
             "accountkit.com",
             "instagram",
-			"graph.facebook.com",
+            "graph.facebook.com",
             "deviantart",
             "behance.net",
             "shutterstock.com",
