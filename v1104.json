@@ -9,7 +9,15 @@
         "servers": [
             "223.5.5.5", 
             "119.29.29.29", 
-            "114.114.114.114"
+            {
+              "domains" : [
+                "google",
+                "facebook",
+                "instagram"
+              ],
+              "address" : "8.8.8.8",
+              "port" : 53
+            }
         ]
     },
   "inbound": {
@@ -74,16 +82,6 @@
         {
           "type" : "field",
           "domain" : [
-            "irs01.com",
-            "l.qq.com",
-            "btrace.qq.com",
-            "mtrace.qq.com",
-            "ifacelog.iqiyi.com",
-            "msg.qy.net",
-            "adash-c.ut.taobao.com",
-            "amdc.m.taobao.com",
-            "atm.youku.com",
-            "iyes.youku.com",
             "plus.google.com",
             "googlevideo.com"
           ],
