@@ -13,6 +13,7 @@
               "domains" : [
                 "google",
                 "facebook",
+				"fbcdn",
                 "instagram"
               ],
               "address" : "8.8.8.8",
@@ -125,6 +126,8 @@
             "accountkit.com",
             "instagram",
             "graph.facebook.com",
+			"edge-mqtt.facebook.com",
+			"scontent.xx.fbcdn.net",
             "deviantart",
             "behance.net",
             "shutterstock.com",
