@@ -11,6 +11,10 @@
 @@||captcha.yundun.com
 
 !--yiclear
+||l.qq.com/lview?
+http://*.tc.qq.com/*.mp4*vkey=$domain=v.qq.com
+||sp*.baidu.com^*.gif?
+||vi.l.qq.com/proxyhttp$domain=v.qq.com
 l.qq.com/livemsg?*&ad_type=*&$redirect=l.qq.com/livemsg?ty=web&az
 l.qq.com/livemsg?*&adtype=*&$redirect=l.qq.com/livemsg?ty=web&az
 atm.youku.com/vf?vip=0*$redirect=atm.youku.com/vf?vip=1
