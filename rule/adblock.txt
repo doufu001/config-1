@@ -5,3 +5,5 @@
 ! Homepage: http://www.wuan.in/
 
 */ad-
+@@||weiyun.com
+|https://tv.sohu.com/upload/swf/*/Main.swf$redirect=https://coding.net/u/HalfLife/p/swf/git/raw/gh-pages/sohu_live.swf
