@@ -4,25 +4,4 @@
 ! Expires: 6 hours
 ! Homepage: http://www.wuan.in/
 
-
-!--WhiteList
-@@||dmm.com^
-@@||dmm.co.jp^
-@@||captcha.yundun.com
-
-!--yiclear
-||l.qq.com/lview?
-http://*.tc.qq.com/*.mp4*vkey=$domain=v.qq.com
-||sp*.baidu.com^*.gif?
-||vi.l.qq.com/proxyhttp$domain=v.qq.com
-l.qq.com/livemsg?*&ad_type=*&$redirect=l.qq.com/livemsg?ty=web&az
-l.qq.com/livemsg?*&adtype=*&$redirect=l.qq.com/livemsg?ty=web&az
-atm.youku.com/vf?vip=0*$redirect=atm.youku.com/vf?vip=1
-|http://f.v.17173cdn.com/*/Player_stream.swf$redirect=http://tools.yiclear.com/swf/17173/17173.in.Live.swf
-|http://f.v.17173cdn.com/*/Player_stream_customOut.swf$redirect=http://tools.yiclear.com/swf/17173/17173.out.Live.swf
-|http://f.v.17173cdn.com/*/Player_stream_firstpage.swf$redirect=http://tools.yiclear.com/swf/17173/17173.in.Live.swf
-|http://f.v.17173cdn.com/*/Player_stream_Out.swf$redirect=http://tools.yiclear.com/swf/17173/17173.out.Live.swf
-|http://f.v.17173cdn.com/*/PreloaderFile.swf$redirect=http://tools.yiclear.com/swf/17173/17173.in.Vod.swf
-|http://f.v.17173cdn.com/*/PreloaderFileFirstpage.swf$redirect=http://tools.yiclear.com/swf/17173/17173.out.Vod.swf
-https://web.da.mgtv.com/pc/player$redirect=http://v.huya.com/jsapi/getliverelate?channel=
-|http://ark.letv.com/s?ark=*&ct=$redirect=http://ark.letv.com/s?ark=0
+*/ad-
