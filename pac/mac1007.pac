@@ -1,4 +1,4 @@
-// update: 2018.12.31
+// update: 2019.1.8
 // 鉴于《刑法》、《网络安全法》等法律的有关条款，规则中加入了黑名单，请谅解
 function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(url); } catch(ex) { return false; }    }
 function FindProxyForURL(url, host) {
@@ -68,6 +68,7 @@ if (
   dnsDomainIs(host, "accountkit.com") ||
   dnsDomainIs(host, "instagram.com") ||
   shExpMatch(url, "*://instagram.*.fbcdn.net/*") ||
+  dnsDomainIs(host, "graph.facebook.com") ||
   dnsDomainIs(host, "deviantart.com") ||
   dnsDomainIs(host, "deviantart.net") ||
   dnsDomainIs(host, "behance.net") ||
@@ -146,6 +147,7 @@ if (
   dnsDomainIs(host, "line-scdn.net") ||
   dnsDomainIs(host, "mgoon.com") ||
   dnsDomainIs(host, "wecandeo.com") ||
+  dnsDomainIs(host, "vidmix.tv") ||
   dnsDomainIs(host, "btbtt.co") ||
   dnsDomainIs(host, "gyao.yahoo.co.jp") ||
   dnsDomainIs(host, "yimg.jp") ||
