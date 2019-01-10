@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: Wuand Adblock List
-! Last Modified: 2019.1.7
+! Last Modified: 2019.1.10
 ! Expires: 6 hours
 ! Homepage: http://www.wuan.in/
 
@@ -8,10 +8,12 @@
 @@||dmm.com
 @@||dmm.co.jp
 @@||weiyun.com
+@@||hm.baidu.com
 
 !--ad
 */ad-
 ||chinaz.com^*_g/
+||xueqiu.com/promotion/
 
 !--video
 |https://tv.sohu.com/upload/swf/*/Main.swf$redirect=https://coding.net/u/HalfLife/p/swf/git/raw/gh-pages/sohu_live.swf
