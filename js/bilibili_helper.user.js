@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         解除B站区域限制
 // @namespace    http://tampermonkey.net/
-// @version      7.1.6
+// @version      7.1.9
 // @description  通过替换获取视频地址接口的方式, 实现解除B站区域限制; 只对HTML5播放器生效;
 // @author       ipcjs
 // @supportURL   https://github.com/ipcjs/bilibili-helper/issues
@@ -1095,7 +1095,7 @@ function scriptSource(invokeBy) {
                                                     }
                                                 })
                                         }
-                                        if (container.__url.includes('api.bilibili.com/x/player/playurl') && balh_config.enable_in_av) {
+                                        if (container.__url.match(/^(https?:)?\/\/api\.bilibili\.com\/x\/player\/playurl.*$/) && balh_config.enable_in_av) {
                                             log('/x/player/playurl')
                                             // debugger
                                             bilibiliApis._playurl.asyncAjax(container.__url)
@@ -1640,6 +1640,8 @@ function scriptSource(invokeBy) {
                                     return Promise.reject(e)
                                 })
                         })
+                        // 报错时, 延时1秒再发送错误信息
+                        .catch(e => util_promise_timeout(1000).then(r => Promise.reject(e)))
                         .catch(e => {
                             util_ui_alert(`拉取视频地址失败\n${util_stringify(e)}\n\n可以考虑进行如下尝试:\n1. 多刷新几下页面\n2. 进入设置页面更换代理服务器\n3. 耐心等待代理服务器端修复问题\n\n点击确定按钮, 刷新页面`, window.location.reload.bind(window.location))
                             return Promise.reject(e)
@@ -1851,8 +1853,15 @@ function scriptSource(invokeBy) {
                 type: 'GET',
                 dataType: 'json',
                 success: (data) => {
-                    balh_auth_window.document.body.innerHTML = '<meta charset="UTF-8" name="viewport" content="width=device-width">正在跳转……';
-                    balh_auth_window.location.href = data.data.confirm_uri;
+                    if (data.data.has_login) {
+                        balh_auth_window.document.body.innerHTML = '<meta charset="UTF-8" name="viewport" content="width=device-width">正在跳转……';
+                        balh_auth_window.location.href = data.data.confirm_uri;
+                    } else {
+                        balh_auth_window.close()
+                        util_ui_alert('必须登录B站才能正常授权', () => {
+                            location.href = 'https://passport.bilibili.com/login'
+                        })
+                    }
                 },
                 error: (e) => {
                     alert('error');
