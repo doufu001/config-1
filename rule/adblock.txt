@@ -8,6 +8,9 @@
 @@||dmm.com
 @@||dmm.co.jp
 @@||hm.baidu.com
+@@://apd-*.qq.com/
+@@||ltsdl.qq.com^*.ts
+@@||atm.youku.com^
 
 !--video
 |https://tv.sohu.com/upload/swf/*/Main.swf$redirect=https://coding.net/u/HalfLife/p/swf/git/raw/gh-pages/sohu_live.swf

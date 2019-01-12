@@ -7,15 +7,4 @@
 !--whiteList
 @@||dmm.com^
 @@||dmm.co.jp^
-@@||qq.com
-@@://apd-*.qq.com/
-@@.qq.com/*.mp4?*sdtfrom=&
-@@.qq.com/*.mp4?*sdtfrom=|
-@@/variety.tc.qq.com/*.mp4?
-@@||sp*.baidu.com^*.gif?
-@@&adtype=
-@@/adplugin/*
-@@||youku.com
-@@||ykimg.com
-@@||soku.com
-@@||cibntv.net/youku/*.mp4?$domain=~vku.youku.com
+@@||hm.baidu.com
