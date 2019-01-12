@@ -4,11 +4,38 @@ function regExpMatch(url, pattern) {    try { return new RegExp(pattern).test(ur
 function FindProxyForURL(url, host) {
 // blacklist
 if (
+// surprise
+  shExpMatch(url, "https://www.youtube.com/upload") ||
+  shExpMatch(url, "https://twitter.com/i/tweet/create") ||
+  shExpMatch(url, "https://login.wikimedia.org/*") ||
+  shExpMatch(url, "https://www.facebook.com/ajax/updatestatus.php*") ||
+  shExpMatch(url, "https://www.facebook.com/ufi/add/comment*") ||
 // google plus
   shExpMatch(url, "https://plus.google.com/*")
 ) return "DIRECT";
 // v2ray
 if (
+// surprise
+  dnsDomainIs(host, "youtube.com") ||
+  dnsDomainIs(host, "ytimg.com") ||
+  dnsDomainIs(host, "googlevideo.com") ||
+  dnsDomainIs(host, "youtu.be") ||
+  dnsDomainIs(host, "twitter.com") ||
+  dnsDomainIs(host, "twimg.com") ||
+  dnsDomainIs(host, "t.co") ||
+  dnsDomainIs(host, "facebook.com") ||
+  dnsDomainIs(host, "fbcdn.net") ||
+  dnsDomainIs(host, "facebook.net") ||
+  dnsDomainIs(host, "wikipedia.org") ||
+  dnsDomainIs(host, "wikimedia.org") ||
+  dnsDomainIs(host, "medium.com") ||
+  dnsDomainIs(host, "vimeo.com") ||
+  dnsDomainIs(host, "vimeocdn.com") ||
+  dnsDomainIs(host, "economist.com") ||
+  dnsDomainIs(host, "bloomberg.com") ||
+  dnsDomainIs(host, "reuters.com") ||
+  dnsDomainIs(host, "issuu.com") ||
+  dnsDomainIs(host, "tumblr.com") ||
 // google
   shExpMatch(url, "*://*.google.*/*") ||
   dnsDomainIs(host, "gstatic.com") ||
