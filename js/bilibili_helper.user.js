@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         解除B站区域限制
 // @namespace    http://tampermonkey.net/
-// @version      7.1.9
+// @version      7.2.2
 // @description  通过替换获取视频地址接口的方式, 实现解除B站区域限制; 只对HTML5播放器生效;
 // @author       ipcjs
 // @supportURL   https://github.com/ipcjs/bilibili-helper/issues
@@ -86,6 +86,7 @@ function scriptSource(invokeBy) {
         ok: { en: 'OK', zh_cn: '确定', },
         close: { en: 'Close', zh_cn: '关闭' },
         welcome_to_acfun: '<p><b>缺B乐 了解下？</b></p><br><p>PS: A站白屏/播放卡顿/被区域限制等问题，可以通过安装 <a href="https://github.com/esterTion/AcFun-HTML5-Player">AcFun HTML5 Player</a> 解决</p>',
+        version_remind: `1. 修复新版番剧页面不能播放的问题<br>`
     }
     const _t = (key) => {
         const text = r_text[key]
@@ -869,6 +870,7 @@ function scriptSource(invokeBy) {
         anime_ss: () => location.href.includes('www.bilibili.com/bangumi/play/ss'),
         anime_ep_m: () => location.href.includes('m.bilibili.com/bangumi/play/ep'),
         anime_ss_m: () => location.href.includes('m.bilibili.com/bangumi/play/ss'),
+        new_bangumi: () => location.href.includes('www.bilibili.com/bangumi')
     }
 
     const balh_config = (function () {
@@ -926,23 +928,20 @@ function scriptSource(invokeBy) {
     const balh_api_plus_playurl_for_mp4 = (cid, bangumi = true) => util_ajax(`${balh_config.server}/api/h5play.php?tid=33&cid=${cid}&type=vupload&vid=vupload_${cid}&bangumi=${bangumi ? 1 : 0}`)
         .then(text => (text.match(/srcUrl=\{"mp4":"(https?.*)"\};/) || ['', ''])[1]); // 提取mp4的url
 
-    const balh_is_close = (function () {
-        const isClose = false
-        if (isClose) {
-            util_init(() => {
-                if (!balh_config.is_close_do_not_remind) {
-                    util_ui_pop({
-                        content: `<h3>${GM_info.script.name}</h3>VPS托管商跑路了 导致服务临时下线，预计下周恢复<br>想了解最新动态，请关注<a href="https://github.com/ipcjs/bilibili-helper/issues/311">这个页面</a>`,
-                        confirmBtn: '知道了, 不再提醒',
-                        onConfirm: function () {
-                            balh_config.is_close_do_not_remind = r.const.TRUE
-                            location.reload()
-                        },
-                    })
+    const balh_is_close = false
+
+    const balh_version_remind = (function () {
+        if (!util_page.new_bangumi()) return
+
+        util_init(() => {
+            if ((localStorage.balh_version || '0') < GM_info.script.version) {
+                localStorage.balh_version = GM_info.script.version
+                let version_remind = _t('version_remind')
+                if (version_remind) {
+                    util_ui_pop({ content: `<h3>${GM_info.script.name} v${GM_info.script.version} 更新日志</h3>${version_remind}` })
                 }
-            })
-        }
-        return isClose
+            }
+        })
     })()
 
     const balh_feature_switch_to_old_player = (function () {
@@ -1165,12 +1164,30 @@ function scriptSource(invokeBy) {
                         })
                 } else if (param.url.match('/player/web_api/playurl') // 老的番剧页面playurl接口
                     || param.url.match('/player/web_api/v2/playurl') // 新的番剧页面playurl接口
+                    || param.url.match(/^(https?:)?\/\/api\.bilibili\.com\/pgc\/player\/web\/playurl.*$/) // 新的番剧页面playurl接口
                     || (balh_config.enable_in_av && param.url.match('//interface.bilibili.com/v2/playurl')) // 普通的av页面playurl接口
                 ) {
+                    // 新playrul:
+                    // 1. 部分页面参数放在param.data中
+                    // 2. 成功时, 返回的结果放到了result中: {"code":0,"message":"success","result":{}}
+                    // 3. 失败时, 返回的结果没变
+                    let isNewPlayurl
+                    if (isNewPlayurl = param.url.includes('//api.bilibili.com/pgc/player/web/playurl')) {
+                        if (param.data) {
+                            param.url += `?${Object.keys(param.data).map(key => `${key}=${param.data[key]}`).join('&')}`
+                            param.data = undefined
+                        }
+                        if (util_page.new_bangumi()) {
+                            param.url += `&module=bangumi`
+                        }
+                    }
                     one_api = bilibiliApis._playurl;
                     oriResultTransformer = p => p
                         .then(json => {
                             log(json)
+                            if (isNewPlayurl && !json.code) {
+                                json = json.result
+                            }
                             if (balh_config.blocked_vip || json.code || isAreaLimitForPlayUrl(json)) {
                                 areaLimit(true)
                                 return one_api.asyncAjax(param.url)
@@ -1189,11 +1206,18 @@ function scriptSource(invokeBy) {
                                 r.result = 'suee'
                                 r.accept_description = ['未知 3P']
                                 // r.timelength = r.durl.map(it => it.length).reduce((a, b) => a + b, 0)
-                                if (r.durl && r.durl[0] && r.durl[0].url.includes('biliplus-vid.win')) {
-                                    const aid = window.__INITIAL_STATE__ && window.__INITIAL_STATE__.aid || 'fuck'
+                                if (r.durl && r.durl[0] && r.durl[0].url.includes('video-sg.biliplus.com')) {
+                                    const aid = window.__INITIAL_STATE__ && window.__INITIAL_STATE__.aid || window.__INITIAL_STATE__.epInfo && window.__INITIAL_STATE__.epInfo.aid || 'fuck'
                                     util_ui_pop({
-                                        content: `原视频已被删除, 当前播放的是<a href="https://bg.biliplus-vid.win/">转存服务器</a>中的视频, 速度较慢<br>被删的原因可能是:<br>1. 视频违规<br>2. 视频被归类到番剧页面 => 试下<a href="https://search.bilibili.com/bangumi?keyword=${aid}">搜索av${aid}</a>`
+                                        content: `原视频已被删除, 当前播放的是<a href="https://video-sg.biliplus.com/">转存服务器</a>中的视频, 速度较慢<br>被删的原因可能是:<br>1. 视频违规<br>2. 视频被归类到番剧页面 => 试下<a href="https://search.bilibili.com/bangumi?keyword=${aid}">搜索av${aid}</a>`
                                     })
+                                }
+                            }
+                            if (isNewPlayurl && !r.code) {
+                                r = {
+                                    code: 0,
+                                    message: 'success',
+                                    result: r
                                 }
                             }
                             return r
