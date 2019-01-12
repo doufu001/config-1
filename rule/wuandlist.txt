@@ -1,11 +1,21 @@
 [Adblock Plus 2.0]
 ! Title: Wuand Adblock List
-! Last Modified: 2018.11.9
+! Last Modified: 2019.1.12
 ! Expires: 6 hours
 ! Homepage: http://www.wuan.in/
 
-
-!--WhiteList
+!--whiteList
 @@||dmm.com^
 @@||dmm.co.jp^
-@@||captcha.yundun.com
+@@||qq.com
+@@://apd-*.qq.com/
+@@.qq.com/*.mp4?*sdtfrom=&
+@@.qq.com/*.mp4?*sdtfrom=|
+@@/variety.tc.qq.com/*.mp4?
+@@||sp*.baidu.com^*.gif?
+@@&adtype=
+@@/adplugin/*
+@@||youku.com
+@@||ykimg.com
+@@||soku.com
+@@||cibntv.net/youku/*.mp4?$domain=~vku.youku.com

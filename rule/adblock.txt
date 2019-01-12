@@ -9,11 +9,5 @@
 @@||dmm.co.jp
 @@||hm.baidu.com
 
-!--ad
-*/ad-
-||chinaz.com^*_g/
-||xueqiu.com/promotion/
-||loldyttw.net/blr.js
-
 !--video
 |https://tv.sohu.com/upload/swf/*/Main.swf$redirect=https://coding.net/u/HalfLife/p/swf/git/raw/gh-pages/sohu_live.swf
