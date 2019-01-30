@@ -2,15 +2,9 @@
 ! Title: Wuand Adblock List
 ! Last Modified: 2019.1.12
 ! Expires: 6 hours
-! Homepage: http://www.wuan.in/
+! Homepage: https://www.mpdf.in/
 
 !--whiteList
-@@||dmm.com
-@@||dmm.co.jp
+@@||dmm.com^
+@@||dmm.co.jp^
 @@||hm.baidu.com
-@@://apd-*.qq.com/
-@@||ltsdl.qq.com^*.ts
-@@||atm.youku.com^
-
-!--video
-|https://tv.sohu.com/upload/swf/*/Main.swf$redirect=https://coding.net/u/HalfLife/p/swf/git/raw/gh-pages/sohu_live.swf
