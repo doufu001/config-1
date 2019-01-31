@@ -1,0 +1,29 @@
+[Adblock Plus 2.1]
+! Version: 20181217000
+! Title:  ChinaListV2.0[20181217000]
+! Last modified: 2018/12/17 20:00:49 +0800
+! Email: yiclear@aliyun.com
+! Homepage: http://www.yiclear.com
+
+l.qq.com/livemsg?*&ad_type=*&$redirect=l.qq.com/livemsg?ty=web&az
+l.qq.com/livemsg?*&adtype=*&$redirect=l.qq.com/livemsg?ty=web&az
+atm.youku.com/vf?vip=0*$redirect=atm.youku.com/vf?vip=1
+|http://f.v.17173cdn.com/*/Player_stream.swf$redirect=http://tools.yiclear.com/swf/17173/17173.in.Live.swf
+|http://f.v.17173cdn.com/*/Player_stream_customOut.swf$redirect=http://tools.yiclear.com/swf/17173/17173.out.Live.swf
+|http://f.v.17173cdn.com/*/Player_stream_firstpage.swf$redirect=http://tools.yiclear.com/swf/17173/17173.in.Live.swf
+|http://f.v.17173cdn.com/*/Player_stream_Out.swf$redirect=http://tools.yiclear.com/swf/17173/17173.out.Live.swf
+|http://f.v.17173cdn.com/*/PreloaderFile.swf$redirect=http://tools.yiclear.com/swf/17173/17173.in.Vod.swf
+|http://f.v.17173cdn.com/*/PreloaderFileFirstpage.swf$redirect=http://tools.yiclear.com/swf/17173/17173.out.Vod.swf
+https://web.da.mgtv.com/pc/player$redirect=http://v.huya.com/jsapi/getliverelate?channel=
+|http://ark.letv.com/s?ark=*&ct=$redirect=http://ark.letv.com/s?ark=0
+
+v.qq.com#%#if(void 0!==localStorage["txp-user-setting"]){var s=JSON.parse(localStorage["txp-user-setting"]);s.isUseFlash="0",localStorage["txp-user-setting"]=JSON.stringify(s)}
+v.qq.com#%#var _setTimeout=window.setTimeout;window.setTimeout=function(a,b){var str=a.toString();if(b===14000&&str.indexOf("callback&&")){return _setTimeout(a,0)}return _setTimeout(a,b)}
+iqiyi.com#%#if (document.cookie.indexOf("player_forcedType=h5_VOD")==-1){document.cookie='player_forcedType=h5_VOD'};
+iqiyi.com#%#var _settimeout=window.setTimeout;window.setTimeout=function(a,b){var str=a.toString();if(str.indexOf("isAD")>0&&str.indexOf("Date.now()")>0&&b==1000){b=100}return _settimeout(a,b)};var _setinterval=window.setInterval;window.setInterval=function(a,b){var str=a.toString();if(str.indexOf("timerComplete")>0){return _setinterval(a,1)}return _setinterval(a,b)};
+youku.com#%#var _setInterval=window.setInterval;window.setInterval=function(a,b){var str=a.toString();if(b===1000&&str.indexOf("Math.max")){return _setInterval(a,0)}return _setInterval(a,b)}
+/g\.alicdn\.com\/player\/ykplayer\/0\.6\.[0-9]+\/youku-player\.min\.js/$redirect=g.alicdn.com/player/ykplayer/0.5.90/youku-player.min.js
+sohu.com#%#if (document.cookie.indexOf("fee_status=true")==-1){document.cookie='fee_status=true'};
+loldk.com#%#window.yiclear_onLoad=function(func) { if (window.addEventListener) { window.addEventListener('DOMContentLoaded', func); } };
+loldk.com#%#yiclear_onLoad(function(){jQuery.Hide_before_video_ad();});
+v.baidu.com#%#if (document.cookie.indexOf("fee_status=true")==-1){document.cookie='fee_status=true'};

@@ -2,8 +2,7 @@
 // @name              视频跳过广告和 VIP 视频解析
 // @name:en           Kill ADs and Watch VIP Videos
 // @namespace         http://mofiter.com/
-// @version           2.1.2
-// @homepage           https://greasyfork.org/zh-CN/scripts/373063
+// @version           2.1.3
 // @description       也许是风格最贴近原视频网站的 VIP 视频解析脚本了，添加的解析按钮样式跟原视频网站已有的按钮一致，不会产生突兀感，支持腾讯视频、爱奇艺、优酷、土豆、芒果 TV、搜狐视频、乐视视频、PPTV等，支持多个解析接口切换，支持自定义接口，支持站内站外解析，支持 Tampermonkey、Violentmonkey、Greasemonkey
 // @description:en    maybe it's the most similar VIP videos script to origin website
 // @author            mofiter
@@ -35,13 +34,15 @@
     var log_count = 1;
     var parseInterfaceList = [];
     var userInterfaceList = [];
-    var originalInterfaceList = [{"name":"927","type":"站内","url":"https://api.927.la/vip/?url="},
-                                 {"name":"云播放","type":"站内","url":"https://cdn.yangju.vip/k/?url="},
+    var originalInterfaceList = [
                                  {"name":"思古","type":"站内","url":"https://api.bbbbbb.me/jx/?url="},
+                                 {"name":"云播放","type":"站内","url":"https://cdn.yangju.vip/k/?url="},
+                                 {"name":"927","type":"站内","url":"https://api.927.la/vip/?url="},
                                  {"name":"大表哥","type":"站外","url":"http://jx.biaoge.tv/index.php?url="},
                                  {"name":"百域学院","type":"站外","url":"http://app.baiyug.cn:2019/vip/?url="},
                                  {"name":"m1907","type":"站外","url":"https://z1.m1907.cn/?jx="},
-                                 {"name":"1717yun","type":"站外","url":"http://www.1717yun.com/jx/ty.php?url="}];
+                                 {"name":"1717yun","type":"站外","url":"http://www.1717yun.com/jx/ty.php?url="}
+								 ];
 
     //自定义 log 函数
     function mylog(param1,param2){
@@ -196,7 +197,7 @@
         if (location.href.indexOf("www.iqiyi.com") > -1){
             GMaddStyle(`.fn-iqiyi-jiexi li{color:#cccccc;text-align:center;width:60px;line-height:20px;float:left;border:1px solid gray;border-radius:8px;padding:0 4px;margin:4px 2px;}`);
             var iqiyi_jiexi = $("<div class='func-item'><span class='func-inner fn-iqiyi-jiexi-text' style='line-height:40px;'><span class='func-name'>VIP解析</span></span>" +
-                                "<div class='qy-func-jiexi-pop fn-iqiyi-jiexi' style='display:none;position:absolute;left:-50px;text-align:center;'><div class='qy-popup-box' style='background-color:#2e2e2e;border:1px solid gray;'>" +
+                                "<div class='qy-func-jiexi-pop fn-iqiyi-jiexi' style='display:none;position:absolute;left:-50px;text-align:center;z-index:2147483647;'><div class='qy-popup-box' style='background-color:#2e2e2e;border:1px solid gray;'>" +
                                 jiexiDIV + "</div></div></div>");
             var addButtonLoop = setInterval(()=>{
                 if($(".func-like-v1").is(":visible") && !document.getElementsByClassName("fn-iqiyi-jiexi")[0]){
