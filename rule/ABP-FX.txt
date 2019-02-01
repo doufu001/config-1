@@ -1,11 +1,17 @@
 ﻿[Adblock Plus 2.0]
-! title: 乘风 广告过滤规则
-! Version: 201901081
+! title: 乘风广告过滤规则（麻婆豆腐优化版）
+! Last Modified: 2019.2.1
 ! Expires: 6 hours
-! Homepage: http://bbs.kafan.cn/thread-1866845-1-1.html
 
+! 白名单
 @@||dmm.com^
 
+! google广告
+##.ads-ad
+###tads.c
+###bottomads
+
+! 原乘风规则（去除腾讯部分）
 @@*$stylesheet
 @@*$domain=taobao.com|alipay.com|suning.com|vmall.com|etao.com|tmall.com|paipai.com|jd.com|jd.hk|i.qq.com|my.csdn.net|yiyaojd.com
 |http://js$xmlhttprequest,third-party
