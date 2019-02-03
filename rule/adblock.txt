@@ -1,10 +1,8 @@
 [Adblock Plus 2.0]
-! Title: Wuand Adblock List
-! Last Modified: 2019.1.12
+! Title: ChinaList+
+! Last Modified: 2019.2.2
 ! Expires: 6 hours
-! Homepage: https://www.mpdf.in/
 
 !--whiteList
 @@||dmm.com^
 @@||dmm.co.jp^
-@@||hm.baidu.com

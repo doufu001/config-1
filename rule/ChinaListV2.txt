@@ -1,8 +1,7 @@
 [Adblock Plus 2.1]
-! Version: 20181217000
-! Title:  ChinaListV2.0[20181217000]
-! Last modified: 2018/12/17 20:00:49 +0800
-! Expires: 6 hours
+! Version: 20190201000
+! Title:  ChinaListV2.0[20190201000]
+! Last modified: 2019/02/01 15:15:26 +0800
 ! Email: yiclear@aliyun.com
 ! Homepage: http://www.yiclear.com
 -1688-wp-media/ads/
@@ -13446,6 +13445,7 @@ $webrtc,domain=btdb.to
 ||googlesyndication.com^$third-party
 ||web.users.51.la^$third-party
 ##.adsbygoogle
+||vali.cp31.ott.cibntv.net^$domain=v.youku.com,third-party
 baidu.com##td>DIV:has(a[href*="http://bzclk.baidu.com/"])
 baidu.com##div.result:has(a[href*="http://www.baidu.com/baidu.php?url"])
 baidu.com#$#*[style="display:block !important;visibility:visible !important"]{margin:0!important;height: 0 !important;overflow: hidden !important;opacity: 0 !important;pointer-events: none !important;}
