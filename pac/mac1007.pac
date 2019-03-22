@@ -80,6 +80,7 @@ if (
   dnsDomainIs(host, "tineye.com") ||
   dnsDomainIs(host, "depositphotos.com") ||
   dnsDomainIs(host, "istockphoto.com") ||
+  dnsDomainIs(host, "artstation.com") ||
 // acg
   dnsDomainIs(host, "nicovideo.jp") ||
   dnsDomainIs(host, "smilevideo.jp") ||
