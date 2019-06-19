@@ -1,0 +1,36 @@
+{
+  "inbounds": [{
+    "port": 2333,
+    "protocol": "vmess",
+    "settings": {
+      "clients": [
+        {
+          "id": "23ad6b10-8d1a-40f7-8ad0-e3e35cd38297",
+          "level": 1,
+          "alterId": 64
+        }
+      ]
+    }
+  }],
+  "outbounds": [{
+    "protocol": "blackhole",
+    "settings": {}
+  },{
+    "protocol": "freedom",
+    "settings": {},
+    "tag": "proxy"
+  }],
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "ip": [
+		  "scholar.google.com",
+		  "scholar.google.com.hk",
+		  "ip138.com"
+		],
+        "outboundTag": "proxy"
+      }
+    ]
+  }
+}
