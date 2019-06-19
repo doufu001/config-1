@@ -25,7 +25,15 @@
       {
         "type": "field",
         "domain": [
-          "scholar.google.com"
+          "scholar.google.com",
+          "pinterest",
+          "pinimg.com",
+          "deviantart",
+          "behance.net",
+          "artstation.com",
+          "tensorflow.org",
+          "scholar.google.com",
+          "ip111.cn"
         ],
         "outboundTag": "whitelist"
       }
