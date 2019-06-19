@@ -1,11 +1,11 @@
 {
   "inbounds": [{
-    "port": 2333,
+    "port": 233,
     "protocol": "vmess",
     "settings": {
       "clients": [
         {
-          "id": "23ad6b10-8d1a-40f7-8ad0-e3e35cd38297",
+          "id": "27300600-3c08-4b97-a83b-5ccd598940a6",
           "level": 1,
           "alterId": 64
         }
@@ -18,18 +18,16 @@
   },{
     "protocol": "freedom",
     "settings": {},
-    "tag": "proxy"
+    "tag": "whitelist"
   }],
   "routing": {
     "rules": [
       {
         "type": "field",
         "domain": [
-          "scholar.google.com",
-          "scholar.google.com.hk",
-          "ip138.com"
-        ],
-        "outboundTag": "proxy"
+          "scholar.google.com"
+		],
+        "outboundTag": "whitelist"
       }
     ]
   }
