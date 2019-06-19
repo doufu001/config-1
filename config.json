@@ -24,11 +24,11 @@
     "rules": [
       {
         "type": "field",
-        "ip": [
-		  "scholar.google.com",
-		  "scholar.google.com.hk",
-		  "ip138.com"
-		],
+        "domain": [
+          "scholar.google.com",
+          "scholar.google.com.hk",
+          "ip138.com"
+        ],
         "outboundTag": "proxy"
       }
     ]
