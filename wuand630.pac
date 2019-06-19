@@ -6,7 +6,6 @@ function FindProxyForURL(url, host) {
 if (
 // scholar
   shExpMatch(url, "*://scholar.google.*/*") ||
-  shExpMatch(url, "*://sci-hub.*/*") ||
 // art
   shExpMatch(url, "*://*.pinterest.*/*") ||
   dnsDomainIs(host, "pinimg.com") ||
