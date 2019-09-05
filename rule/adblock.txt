@@ -1,8 +1,0 @@
-[Adblock Plus 2.0]
-! Title: ChinaList+
-! Last Modified: 2019.2.2
-! Expires: 6 hours
-
-!--whiteList
-@@||dmm.com^
-@@||dmm.co.jp^
