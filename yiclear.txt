@@ -27,3 +27,5 @@ youku.com#%#YiClear_defineProperty('H5player._manage.global.adparam.emb', { set:
 iqiyi.com#%#yiclear_onLoad(function(){YiClear_defineProperty('QiyiPlayerLoader.manager.players.flashbox.package.ad.adMap',{get:function(){return;}});})
 iqiyi.com#%#yiclear_onLoad(function(){var _setinterval=window.setInterval;window.setInterval=function(a,b){var str=a.toString();if(str.indexOf("timerComplete")>0){return _setinterval(a,1)}return _setinterval(a,b)};});
 sports.qq.com,v.qq.com#%#var _setTimeout=window.setTimeout;window.setTimeout=function(a,b){var str=a.toString();if(b===14000&&str.indexOf("callback&&")){return _setTimeout(a,0)}return _setTimeout(a,b)}
+
+iqiyi.com##.black-screen
