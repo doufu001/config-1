@@ -1,9 +1,10 @@
 [Adblock Plus 2.0]
 ! Title: Adblock List
-! Last Modified: 2019.3.8
+! Last Modified: 2019.9.8
 ! Expires: 6 hours
 
 !--whiteList
 @@||dmm.com^
 @@||dmm.co.jp^
 @@||hm.baidu.com
+@@||iqiyi.com/show2?e=
